@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 
-<Pane prefHeight="503.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee">
    <children>
-      <TabPane layoutX="-2.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="636.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="1.0" layoutY="38.0" prefHeight="362.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Open Records">
+          <Tab text="Assigned Work">
                <content>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                     <content>
@@ -18,7 +20,7 @@
                   </ScrollPane>
                </content>
           </Tab>
-          <Tab text="Closed Records">
+          <Tab text="Completed Work">
                <content>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                     <content>
@@ -27,16 +29,8 @@
                   </ScrollPane>
                </content>
           </Tab>
-            <Tab text="All Records">
-               <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
         </tabs>
       </TabPane>
+      <Label layoutX="20.0" layoutY="14.0" text="Employee ID:" />
    </children>
 </Pane>

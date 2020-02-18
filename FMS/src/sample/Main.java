@@ -20,8 +20,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Facility  Management System");

@@ -14,6 +14,8 @@ public class WelcomeScreen implements Initializable {
     @FXML
     private RadioButton user;
     @FXML
+    private RadioButton fms;
+    @FXML
     private TextField username;
     @FXML
     private PasswordField password;
@@ -31,9 +33,13 @@ public class WelcomeScreen implements Initializable {
         emptywarn.setText("");
         emptywarn1.setText("");
         loginwarn.setText("");
+
         employee.setToggleGroup(group);
-        employee.setSelected(true);
         user.setToggleGroup(group);
+        fms.setToggleGroup(group);
+
+        user.setSelected(true);
+
     }
 
     public void execute_login(ActionEvent e) throws Exception {
@@ -55,11 +61,14 @@ public class WelcomeScreen implements Initializable {
             password.setText("");
             return;
         }
-        if(employee.isSelected()){
-            Main.changeScene("Employee.fxml");
+        if(fms.isSelected()){
+            Main.changeScene("FMS.fxml");
+        }
+        else if (user.isSelected()){
+            Main.changeScene("User.fxml");
         }
         else{
-            Main.changeScene("User.fxml");
+            Main.changeScene("Employee.fxml");
         }
     }
     public Boolean check(String id,String pass){  // check if user id and password is correct
