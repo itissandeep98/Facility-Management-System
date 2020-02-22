@@ -1,17 +1,15 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.Pane;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +27,6 @@ public class User implements Initializable {
     private TextArea comment;
     @FXML
     private Label userid;
-
     @FXML
     private StackPane pane;
 
@@ -39,19 +36,19 @@ public class User implements Initializable {
         //Todo: get user id in below label
         userid.setText("User ID: "+" ");
 
-        String st[]={"H1","H2","Old Boys","Girls"};
-        hostels.setItems(FXCollections.observableArrayList(st));
+        String values[]={"H1","H2","Old Boys","Girls"};
+        hostels.setItems(FXCollections.observableArrayList(values));
 
-        st= new String[]{"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
-        floor.setItems(FXCollections.observableArrayList(st));
+        values= new String[]{"0","1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        floor.setItems(FXCollections.observableArrayList(values));
 
-        st=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
-        requesttype.setItems(FXCollections.observableArrayList(st));
+        values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
+        requesttype.setItems(FXCollections.observableArrayList(values));
 
         reset();
     }
 
-    public void request(ActionEvent e){
+    public void request(ActionEvent e){ // action handler after pressing the request button
         try{
             int i=Integer.parseInt(room.getText());
             room.setText("0"+room.getText());
@@ -63,6 +60,7 @@ public class User implements Initializable {
         }
 
         Request r=new Request(hostels.getValue(), floor.getValue()+room.getText(), requesttype.getValue(), comment.getText());
+        System.out.println(r);
 
         //Todo: store this request and process it
 
@@ -70,7 +68,7 @@ public class User implements Initializable {
         reset();
     }
 
-    public void reset(){
+    public void reset(){  // Resets all the fields
         hostels.setValue("H1");
         floor.setValue("0");
         room.setText("");
