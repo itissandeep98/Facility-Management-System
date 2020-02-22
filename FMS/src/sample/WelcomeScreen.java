@@ -1,10 +1,21 @@
 package sample;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,19 +31,12 @@ public class WelcomeScreen implements Initializable {
     @FXML
     private PasswordField password;
     @FXML
-    private Label emptywarn;
-    @FXML
-    private Label emptywarn1;
-    @FXML
-    private Label loginwarn;
+    private StackPane pane;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ToggleGroup group = new ToggleGroup();
-        emptywarn.setText("");
-        emptywarn1.setText("");
-        loginwarn.setText("");
 
         employee.setToggleGroup(group);
         user.setToggleGroup(group);
@@ -46,33 +50,49 @@ public class WelcomeScreen implements Initializable {
         String Username=username.getText();
         String Password=password.getText();
         if(Username.isEmpty()){ // if username is empty
-            emptywarn.setText("Can't be Empty!!");
-            emptywarn.setTextFill(Color.RED);
+            Main.showalert("Failure", "Username Can't be empty",pane,Color.RED);
             return;
         }
         else if(Password.isEmpty()){ // if password is empty
-            emptywarn1.setText("Can't be Empty!!");
-            emptywarn1.setTextFill(Color.RED);
+            Main.showalert("Failure", "Password Can't be empty",pane,Color.RED);
             return;
         }
         if(check(Username,Password)){ // check if user id and password is correct
-            loginwarn.setText("Wrong Username or Password!!");
+            Main.showalert("Failure", "Wrong Username or Password!!",pane,Color.RED);
             username.setText("");
             password.setText("");
             return;
         }
-        if(fms.isSelected()){
-            Main.changeScene("FMS.fxml");
-        }
-        else if (user.isSelected()){
-            Main.changeScene("User.fxml");
-        }
-        else{
-            Main.changeScene("Employee.fxml");
-        }
+        showalert("Success", "Logged in Successfully",pane,Color.GREEN);
+
     }
     public Boolean check(String id,String pass){  // check if user id and password is correct
         //ToDo: enter JDBC code to check user details
         return false;
+    }
+
+    public void showalert(String title, String message, StackPane pane,Color col){ // Same Function as in Main Class just a little bit different
+        JFXDialogLayout content=new JFXDialogLayout();
+        Text t=new Text(title);
+        t.setFill(col);
+        content.setHeading(t);
+        t=new Text(message);
+        t.setFill(col);
+        content.setBody(t);
+        JFXButton button =new JFXButton("Done");
+        button.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        JFXDialog dialog =new JFXDialog(pane,content,JFXDialog.DialogTransition.CENTER);
+        button.setOnAction(actionEvent -> {
+            dialog.close();
+            if (fms.isSelected()) {
+                Main.changeScene("FMS.fxml");
+            } else if (user.isSelected()) {
+                Main.changeScene("User.fxml");
+            } else {
+                Main.changeScene("Employee.fxml");
+            }
+        });
+        content.setActions(button);
+        dialog.show();
     }
 }

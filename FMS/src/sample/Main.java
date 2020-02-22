@@ -1,15 +1,23 @@
 package sample;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -21,6 +29,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
 //        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
@@ -38,20 +47,20 @@ public class Main extends Application {
             System.out.println("Error in changing scene");
         }
     }
-    public static void showalert(String title, String message){
-        Stage window=new Stage();
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle(title) ;
-        Label label=new Label(message);
-        label.setTextFill(Color.GREEN);
-        Button close=new Button("Ok");
-        close.setOnAction(e->window.close());
-        VBox layout =new VBox(10);
-        layout.getChildren().addAll(label,close);
-        layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout);
-        window.setScene(scene);
-        window.showAndWait();
+    public static void showalert(String title, String message, StackPane pane,Color col){
+        JFXDialogLayout content=new JFXDialogLayout();
+        Text t=new Text(title);
+        t.setFill(col);
+        content.setHeading(t);
+        t=new Text(message);
+        t.setFill(col);
+        content.setBody(t);
+        JFXButton button =new JFXButton("Done");
+        button.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+        JFXDialog dialog =new JFXDialog(pane,content,JFXDialog.DialogTransition.CENTER);
+        button.setOnAction(actionEvent -> dialog.close());
+        content.setActions(button);
+        dialog.show();
     }
 
 

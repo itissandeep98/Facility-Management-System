@@ -1,10 +1,17 @@
 package sample;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,9 +28,10 @@ public class User implements Initializable {
     @FXML
     private TextArea comment;
     @FXML
-    private Label roominteger;
-    @FXML
     private Label userid;
+
+    @FXML
+    private StackPane pane;
 
 
     @Override
@@ -46,21 +54,19 @@ public class User implements Initializable {
     public void request(ActionEvent e){
         try{
             int i=Integer.parseInt(room.getText());
-            if(i<10){
-                room.setText("0"+room.getText());
-            }
+            room.setText("0"+room.getText());
         }
         catch (Exception ex){
-            roominteger.setText("Must be an Integer");
-            roominteger.setTextFill(Color.RED);
+            Main.showalert("Wrong Input", "Room Number Must be an Integer", pane, Color.RED);
+            room.setText("");
             return;
         }
-        roominteger.setText("");
+
         Request r=new Request(hostels.getValue(), floor.getValue()+room.getText(), requesttype.getValue(), comment.getText());
 
-        //Todo: store this rquest and process it
+        //Todo: store this request and process it
 
-        Main.showalert("Success","Request made Successfully ");
+        Main.showalert("Success","Request made Successfully ",pane,Color.GREEN);
         reset();
     }
 
@@ -70,6 +76,7 @@ public class User implements Initializable {
         room.setText("");
         requesttype.setValue("Cleaner");
         comment.setText("");
+
     }
 
 

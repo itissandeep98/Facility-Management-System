@@ -9,6 +9,13 @@
     </NATIVE>
     <SOURCES>
       <root url="file://$JAVA_FX$" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.base" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.controls" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.fxml" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.graphics" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.media" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.swing" />
+      <root url="jar://$JAVA_FX$/src.zip!/javafx.web" />
     </SOURCES>
     <jarDirectory url="file://$JAVA_FX$" recursive="false" />
     <jarDirectory url="file://$JAVA_FX$" recursive="false" type="SOURCES" />
