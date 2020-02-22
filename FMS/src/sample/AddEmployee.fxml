@@ -29,7 +29,7 @@
                <children>
                     <Label text="Speciality" GridPane.columnIndex="1" />
                   <JFXTextField fx:id="eid" promptText="Employee ID" GridPane.rowIndex="1" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <GridPane layoutX="489.0" layoutY="212.0" prefHeight="15.0" prefWidth="276.0">
@@ -42,16 +42,16 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                   <JFXButton fx:id="update" buttonType="RAISED" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4;" text="Update" GridPane.columnIndex="1" />
-                   <JFXButton fx:id="search" buttonType="RAISED" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4;" text="Search" />
-                   <JFXButton fx:id="delete" buttonType="RAISED" prefHeight="25.0" prefWidth="67.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4;" text="Delete" GridPane.columnIndex="2" />
+                   <JFXButton fx:id="update" buttonType="RAISED" prefHeight="25.0" prefWidth="79.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Update" GridPane.columnIndex="1" />
+                   <JFXButton fx:id="search" buttonType="RAISED" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Search" />
+                   <JFXButton fx:id="delete" buttonType="RAISED" prefHeight="25.0" prefWidth="67.0" ripplerFill="#0ef04e" style="-fx-background-color: #f01669;; -fx-background-radius: 50;" text="Delete" GridPane.columnIndex="2" />
 
                     
                </children>
             </GridPane>
               <Separator layoutX="42.0" layoutY="74.0" prefHeight="3.0" prefWidth="868.0" />
-              <Separator layoutX="317.0" layoutY="82.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="39.0" />
-              <TableView fx:id="employeeTable" editable="true" layoutX="17.0" layoutY="279.0" prefHeight="414.0" prefWidth="944.0" tableMenuButtonVisible="true">
+              <Separator layoutX="317.0" layoutY="82.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" />
+              <TableView fx:id="employeeTable" editable="true" layoutX="17.0" layoutY="279.0" prefHeight="414.0" prefWidth="944.0" style="-fx-background-radius: 50;" tableMenuButtonVisible="true">
                   <columns>
                       <TableColumn fx:id="empIdColumn" prefWidth="29.0" text="Id" />
                       <TableColumn fx:id="empspecialitycol" prefWidth="92.0" text="Speciality" />
@@ -62,7 +62,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
               </TableView>
-              <JFXButton fx:id="addemp" buttonType="RAISED" layoutX="75.0" layoutY="227.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4;" text="Add Employee" />
+              <JFXButton fx:id="addemp" buttonType="RAISED" layoutX="75.0" layoutY="227.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Add Employee" />
           </children>
       </AnchorPane>
    </children>

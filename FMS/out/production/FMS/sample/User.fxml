@@ -28,9 +28,9 @@
                   <Label text="Hostel ID:" />
                   <Label text="Room:" GridPane.rowIndex="2" />
                   <Label text="Request Type:" GridPane.rowIndex="3" />
-                  <ChoiceBox fx:id="hostels" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <ChoiceBox fx:id="floor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="requesttype" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="hostels" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" />
+                  <ChoiceBox fx:id="floor" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="requesttype" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Floor" GridPane.rowIndex="1" />
                   <Label text="Comments:" GridPane.rowIndex="4" />
                   <JFXTextField fx:id="room" promptText="eg - 1,2,3,....." GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -43,8 +43,8 @@
                </font>
             </Label>
             <Label fx:id="userid" layoutX="14.0" layoutY="14.0" prefHeight="41.0" prefWidth="121.0" text="User ID:" />
-            <JFXButton fx:id="request" buttonType="RAISED" layoutX="280.0" layoutY="392.0" onAction="#request" prefHeight="31.0" prefWidth="75.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4;" text="Request" />
-            <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="395.0" onAction="#reset" ripplerFill="#a11010" style="-fx-background-color: #f01669;" text="Reset" />
+            <JFXButton fx:id="request" buttonType="RAISED" layoutX="280.0" layoutY="392.0" onAction="#request" prefHeight="31.0" prefWidth="75.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Request" />
+            <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="395.0" onAction="#reset" ripplerFill="#a11010" style="-fx-background-color: #f01669; -fx-background-radius: 50;" text="Reset" />
          </children>
       </Pane>
    </children>
