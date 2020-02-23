@@ -14,6 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class Main extends Application {
     public static Parent root;
     public static Stage stage;
@@ -21,9 +25,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
-        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Facility  Management System");
@@ -54,6 +58,11 @@ public class Main extends Application {
         button.setOnAction(actionEvent -> dialog.close());
         content.setActions(button);
         dialog.show();
+    }
+
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Connection con= DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS","sandeep","BHTebyH3EphEcRJB4Jyb");
+        return con;
     }
 
 
