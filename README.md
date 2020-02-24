@@ -9,7 +9,7 @@ This is a group project extensively based on DBMS, its an attempt in creating an
 *Username*- sandeep\
 *Passord*- BHTebyH3EphEcRJB4Jyb\
 *host*- dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com\
-4.External library used for material Design: [JFoenix](https://github.com/jfoenixadmin/JFoenix)\
+4.External library used for material Design: [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
 ## How To Setup Project
 1.Clone the repo on your local machine\
