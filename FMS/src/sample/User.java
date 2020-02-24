@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class User implements Initializable {
+    //Todo: create a fxml file for user request history
     @FXML
     private ChoiceBox<String> hostels;
     @FXML
@@ -33,7 +34,7 @@ public class User implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Todo: get user id in below label
+        //Todo: get user id for below label
         userid.setText("User ID: "+" ");
 
         String values[]={"H1","H2","Old Boys","Girls"};
@@ -75,6 +76,9 @@ public class User implements Initializable {
         requesttype.setValue("Cleaner");
         comment.setText("");
 
+    }
+    public void login(ActionEvent e){
+        Main.changeScene("WelcomeScreen.fxml");
     }
 
 

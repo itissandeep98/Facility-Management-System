@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -13,7 +14,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-import javax.swing.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -64,13 +64,12 @@ public class AddEmployee implements Initializable {
         spec.setValue("Cleaner");
         ResultSet rs;
         try {
-            Connection con=Main.getConnection();
-            rs= con.createStatement().executeQuery("SELECT  * FROM Worker");
+            rs= Main.con.createStatement().executeQuery("SELECT  * FROM Worker");
             while (rs.next()){
                 list.add(new Workers(rs.getInt("ID"), rs.getString("Name"), rs.getString("Speciality"), rs.getString("ContactInfo")));
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (Exception e) {
             Main.showalert("Error!!", "Unable to Connect to server", pane, Color.RED);
             e.printStackTrace();
             return;
@@ -85,5 +84,8 @@ public class AddEmployee implements Initializable {
 
         employeeTable.setItems(list);
 
+    }
+    public void back(ActionEvent e){
+        Main.changeScene("FMS.fxml");
     }
 }

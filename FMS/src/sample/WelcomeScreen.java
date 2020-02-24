@@ -38,6 +38,10 @@ public class WelcomeScreen implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Main.con=Main.getConnection();
+        if(Main.con==null){
+            Main.warnconnection("Error!!", "Unable to Connect to server", pane, Color.RED);
+        }
         ToggleGroup group = new ToggleGroup();
 
         employee.setToggleGroup(group);

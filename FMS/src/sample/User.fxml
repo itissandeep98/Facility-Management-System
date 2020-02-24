@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,11 +9,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="pane" prefHeight="568.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
+<StackPane fx:id="pane" prefHeight="568.0" prefWidth="543.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="624.0" style="-fx-background-color: #ffffff;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
          <children>
-            <GridPane layoutX="199.0" layoutY="104.0" prefHeight="239.0" prefWidth="306.0">
+            <GridPane layoutX="77.0" layoutY="104.0" prefHeight="239.0" prefWidth="306.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,24 +29,43 @@
                   <Label text="Hostel ID:" />
                   <Label text="Room:" GridPane.rowIndex="2" />
                   <Label text="Request Type:" GridPane.rowIndex="3" />
-                  <ChoiceBox fx:id="hostels" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" />
-                  <ChoiceBox fx:id="floor" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="requesttype" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Floor" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="hostels" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1">
+                     <effect>
+                        <DropShadow />
+                     </effect></ChoiceBox>
+                  <ChoiceBox fx:id="floor" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <effect>
+                        <DropShadow />
+                     </effect></ChoiceBox>
+                  <ChoiceBox fx:id="requesttype" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <effect>
+                        <DropShadow />
+                     </effect></ChoiceBox>
+                  <Label text="Floor:" GridPane.rowIndex="1" />
                   <Label text="Comments:" GridPane.rowIndex="4" />
                   <JFXTextField fx:id="room" promptText="eg - 1,2,3,....." GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <JFXTextArea fx:id="comment" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="138.0" layoutY="24.0" prefHeight="69.0" prefWidth="398.0" text="Request Form" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="31.0" prefHeight="69.0" prefWidth="398.0" text="Request Form" textAlignment="CENTER">
                <font>
-                  <Font name="Ubuntu Italic" size="41.0" />
+                  <Font name="Comic Sans MS Bold" size="41.0" />
                </font>
+               <effect>
+                  <DropShadow />
+               </effect>
             </Label>
-            <Label fx:id="userid" layoutX="14.0" layoutY="14.0" prefHeight="41.0" prefWidth="121.0" text="User ID:" />
-            <JFXButton fx:id="request" buttonType="RAISED" layoutX="280.0" layoutY="392.0" onAction="#request" prefHeight="31.0" prefWidth="75.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Request" />
-            <JFXButton buttonType="RAISED" layoutX="408.0" layoutY="395.0" onAction="#reset" ripplerFill="#a11010" style="-fx-background-color: #f01669; -fx-background-radius: 50;" text="Reset" />
+            <Label fx:id="userid" layoutX="77.0" layoutY="63.0" prefHeight="41.0" prefWidth="121.0" text="User ID:">
+               <effect>
+                  <ColorAdjust brightness="0.05" contrast="0.86" hue="0.36" />
+               </effect></Label>
+            <JFXButton fx:id="request" buttonType="RAISED" layoutX="107.0" layoutY="392.0" onAction="#request" prefHeight="31.0" prefWidth="75.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Request" />
+            <JFXButton buttonType="RAISED" layoutX="278.0" layoutY="395.0" onAction="#reset" ripplerFill="#a11010" style="-fx-background-color: #f01669; -fx-background-radius: 50;" text="Reset" />
+            <JFXButton buttonType="RAISED" layoutX="199.0" layoutY="446.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
    </children>
 </StackPane>

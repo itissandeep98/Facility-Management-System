@@ -1,42 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<Pane prefHeight="503.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="643.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FMS">
    <children>
-      <TabPane layoutX="-2.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="636.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Open Records">
-               <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                  </ScrollPane>
-               </content>
-          </Tab>
-          <Tab text="Closed Records">
-               <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                  </ScrollPane>
-               </content>
-          </Tab>
-            <Tab text="All Records">
-               <content>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
+      <Pane prefHeight="581.0" prefWidth="825.0">
+         <children>
+            <TabPane layoutX="18.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="852.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Open Records">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content>
+                </Tab>
+                <Tab text="Closed Records">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content>
+                </Tab>
+                  <Tab text="All Records">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </Tab>
+              </tabs>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TabPane>
+            <Label alignment="CENTER" layoutX="178.0" layoutY="23.0" prefHeight="34.0" prefWidth="510.0" text="Records Table">
+               <font>
+                  <Font name="Liberation Mono Bold Italic" size="34.0" />
+               </font></Label>
+            <JFXButton fx:id="employeedet" buttonType="RAISED" layoutX="725.0" layoutY="32.0" onAction="#addemployee" ripplerFill="#46de02" style="-fx-background-color: #f79a05; -fx-background-radius: 50;" text="Employee Details" />
+            <JFXButton fx:id="backbutton" buttonType="RAISED" layoutX="57.0" layoutY="32.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout" />
+         </children>
+      </Pane>
    </children>
-</Pane>
+</StackPane>
