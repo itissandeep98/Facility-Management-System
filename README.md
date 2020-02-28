@@ -6,11 +6,7 @@ This is a group project extensively based on DBMS, its an attempt in creating an
 
 1.[Drive Link](https://drive.google.com/open?id=1hB0hikIpySNjIzEfQ7HzhressygbK1Fb) <- Project Documentation\
 2.[Draw.io Link](https://www.draw.io/#G1FX2bEyx_QDnG6YWAZ0l1AX_9LMEQA70u) <-initial ER Diagram \
-3.**AWS server**: \
-*Username*- sandeep\
-*Passord*- BHTebyH3EphEcRJB4Jyb\
-*host*- dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com\
-4.External library used for material Design: [JFoenix](https://github.com/jfoenixadmin/JFoenix)
+3.External library used for material Design: [JFoenix](https://github.com/jfoenixadmin/JFoenix)
 
 ## How To Setup Project
 1.Clone the repo on your local machine (`git clone github.com/itissandeep98/Facility-Management-System`) \
