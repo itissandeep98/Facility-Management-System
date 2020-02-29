@@ -18,6 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,10 +40,6 @@ public class WelcomeScreen implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Main.con=Main.getConnection();
-        if(Main.con==null){
-            Main.warnconnection("Error!!", "Unable to Connect to server", pane, Color.RED);
-        }
         ToggleGroup group = new ToggleGroup();
 
         employee.setToggleGroup(group);
@@ -53,6 +51,7 @@ public class WelcomeScreen implements Initializable {
     }
 
     public void execute_login(ActionEvent e) throws Exception {
+
         String Username=username.getText();
         String Password=password.getText();
         if(Username.isEmpty()){ // if username is empty
@@ -63,19 +62,27 @@ public class WelcomeScreen implements Initializable {
             Main.showalert("Failure", "Password Can't be empty",pane,Color.RED);
             return;
         }
+
+        if(Main.checkinternet()){ //check internet connection
+            Main.warnconnection("Failure", "NO internet connection!!",pane,Color.RED,Username,Password);
+            return;
+        }
+
         if(check(Username,Password)){ // check if user id and password is correct
             Main.showalert("Failure", "Wrong Username or Password!!",pane,Color.RED);
             username.setText("");
             password.setText("");
             return;
         }
+
         showalert("Success", "Logged in Successfully",pane,Color.GREEN);
 
     }
-    public Boolean check(String id,String pass){  // check if user id and password is correct
-        //ToDo: enter JDBC code to check user details
-        return false;
+    public Boolean check(String Username,String Password){  // check if user id and password is correct
+        Main.con=Main.getConnection(Username,Password);
+        return Main.con==null;
     }
+
 
     public void showalert(String title, String message, StackPane pane,Color col){ // Same Function as in Main Class just a little bit different
         JFXDialogLayout content=new JFXDialogLayout();

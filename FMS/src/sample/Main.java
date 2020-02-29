@@ -12,9 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -47,6 +47,7 @@ public class Main extends Application {
             System.out.println("Error in changing scene");
         }
     }
+
     public static void showalert(String title, String message, StackPane pane,Color col){
         JFXDialogLayout content=new JFXDialogLayout();
         Text t=new Text(title);
@@ -62,7 +63,8 @@ public class Main extends Application {
         content.setActions(button);
         dialog.show();
     }
-    public static void warnconnection(String title, String message, StackPane pane,Color col){
+
+    public static void warnconnection(String title, String message, StackPane pane,Color col,String username, String password){
         JFXDialogLayout content=new JFXDialogLayout();
         Text t=new Text(title);
         t.setFill(col);
@@ -80,7 +82,7 @@ public class Main extends Application {
         JFXButton retry =new JFXButton("Retry");
         retry.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
         retry.setOnAction(actionEvent -> {
-            if(getConnection()!=null){
+            if(checkinternet()!=null){
                 Text te=new Text("Success");
                 te.setFill(Color.GREEN);
                 content.setHeading(te);
@@ -95,10 +97,11 @@ public class Main extends Application {
         dialog.show();
     }
 
-    public static Connection getConnection()  {
+    public static Connection getConnection(String username,String password)  {
         if (con==null) {
             try {
-                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb");
+                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
+//                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
             } catch (SQLException e) {
                 System.out.println("Unable to connect");
             }
@@ -106,6 +109,20 @@ public class Main extends Application {
         return con;
     }
 
+
+    public static Boolean checkinternet(){ // check internet connection
+        try {
+            URL url = new URL("http://www.google.com");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.connect();
+            if (con.getResponseCode() == 200){
+                return false;
+            }
+        } catch (Exception exception) {
+            return true;
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
         launch(args);
