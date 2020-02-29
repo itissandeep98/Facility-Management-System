@@ -55,13 +55,26 @@ public class AddEmployee implements Initializable {
     private TableColumn<Worker, String> empspecialitycol;
     @FXML
     private TableColumn<Worker, String> empnamecol;
-    ObservableList<Workers> list= FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
         spec.setItems(FXCollections.observableArrayList(values));
         spec.setValue("Cleaner");
+        empIdColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        empnamecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        empspecialitycol.setCellValueFactory(new PropertyValueFactory<>("Speciality"));
+        empphonenumcol.setCellValueFactory(new PropertyValueFactory<>("ContactInfo"));
+        filltable();
+    }
+
+    public void back(ActionEvent e){
+        Main.changeScene("FMS.fxml");
+    }
+
+    public void filltable(){
+        ObservableList<Workers> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
             rs= Main.con.createStatement().executeQuery("SELECT  * FROM Worker");
@@ -70,22 +83,11 @@ public class AddEmployee implements Initializable {
             }
 
         } catch (Exception e) {
-            Main.showalert("Error!!", "Unable to Connect to server", pane, Color.RED);
-            e.printStackTrace();
+            System.out.println("error in connection");
             return;
         }
 
-        Main.showalert("Success", "Successfully connected To server", pane, Color.GREEN);
-
-        empIdColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        empnamecol.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        empspecialitycol.setCellValueFactory(new PropertyValueFactory<>("Speciality"));
-        empphonenumcol.setCellValueFactory(new PropertyValueFactory<>("ContactInfo"));
-
         employeeTable.setItems(list);
 
-    }
-    public void back(ActionEvent e){
-        Main.changeScene("FMS.fxml");
     }
 }

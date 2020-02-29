@@ -29,7 +29,7 @@ public class Main extends Application {
         stage=primaryStage;
         root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
 //      root = FXMLLoader.load(getClass().getResource("User.fxml"));
-//        root = FXMLLoader.load(getClass().getResource("AddEmployee.fxml"));
+//        root = FXMLLoader.load(getClass().getResource("Employee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Facility  Management System");

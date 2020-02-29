@@ -1,22 +1,44 @@
 package sample;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class Work {
     int ID;
     String Status;
-    int RoomNum;
-    Time Timing;
+    String RoomNo;
+    Timestamp Starttime;
+    Timestamp Closedtime;
+
+    public Timestamp getClosedtime() {
+        return Closedtime;
+    }
+
+    public void setClosedtime(Timestamp closedtime) {
+        Closedtime = closedtime;
+    }
+
     int WorkerID;
     String RequestType;
 
-    public Work(int ID, String status, int roomNum, Time timing, int workerID, String requestType) {
+    public Work(int ID, String RoomNo, Timestamp starttime, String requestType, int workerID) {
         this.ID = ID;
-        Status = status;
-        RoomNum = roomNum;
-        Timing = timing;
+        this.RoomNo = RoomNo;
+        Starttime = starttime;
         WorkerID = workerID;
         RequestType = requestType;
+    }
+    public Work(int ID, String RoomNo, Timestamp starttime, Timestamp closedtime,String requestType, int workerID) {
+        this.ID = ID;
+        this.RoomNo = RoomNo;
+        this.Starttime = starttime;
+        this.WorkerID = workerID;
+        this.RequestType = requestType;
+        this.Closedtime=closedtime;
+    }
+    @Override
+    public String toString(){
+        return "ID: "+ID+" Roomnum: "+ RoomNo+" Request type: "+RequestType;
     }
 
     public int getID() {
@@ -35,20 +57,20 @@ public class Work {
         Status = status;
     }
 
-    public int getRoomNum() {
-        return RoomNum;
+    public String getRoomNo() {
+        return RoomNo;
     }
 
-    public void setRoomNum(int roomNum) {
-        RoomNum = roomNum;
+    public void setRoomNo(String roomNo) {
+        RoomNo = roomNo;
     }
 
-    public Time getTiming() {
-        return Timing;
+    public Timestamp getStarttime() {
+        return Starttime;
     }
 
-    public void setTiming(Time timing) {
-        Timing = timing;
+    public void setStarttime(Timestamp starttime) {
+        Starttime = starttime;
     }
 
     public int getWorkerID() {

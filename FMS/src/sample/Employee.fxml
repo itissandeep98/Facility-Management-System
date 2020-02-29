@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane prefHeight="775.0" prefWidth="983.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee">
+<StackPane fx:id="pane" prefHeight="775.0" prefWidth="983.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Employee">
    <children>
       <BorderPane prefHeight="589.0" prefWidth="932.0" style="-fx-background-color: #fcba03;">
          <left>
@@ -23,15 +23,15 @@
                      <font>
                         <Font name="FreeSerif Bold Italic" size="20.0" />
                      </font></Label>
-                  <JFXButton buttonType="RAISED" layoutX="50.0" layoutY="267.0" ripplerFill="#2ade02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Submit" />
+                  <JFXButton buttonType="RAISED" layoutX="50.0" layoutY="267.0" onAction="#changedetails" ripplerFill="#2ade02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Submit" />
                   <Label layoutX="24.0" layoutY="415.0" text="Mark as Completed">
                      <font>
                         <Font name="FreeSerif Bold Italic" size="20.0" />
                      </font></Label>
-                  <JFXTextField labelFloat="true" layoutX="36.0" layoutY="473.0" prefHeight="25.0" prefWidth="99.0" promptText="Enter ID" />
-                  <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="50.0" layoutY="548.0" ripplerFill="#0ade02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Submit" />
+                  <JFXTextField fx:id="id" labelFloat="true" layoutX="36.0" layoutY="473.0" prefHeight="25.0" prefWidth="99.0" promptText="Enter ID" />
+                  <JFXButton buttonType="RAISED" contentDisplay="CENTER" layoutX="50.0" layoutY="548.0" onAction="#markcompleted" ripplerFill="#0ade02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Submit" />
                   <Separator layoutX="8.0" layoutY="333.0" prefWidth="200.0" />
-                  <TextField layoutX="2.0" layoutY="179.0" promptText="Enter New Value" style="-fx-background-radius: 50;">
+                  <TextField fx:id="newvalue" layoutX="2.0" layoutY="179.0" promptText="Enter New Value" style="-fx-background-radius: 50;">
                      <effect>
                         <DropShadow />
                      </effect></TextField>
@@ -41,7 +41,7 @@
          <top>
             <Pane prefHeight="57.0" prefWidth="983.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutX="24.0" layoutY="21.0" text="Employee ID:" />
+                  <Label fx:id="empid" layoutX="24.0" layoutY="21.0" text="Employee ID:" />
                </children>
             </Pane>
          </top>
@@ -54,27 +54,9 @@
          <center>
             <TabPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #6b03fc;" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
                <tabs>
-                  <Tab text="Completed Work">
+                  <Tab onSelectionChanged="#FillAssignedTable" text="Assigned Work">
                      <content>
-                        <TableView editable="true" fixedCellSize="0.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <columns>
-                              <TableColumn fx:id="completed_id" prefWidth="110.0" text="ID" />
-                              <TableColumn fx:id="completed_room" prefWidth="304.0" text="Room No." />
-                              <TableColumn fx:id="complete_time" prefWidth="119.0" text="Time" />
-                              <TableColumn fx:id="complete_request" prefWidth="157.0" text="Request Type" />
-                           </columns>
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor>
-                        </TableView>
-                     </content>
-                  </Tab>
-                  <Tab text="Assigned Work">
-                     <content>
-                        <TableView editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+                        <TableView fx:id="assignedtable" editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
@@ -83,6 +65,25 @@
                               <TableColumn fx:id="assigned_room" prefWidth="140.0" text="Room No." />
                               <TableColumn fx:id="assigned_time" prefWidth="119.0" text="Time" />
                               <TableColumn fx:id="assigned_request" prefWidth="157.0" text="Request Type" />
+                           </columns>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TableView>
+                     </content>
+                  </Tab>
+                  <Tab onSelectionChanged="#FillCompletedTable" text="Completed Work">
+                     <content>
+                        <TableView fx:id="completedtable" editable="true" fixedCellSize="0.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                           <columns>
+                              <TableColumn fx:id="completed_id" prefWidth="110.0" text="ID" />
+                              <TableColumn fx:id="completed_room" prefWidth="304.0" text="Room No." />
+                              <TableColumn fx:id="completed_request" prefWidth="157.0" text="Request Type" />
+                              <TableColumn fx:id="completed_starttime" prefWidth="119.0" text="Start Time" />
+                              <TableColumn fx:id="completed_endtime" prefWidth="119.0" text="End Time" />
                            </columns>
                            <cursor>
                               <Cursor fx:constant="TEXT" />
