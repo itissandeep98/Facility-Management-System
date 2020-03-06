@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="FMS/src"/>
+	<classpathentry exported="true" kind="lib" path="FMS/jfoenix-8.0.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="FMS/jfoenix-9.0.8.jar"/>
+	<classpathentry kind="output" path="FMS/out/production/FMS"/>
+</classpath>

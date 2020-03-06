@@ -27,8 +27,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
-        root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-//      root = FXMLLoader.load(getClass().getResource("User.fxml"));
+       // root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+      root = FXMLLoader.load(getClass().getResource("User.fxml"));
 //        root = FXMLLoader.load(getClass().getResource("Employee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
