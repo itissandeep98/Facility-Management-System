@@ -27,8 +27,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
-       // root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-      root = FXMLLoader.load(getClass().getResource("User.fxml"));
+        root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+//      root = FXMLLoader.load(getClass().getResource("User.fxml"));
 //        root = FXMLLoader.load(getClass().getResource("Employee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
@@ -100,7 +100,8 @@ public class Main extends Application {
     public static Connection getConnection(String username,String password)  {
         if (con==null) {
             try {
-                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",username,password);
+//                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
 //                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
             } catch (SQLException e) {
                 System.out.println("Unable to connect");
