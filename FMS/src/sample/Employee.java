@@ -85,13 +85,11 @@ public class Employee implements Initializable {
         assigned_request.setCellValueFactory(new PropertyValueFactory<>("RequestType"));
         assigned_time.setCellValueFactory(new PropertyValueFactory<>("starttime"));
 
-//        Main.con=Main.getConnection("sandeep@itissandeep", "Azure@123");
         //Todo: Workerid needs to be updated everytime
         Workerid=1;
         empid.setText("Employee ID: "+Workerid);
         FillAssignedTable();
 
-        //Todo: Create all Connections
     }
 
     public void FillCompletedTable(){
