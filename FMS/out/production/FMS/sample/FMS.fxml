@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
@@ -11,31 +12,11 @@
    <children>
       <Pane prefHeight="581.0" prefWidth="825.0">
          <children>
-            <TabPane layoutX="18.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="852.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="10.0" layoutY="117.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="867.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Open Records">
-                     <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                     </content>
-                </Tab>
-                <Tab text="Closed Records">
-                     <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
-                     </content>
-                </Tab>
                   <Tab text="All Records">
                      <content>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
+                        <TableView prefHeight="512.0" prefWidth="764.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -51,7 +32,8 @@
             <Label alignment="CENTER" layoutX="178.0" layoutY="23.0" prefHeight="34.0" prefWidth="510.0" text="Records Table">
                <font>
                   <Font name="Liberation Mono Bold Italic" size="34.0" />
-               </font></Label>
+               </font>
+            </Label>
             <JFXButton fx:id="employeedet" buttonType="RAISED" layoutX="725.0" layoutY="32.0" onAction="#addemployee" ripplerFill="#46de02" style="-fx-background-color: #f79a05; -fx-background-radius: 50;" text="Employee Details" />
             <JFXButton fx:id="backbutton" buttonType="RAISED" layoutX="57.0" layoutY="32.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout" />
          </children>

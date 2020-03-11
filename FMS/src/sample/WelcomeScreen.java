@@ -18,8 +18,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +44,7 @@ public class WelcomeScreen implements Initializable {
         user.setToggleGroup(group);
         fms.setToggleGroup(group);
 
-        user.setSelected(true);
+        fms.setSelected(true);
 
     }
 
@@ -99,6 +97,7 @@ public class WelcomeScreen implements Initializable {
             dialog.close();
             if (fms.isSelected()) {
                 Main.changeScene("FMS.fxml");
+//                Main.changeScene("AddEmployee.fxml");
             } else if (user.isSelected()) {
                 Main.changeScene("User.fxml");
             } else {
