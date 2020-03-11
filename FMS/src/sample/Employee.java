@@ -90,13 +90,14 @@ public class Employee implements Initializable {
         empid.setText("Employee ID: "+Workerid);
         FillAssignedTable();
 
+
     }
 
     public void FillCompletedTable(){
         ObservableList<Work> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
-            String query="SELECT cr.id,starttime,requesttype,roomno,closedtime FROM closedrecord cr,students s WHERE s.id=cr.studentid and cr.workerid="+ Workerid;
+            String query="SELECT ar.id,starttime,requesttype,roomno,closedtime FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid+" and ar.status=\"Close\"";
             rs= Main.con.createStatement().executeQuery(query);
 
             while (rs.next()){
@@ -114,7 +115,7 @@ public class Employee implements Initializable {
         ObservableList<Work> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
-            String query="SELECT opr.id,starttime,requesttype,roomno FROM openrecord opr,students s WHERE s.id=opr.studentid and opr.workerid="+ Workerid;
+            String query="SELECT ar.id,starttime,requesttype,roomno FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid +" and ar.status=\"Open\"";
             rs= Main.con.createStatement().executeQuery(query);
 
             while (rs.next()){
@@ -163,21 +164,9 @@ public class Employee implements Initializable {
         Statement stmt = null;
 
         try {
-            ResultSet rs;
-            String query="SELECT * FROM openrecord WHERE id="+workid;
-            rs= Main.con.createStatement().executeQuery(query);
-            String query1="DELETE FROM openrecord Where id="+workid;
-
             java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-            rs.next();
-            String query2="INSERT INTO closedrecord VALUES( "+rs.getString("ID") + ", "+
-                    rs.getString("Studentid")+", "+rs.getString("Workerid")+", \""+rs.getTimestamp("starttime")+"\", \""+ date+"\", \""+rs.getString("requesttype") +"\")";
-
-            stmt = Main.con.createStatement();
-            stmt.executeUpdate(query2);
-
-            stmt = Main.con.createStatement();
-            stmt.executeUpdate(query1);
+            String query="UPDATE allrecord SET status = \"Close\", closedtime =\""+date+"\" WHERE status = \"Open\" and id="+ workid;  //always put timestamp datatype under quotes otherwise it will throw an error
+            Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {
             e.printStackTrace();
             return;

@@ -1,6 +1,6 @@
 package sample;
 
-public class Workers {
+public class Workers  {
     public int getID() {
         return ID;
     }
