@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -15,6 +16,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class Employee implements Initializable {
@@ -32,15 +34,17 @@ public class Employee implements Initializable {
     private TableView<Work> completedtable;
 
     @FXML
-    private TableColumn<Work, ?> completed_starttime;
+    private TableColumn<Work, Timestamp> completed_starttime;
     @FXML
-    private TableColumn<Work, ?> completed_endtime;
+    private TableColumn<Work, Timestamp> completed_endtime;
 
     @FXML
     private TableColumn<Work, String> completed_request;
 
     @FXML
     private TableColumn<Work, Integer> completed_id;
+    @FXML
+    private TableColumn<Work, Integer> completed_hostel;
 
     @FXML
     private TableColumn<Work, String> completed_room;
@@ -52,13 +56,15 @@ public class Employee implements Initializable {
     private TableColumn<Work, String> assigned_request;
 
     @FXML
-    private TableColumn<Work, ?> assigned_time;
+    private TableColumn<Work, Timestamp> assigned_time;
 
     @FXML
     private TableColumn<Work, String> assigned_room;
 
     @FXML
     private TableColumn<Work, Integer> assigned_id;
+    @FXML
+    private TableColumn<Work, Integer> assigned_hostel;
 
     @FXML
     private ChoiceBox<String> details;
@@ -72,41 +78,62 @@ public class Employee implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] values=new String[]{"Name","Phone Number","Speciality","Supervisor ID"};
         details.setItems(FXCollections.observableArrayList(values));
-        details.setValue("Name");
+        details.setValue("Choose Below");
+            details.setOnAction(actionEvent -> {
+                try {
+                    ResultSet rs=Main.con.createStatement().executeQuery("SELECT  * FROM worker");
+                    rs.next();
+                    if(details.getValue().equals("Name")) {
+                        newvalue.setText(rs.getString("name"));
+                    }
+                    else if(details.getValue().equals("Phone Number")) {
+                        newvalue.setText(rs.getString("contactinfo"));
+                    }
+                    else if(details.getValue().equals("Speciality")) {
+                        newvalue.setText(rs.getString("speciality"));
+                    }
+                    else if(details.getValue().equals("Supervisor ID")) {
+                        newvalue.setText(rs.getString("SupervisorID"));
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Employee: error in initialize function");
+                }
+            });
+
 
         completed_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
         completed_room.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
         completed_request.setCellValueFactory(new PropertyValueFactory<>("RequestType"));
         completed_starttime.setCellValueFactory(new PropertyValueFactory<>("starttime"));
         completed_endtime.setCellValueFactory(new PropertyValueFactory<>("closedtime"));
+        completed_hostel.setCellValueFactory(new PropertyValueFactory<>("Hostel"));
 
         assigned_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
         assigned_room.setCellValueFactory(new PropertyValueFactory<>("RoomNo"));
         assigned_request.setCellValueFactory(new PropertyValueFactory<>("RequestType"));
         assigned_time.setCellValueFactory(new PropertyValueFactory<>("starttime"));
+        assigned_hostel.setCellValueFactory(new PropertyValueFactory<>("Hostel"));
+
 
         //Todo: Workerid needs to be updated everytime
         Workerid=1;
         empid.setText("Employee ID: "+Workerid);
         FillAssignedTable();
-
-
     }
 
     public void FillCompletedTable(){
         ObservableList<Work> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
-            String query="SELECT ar.id,starttime,requesttype,roomno,closedtime FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid+" and ar.status=\"Close\"";
+            String query="SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid+" and ar.status=\"Close\"";
             rs= Main.con.createStatement().executeQuery(query);
 
             while (rs.next()){
-                list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getTimestamp("closedtime"),rs.getString("requesttype"),Workerid));
+                list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getTimestamp("closedtime"),rs.getString("requesttype"),Workerid,rs.getString("hostel")));
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error in sql");
+            System.out.println("Employee: error in Fillcompletedtable");
             return;
         }
         completedtable.setItems(list);
@@ -115,16 +142,15 @@ public class Employee implements Initializable {
         ObservableList<Work> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
-            String query="SELECT ar.id,starttime,requesttype,roomno FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid +" and ar.status=\"Open\"";
+            String query="SELECT ar.id,starttime,requesttype,roomno,ar.hostel FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid +" and ar.status=\"Open\"";
             rs= Main.con.createStatement().executeQuery(query);
 
             while (rs.next()){
-                list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getString("requesttype"),Workerid));
+                list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getString("requesttype"),Workerid,rs.getString("hostel")));
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error in sql");
+            System.out.println("Employee:error in Fillassignedtable");
             return;
         }
         assignedtable.setItems(list);
@@ -152,7 +178,7 @@ public class Employee implements Initializable {
             }
             stmt.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Employee: error in changedetails function");
             return;
         }
         Main.showalert("Success", "New "+content+" has been updated Successfully", pane, Color.GREEN);
@@ -168,7 +194,7 @@ public class Employee implements Initializable {
             String query="UPDATE allrecord SET status = \"Close\", closedtime =\""+date+"\" WHERE status = \"Open\" and id="+ workid;  //always put timestamp datatype under quotes otherwise it will throw an error
             Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Employee: error in markcompleted function");
             return;
         }
         Main.showalert("Success", "Work has been marked as completed Successfully", pane, Color.GREEN);
@@ -176,7 +202,7 @@ public class Employee implements Initializable {
     }
     public void reset(){
         id.setText("");
-        details.setValue("Name");
+        details.setValue("Choose Below");
         newvalue.setText("");
         FillAssignedTable();
         FillCompletedTable();

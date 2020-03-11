@@ -1,5 +1,6 @@
 package sample;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +14,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +35,7 @@ public class AddEmployee implements Initializable {
     @FXML
     private StackPane pane;
 
+
     @FXML
     private TableView<Workers> employeeTable;
     @FXML
@@ -47,7 +48,6 @@ public class AddEmployee implements Initializable {
     private TableColumn<Worker, String> empnamecol;
 
     String tablequery;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
@@ -83,8 +83,7 @@ public class AddEmployee implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("AddEmployee.java: error in connection");
+            System.out.println("AddEmployee: error in filltable function");
             return;
         }
 
@@ -98,7 +97,7 @@ public class AddEmployee implements Initializable {
         try {
             Main.con.createStatement().executeUpdate("Insert into worker (name,speciality,contactinfo) VALUES (\""+empname+"\", \""+empspeciality+"\", \""+empphone+"\")");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("AddEmployee: error in addnewemployee function");
             return;
         }
         Main.showalert("Success", "Employee added successfully", pane, Color.GREEN);

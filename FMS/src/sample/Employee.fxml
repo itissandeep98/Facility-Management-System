@@ -62,6 +62,7 @@
                            </columnResizePolicy>
                            <columns>
                               <TableColumn fx:id="assigned_id" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="assigned_hostel" prefWidth="75.0" text="Hostel" />
                               <TableColumn fx:id="assigned_room" prefWidth="140.0" text="Room No." />
                               <TableColumn fx:id="assigned_time" prefWidth="119.0" text="Time" />
                               <TableColumn fx:id="assigned_request" prefWidth="157.0" text="Request Type" />
@@ -80,6 +81,7 @@
                            </columnResizePolicy>
                            <columns>
                               <TableColumn fx:id="completed_id" prefWidth="110.0" text="ID" />
+                              <TableColumn fx:id="completed_hostel" prefWidth="75.0" text="Hostel" />
                               <TableColumn fx:id="completed_room" prefWidth="304.0" text="Room No." />
                               <TableColumn fx:id="completed_request" prefWidth="157.0" text="Request Type" />
                               <TableColumn fx:id="completed_starttime" prefWidth="119.0" text="Start Time" />

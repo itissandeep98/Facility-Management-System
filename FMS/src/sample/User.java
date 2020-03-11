@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class User implements Initializable {
@@ -31,11 +32,14 @@ public class User implements Initializable {
     @FXML
     private StackPane pane;
 
+    int id;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Todo: get user id for below label
-        userid.setText("User ID: "+" ");
+        id=3;
+        userid.setText("User ID: "+id);
 
         String values[]={"H1","H2","Old Boys","Girls"};
         hostels.setItems(FXCollections.observableArrayList(values));
@@ -61,9 +65,15 @@ public class User implements Initializable {
         }
 
         Request r=new Request(hostels.getValue(), floor.getValue()+room.getText(), requesttype.getValue(), comment.getText());
-        System.out.println(r);
+        java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+        String query="Insert into allrecord (hostel,roomnum,status,requesttype,comment,studentid,starttime) Values (\""+r.getHostel()+"\", "+r.getRoom()+", \"Unassigned\", \""+r.getRequestType()+"\", \""+r.getComment()+"\","+id+",\""+ date+"\")";
 
-        //Todo: store this request and process it
+        try {
+            Main.con.createStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            System.out.println("User: error in request function");
+            return;
+        }
 
         Main.showalert("Success","Request made Successfully ",pane,Color.GREEN);
         reset();
@@ -81,6 +91,7 @@ public class User implements Initializable {
         Main.changeScene("WelcomeScreen.fxml");
     }
 
-
-
+    public void showhistory(){
+        //todo: show user request history and ability to cancel a request before it has been assigned
+    }
 }

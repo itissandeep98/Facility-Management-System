@@ -34,15 +34,11 @@ public class editemployee implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         String[] values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
         speciality.setItems(FXCollections.observableArrayList(values));
-        try {
-            speciality.setValue(toedit.getSpeciality());
-            name.setText(toedit.getName());
-            contact.setText(toedit.getContactInfo());
-            id.setText("ID: "+toedit.getID());
-        }
-        catch (Exception e){
-            System.out.println("toedit null");
-        }
+        speciality.setValue(toedit.getSpeciality());
+        name.setText(toedit.getName());
+        contact.setText(toedit.getContactInfo());
+        id.setText("ID: "+toedit.getID());
+
 
 
     }
@@ -74,7 +70,7 @@ public class editemployee implements Initializable {
                 Main.con.createStatement().executeUpdate(query);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("editemployee:error in update function");
             return;
         }
         name.getScene().getWindow().hide();
@@ -85,7 +81,7 @@ public class editemployee implements Initializable {
         try {
             Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("editemployee: error in delete function");
             return;
         }
         name.getScene().getWindow().hide();
@@ -94,7 +90,7 @@ public class editemployee implements Initializable {
     public static void edit(Workers selection)  {
         try {
             Stage stage= new Stage();
-            toedit=selection;
+            toedit=selection;  //Todo: change this way of data transfer between classes
             stage.initModality(Modality.APPLICATION_MODAL);
             Parent root= FXMLLoader.load(editemployee.class.getResource("editemployee.fxml"));
             stage.setTitle("Edit Details");
@@ -102,7 +98,7 @@ public class editemployee implements Initializable {
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("editemployee: error in edit function");
         }
     }
 }

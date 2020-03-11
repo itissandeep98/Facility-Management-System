@@ -44,8 +44,8 @@ public class Main extends Application {
             Main.stage.setScene(new Scene(root));
         }
         catch (Exception e){
-            e.printStackTrace();
-            System.out.println("Error in changing scene");
+
+            System.out.println("Main:Error in changing scene to "+file);
         }
     }
 
@@ -105,7 +105,7 @@ public class Main extends Application {
 //                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
 //                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
             } catch (SQLException e) {
-                System.out.println("Unable to connect");
+                System.out.println("Main: Unable to connect in getconnection function");
             }
         }
         return con;

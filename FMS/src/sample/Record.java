@@ -9,10 +9,12 @@ public class Record {
     private int roomnum;
     private String status;
     private String requesttype;
+    private String hostel;
+    private String comment;
     private Timestamp starttime;
     private Timestamp closedtime;
 
-    Record(int id,int workerid,int studentid,int roomnum, String status,String requesttype,Timestamp starttime,Timestamp closedtime){
+    Record(int id,int workerid,int studentid,int roomnum, String status,String requesttype,Timestamp starttime,Timestamp closedtime,String hostel,String comment){
         this.id=id;
         this.workerid=workerid;
         this.studentid=studentid;
@@ -21,6 +23,23 @@ public class Record {
         this.status=status;
         this.starttime=starttime;
         this.closedtime=closedtime;
+        this.hostel=hostel;
+        this.comment=comment;
+    }
+
+    public String getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(String hostel) {
+        this.hostel = hostel;
+    }
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public int getId() {

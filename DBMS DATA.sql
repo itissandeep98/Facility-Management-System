@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `dbms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+CREATE DATABASE  IF NOT EXISTS `dbms` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `dbms`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Linux (x86_64)
 --
--- Host: itissandeep.mysql.database.azure.com    Database: dbms
+-- Host: localhost    Database: dbms
 -- ------------------------------------------------------
--- Server version	5.6.42.0
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,15 +25,19 @@ DROP TABLE IF EXISTS `allrecord`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `allrecord` (
-  `ID` int(11) NOT NULL,
-  `Status` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `RoomNum` int(11) DEFAULT NULL,
-  `Timing` time DEFAULT NULL,
-  `WorkerID` int(11) DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Status` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `roomnum` int DEFAULT NULL,
+  `starttime` timestamp NULL DEFAULT NULL,
+  `WorkerID` int DEFAULT NULL,
   `RequestType` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `StudentID` int NOT NULL,
+  `closedtime` timestamp NULL DEFAULT NULL,
+  `Hostel` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`,`Status`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +46,7 @@ CREATE TABLE `allrecord` (
 
 LOCK TABLES `allrecord` WRITE;
 /*!40000 ALTER TABLE `allrecord` DISABLE KEYS */;
-INSERT INTO `allrecord` VALUES (11,'Close',2,'01:00:12',4,'Carpenter'),(12,'Close',3,'12:00:12',4,'Carpenter'),(13,'Close',4,'02:00:21',4,'Carpenter'),(14,'Close',5,'11:00:12',5,'Cleaner'),(15,'Close',1,'10:00:29',5,'Cleaner'),(16,'Open',5,'09:18:57',5,'Cleaner'),(17,'Open',6,'08:00:09',9,'Electrician'),(18,'Unassigned',7,'07:47:10',9,'Electrician'),(19,'Unassigned',8,'05:00:56',3,'Plumber');
+INSERT INTO `allrecord` VALUES (11,'Open',102,'2020-03-10 19:30:12',1,'Carpenter',3,NULL,'h1',NULL),(12,'Unassigned',103,'2020-03-11 06:30:12',NULL,'Carpenter',2,NULL,'h2',NULL),(13,'Open',104,'2020-03-10 20:30:21',4,'Carpenter',6,NULL,'old boys',NULL),(14,'Open',105,'2020-03-11 05:30:12',5,'Cleaner',4,NULL,'girls',NULL),(15,'Close',201,'2020-03-11 04:30:29',1,'Cleaner',1,'2020-03-11 09:08:41','girls',NULL),(16,'Unassigned',205,'2020-03-11 03:48:57',NULL,'Cleaner',2,NULL,'old boys',NULL),(17,'Unassigned',206,'2020-03-11 02:30:09',NULL,'Electrician',5,NULL,'h1',NULL),(19,'Close',208,'2020-03-10 23:30:56',2,'Plumber',9,'2020-03-11 09:10:29','h2',NULL);
 /*!40000 ALTER TABLE `allrecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,11 +60,11 @@ DROP TABLE IF EXISTS `building`;
 CREATE TABLE `building` (
   `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Location` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `isResidence` int(11) DEFAULT NULL,
-  `ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `isResidence` int DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,39 +78,6 @@ INSERT INTO `building` VALUES ('Seminar','Seminar Block',0,1),('Acad','Acad',0,2
 UNLOCK TABLES;
 
 --
--- Table structure for table `closedrecord`
---
-
-DROP TABLE IF EXISTS `closedrecord`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `closedrecord` (
-  `ID` int(11) NOT NULL,
-  `StudentID` int(11) NOT NULL,
-  `WorkerID` int(11) DEFAULT NULL,
-  `starttime` timestamp NULL DEFAULT NULL,
-  `ClosedTime` timestamp NULL DEFAULT NULL,
-  `RequestType` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `StudentID` (`StudentID`),
-  KEY `WorkerID` (`WorkerID`),
-  CONSTRAINT `ClosedRecord_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `students` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `ClosedRecord_ibfk_2` FOREIGN KEY (`WorkerID`) REFERENCES `worker` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `closedrecord`
---
-
-LOCK TABLES `closedrecord` WRITE;
-/*!40000 ALTER TABLE `closedrecord` DISABLE KEYS */;
-INSERT INTO `closedrecord` VALUES (6,4,1,'2020-02-29 14:45:00','2020-03-01 03:17:48','Cleaner'),(11,3,4,'2020-02-29 00:00:00','2020-02-29 11:40:00','Carpenter'),(12,7,2,'2020-02-29 00:00:00','2020-02-29 11:50:00','Electrician'),(14,2,1,'2020-02-29 00:00:00','2020-02-29 12:10:00','Cleaner'),(15,1,3,'2020-02-29 00:00:00','2020-02-29 12:25:00','Plumber'),(16,4,5,'2020-02-29 00:00:00','2020-02-29 02:49:55','Cleaner'),(17,6,8,'2020-02-29 00:00:00','2020-02-29 06:53:33','Carpenter'),(18,9,10,'2020-02-29 00:00:00','2020-02-29 02:00:00','Cleaner'),(19,7,6,'2020-02-29 00:00:00','2020-02-29 11:00:56','Plumber'),(20,1,1,'2020-02-29 12:00:00','2020-03-01 17:22:44','Cleaner');
-/*!40000 ALTER TABLE `closedrecord` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `eateries`
 --
 
@@ -117,10 +88,10 @@ CREATE TABLE `eateries` (
   `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Location` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Building` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,12 +115,12 @@ CREATE TABLE `faculty` (
   `Name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Department` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Building` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `RoomNum` int(11) DEFAULT NULL,
+  `RoomNum` int DEFAULT NULL,
   `Contact` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,13 +141,13 @@ DROP TABLE IF EXISTS `fmshead`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fmshead` (
-  `ID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ScheduleID` int(11) DEFAULT NULL,
+  `ScheduleID` int DEFAULT NULL,
   `Contact` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,15 +168,13 @@ DROP TABLE IF EXISTS `hostels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hostels` (
-  `ID` int(11) NOT NULL,
-  `NumOfRoom` int(11) DEFAULT NULL,
-  `NumOfFloor` int(11) DEFAULT NULL,
-  `SupervisorID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `SupervisorID` (`SupervisorID`),
-  CONSTRAINT `Hostels_ibfk_1` FOREIGN KEY (`SupervisorID`) REFERENCES `supervisor` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `NumOfRoom` int DEFAULT NULL,
+  `NumOfFloor` int DEFAULT NULL,
+  `SupervisorID` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,38 +188,6 @@ INSERT INTO `hostels` VALUES (1,1000,10,1),(2,1000,10,3),(3,500,6,4);
 UNLOCK TABLES;
 
 --
--- Table structure for table `openrecord`
---
-
-DROP TABLE IF EXISTS `openrecord`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `openrecord` (
-  `ID` int(11) NOT NULL,
-  `StudentID` int(11) NOT NULL,
-  `WorkerID` int(11) DEFAULT NULL,
-  `starttime` timestamp NULL DEFAULT NULL,
-  `RequestType` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `WorkerID` (`WorkerID`),
-  KEY `StudentID` (`StudentID`),
-  CONSTRAINT `OpenRecord_ibfk_1` FOREIGN KEY (`WorkerID`) REFERENCES `worker` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `OpenRecord_ibfk_2` FOREIGN KEY (`StudentID`) REFERENCES `students` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `openrecord`
---
-
-LOCK TABLES `openrecord` WRITE;
-/*!40000 ALTER TABLE `openrecord` DISABLE KEYS */;
-INSERT INTO `openrecord` VALUES (1,2,2,'2020-02-29 13:40:00','Electrician'),(7,1,5,'2020-02-29 12:00:00','Cleaner'),(8,7,3,'2020-02-29 04:45:00','Plumber'),(9,3,2,'2020-02-29 06:10:00','Electrician'),(10,5,5,'2020-02-29 06:30:00','Cleaner'),(21,6,4,'2020-02-29 06:45:00','Carpenter');
-/*!40000 ALTER TABLE `openrecord` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `reviews`
 --
 
@@ -259,13 +196,11 @@ DROP TABLE IF EXISTS `reviews`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviews` (
   `Reviews` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `WorkerID` int(11) NOT NULL,
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `ReviewerID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `Reviews_ibfk_1` (`WorkerID`),
-  CONSTRAINT `Reviews_ibfk_1` FOREIGN KEY (`WorkerID`) REFERENCES `worker` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  `WorkerID` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ReviewerID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -287,15 +222,15 @@ DROP TABLE IF EXISTS `room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `room` (
-  `ID` int(11) NOT NULL,
-  `HostelID` int(11) NOT NULL,
-  `Student1ID` int(11) DEFAULT NULL,
-  `Student2ID` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`,`HostelID`),
-  UNIQUE KEY `RoomID_UNIQUE` (`ID`),
+  `id` int NOT NULL AUTO_INCREMENT,
+  `HostelID` int NOT NULL,
+  `Student1ID` int DEFAULT NULL,
+  `Student2ID` int DEFAULT NULL,
+  PRIMARY KEY (`id`,`HostelID`),
+  UNIQUE KEY `RoomID_UNIQUE` (`id`),
   KEY `Hostel ID_idx` (`HostelID`),
   CONSTRAINT `Hostel ID` FOREIGN KEY (`HostelID`) REFERENCES `students` (`HostelID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,14 +251,12 @@ DROP TABLE IF EXISTS `schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `schedule` (
-  `ID` int(11) NOT NULL,
-  `WorkerID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `WorkerID` int NOT NULL,
   `starttime` timestamp NULL DEFAULT NULL,
   `closetime` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`ID`,`WorkerID`),
-  KEY `WorkerID` (`WorkerID`),
-  CONSTRAINT `Schedule_ibfk_1` FOREIGN KEY (`WorkerID`) REFERENCES `worker` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`,`WorkerID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -344,14 +277,14 @@ DROP TABLE IF EXISTS `specialrequest`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `specialrequest` (
-  `ID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `Event` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Date` date NOT NULL,
   `Venue` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Requirement` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -372,17 +305,15 @@ DROP TABLE IF EXISTS `students`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `students` (
-  `ID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `RoomNo` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `HostelID` int(11) DEFAULT NULL,
+  `HostelID` int DEFAULT NULL,
   `ContactInfo` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `Hostel ID_idx` (`HostelID`),
-  CONSTRAINT `Students_ibfk_1` FOREIGN KEY (`HostelID`) REFERENCES `hostels` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `Students_ibfk_2` FOREIGN KEY (`HostelID`) REFERENCES `hostels` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`),
+  KEY `Hostel ID_idx` (`HostelID`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,12 +334,12 @@ DROP TABLE IF EXISTS `supervisor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `supervisor` (
-  `ID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `Contact` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,35 +353,6 @@ INSERT INTO `supervisor` VALUES (1,'Sanskar','101'),(2,'Avi','102'),(3,'Sunny','
 UNLOCK TABLES;
 
 --
--- Table structure for table `unassignedrecord`
---
-
-DROP TABLE IF EXISTS `unassignedrecord`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `unassignedrecord` (
-  `ID` int(11) NOT NULL,
-  `StudentID` int(11) NOT NULL,
-  `opentime` timestamp NULL DEFAULT NULL,
-  `RequestType` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `StudentID` (`StudentID`),
-  CONSTRAINT `UnassignedRecord_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `students` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `unassignedrecord`
---
-
-LOCK TABLES `unassignedrecord` WRITE;
-/*!40000 ALTER TABLE `unassignedrecord` DISABLE KEYS */;
-INSERT INTO `unassignedrecord` VALUES (2,4,'2020-02-29 12:00:59','Carpenter'),(3,9,'2020-02-29 04:12:36','Electrician'),(4,5,'2020-02-29 05:35:56','Plumber'),(5,3,'2020-02-29 03:00:23','Cleaner');
-/*!40000 ALTER TABLE `unassignedrecord` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `worker`
 --
 
@@ -458,16 +360,14 @@ DROP TABLE IF EXISTS `worker`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `worker` (
-  `ID` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Speciality` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ContactInfo` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `SupervisorID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `ID_UNIQUE` (`ID`),
-  KEY `SupervisorID` (`SupervisorID`),
-  CONSTRAINT `Worker_ibfk_1` FOREIGN KEY (`SupervisorID`) REFERENCES `supervisor` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `SupervisorID` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ID_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +376,7 @@ CREATE TABLE `worker` (
 
 LOCK TABLES `worker` WRITE;
 /*!40000 ALTER TABLE `worker` DISABLE KEYS */;
-INSERT INTO `worker` VALUES (1,'swastik','Cleaner','12345',1),(2,'Navya','Electrician','23456',2),(3,'Nitin','Plumber','34567',3),(4,'Arka','Carpenter','45678',4),(5,'Kinshuk','Cleaner','56789',5),(6,'Rishabh','Painter','98990',2),(7,'Dhruv','Plumber','88605',4),(8,'Pratham','Carpenter','93129',1),(9,'Yash','Electrician','93503',1),(10,'Naman','Cleaner','55500',3);
+INSERT INTO `worker` VALUES (1,'swastik','Cleaner','12345',1),(2,'Navy','Electrician','23456',2),(3,'Nitin','Plumber','34567',3),(4,'Arka','Carpenter','45678',4),(5,'Kinshuk','Cleaner','56789',5),(6,'Rishabh','Painter','98990',2),(7,'Dhruv','Plumber','88605',4),(8,'Pratham','Carpenter','93129',1),(9,'Yash','Electrician','93503',1),(10,'Naman','Cleaner','55500',3),(11,'anmol','plumber','23123',NULL),(13,'shubham','carpenter','1234444',NULL),(14,'gaurav','painter','191279',NULL);
 /*!40000 ALTER TABLE `worker` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -497,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-06  5:22:28
+-- Dump completed on 2020-03-11 15:19:27

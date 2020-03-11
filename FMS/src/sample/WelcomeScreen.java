@@ -97,7 +97,6 @@ public class WelcomeScreen implements Initializable {
             dialog.close();
             if (fms.isSelected()) {
                 Main.changeScene("FMS.fxml");
-//                Main.changeScene("AddEmployee.fxml");
             } else if (user.isSelected()) {
                 Main.changeScene("User.fxml");
             } else {
