@@ -1,6 +1,5 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,7 +35,6 @@ public class AddEmployee implements Initializable {
     @FXML
     private StackPane pane;
 
-
     @FXML
     private TableView<Workers> employeeTable;
     @FXML
@@ -48,6 +47,7 @@ public class AddEmployee implements Initializable {
     private TableColumn<Worker, String> empnamecol;
 
     String tablequery;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String[] values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};

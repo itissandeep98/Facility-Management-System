@@ -44,6 +44,7 @@ public class Main extends Application {
             Main.stage.setScene(new Scene(root));
         }
         catch (Exception e){
+            e.printStackTrace();
             System.out.println("Error in changing scene");
         }
     }

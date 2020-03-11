@@ -1,11 +1,13 @@
 package sample;
 
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class editemployee implements Initializable {
     @FXML
-    private JFXTextField speciality;
+    private ChoiceBox<String> speciality;
 
     @FXML
     private JFXTextField contact;
@@ -30,8 +32,10 @@ public class editemployee implements Initializable {
     static Workers toedit;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        String[] values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
+        speciality.setItems(FXCollections.observableArrayList(values));
         try {
-            speciality.setText(toedit.getSpeciality());
+            speciality.setValue(toedit.getSpeciality());
             name.setText(toedit.getName());
             contact.setText(toedit.getContactInfo());
             id.setText("ID: "+toedit.getID());
@@ -57,12 +61,12 @@ public class editemployee implements Initializable {
             flag=true;
             query+="contactinfo = \""+contact.getText()+"\"";
         }
-        if(!toedit.getSpeciality().equals(speciality.getText())){
+        if(!toedit.getSpeciality().equals(speciality.getValue())){
             if(flag){
                 query+=", ";
             }
             flag=true;
-            query+="speciality = \""+speciality.getText()+"\"";
+            query+="speciality = \""+speciality.getValue()+"\"";
         }
         query+=" Where id="+toedit.getID();
         try {
