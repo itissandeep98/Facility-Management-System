@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.editrecord">
+    <children>
+        <JFXTextField fx:id="workerid" focusColor="#0ee82b" labelFloat="true" layoutX="149.0" layoutY="145.0" promptText="Worker ID" />
+        <Label fx:id="id" layoutX="30.0" layoutY="26.0" text="ID: " />
+        <JFXButton buttonType="RAISED" layoutX="110.0" layoutY="244.0" onAction="#update" prefHeight="25.0" prefWidth="79.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Update" />
+        <JFXButton buttonType="RAISED" layoutX="264.0" layoutY="244.0" onAction="#delete" prefHeight="25.0" prefWidth="79.0" ripplerFill="#6b0202" style="-fx-background-color: #ff1a05; -fx-background-radius: 50;" text="Delete" />
+      <ChoiceBox fx:id="status" layoutX="151.0" layoutY="87.0" prefWidth="150.0" />
+
+    </children>
+</Pane>

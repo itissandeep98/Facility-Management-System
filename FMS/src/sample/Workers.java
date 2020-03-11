@@ -1,6 +1,24 @@
 package sample;
 
 public class Workers  {
+    private int ID;
+    private String Name;
+    private String Speciality;
+    private String ContactInfo;
+    private int SupervisorID;
+    Workers(int ID,String Name,String Spec,String ContactInfo){
+        this.ID=ID;
+        this.Name=Name;
+        this.Speciality=Spec;
+        this.ContactInfo = ContactInfo;
+    }
+    Workers(int ID, String Name, String Spec, String ContactInfo, int SupID){
+        this.ID=ID;
+        this.Name=Name;
+        this.Speciality=Spec;
+        this.ContactInfo = ContactInfo;
+        this.SupervisorID=SupID;
+    }
     public int getID() {
         return ID;
     }
@@ -39,25 +57,6 @@ public class Workers  {
 
     public void setSupervisorID(int supervisorID) {
         SupervisorID = supervisorID;
-    }
-
-    private int ID;
-    private String Name;
-    private String Speciality;
-    private String ContactInfo;
-    private int SupervisorID;
-    Workers(int ID,String Name,String Spec,String ContactInfo){
-        this.ID=ID;
-        this.Name=Name;
-        this.Speciality=Spec;
-        this.ContactInfo = ContactInfo;
-    }
-    Workers(int ID, String Name, String Spec, String ContactInfo, int SupID){
-        this.ID=ID;
-        this.Name=Name;
-        this.Speciality=Spec;
-        this.ContactInfo = ContactInfo;
-        this.SupervisorID=SupID;
     }
 
     @Override

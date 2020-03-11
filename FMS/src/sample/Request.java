@@ -5,6 +5,7 @@ public class Request {
     private String Room;
     private String RequestType;
     private String comment;
+
     Request(String Hostel, String Room, String requestType,String comment){
         this.Hostel=Hostel;
         this.Room=Room;

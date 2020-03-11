@@ -105,8 +105,7 @@ public class Employee implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error in sql");
+            System.out.println("Employee: error in Fillcompletedtable");
             return;
         }
         completedtable.setItems(list);
@@ -123,8 +122,7 @@ public class Employee implements Initializable {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("error in sql");
+            System.out.println("Employee:error in Fillassignedtable");
             return;
         }
         assignedtable.setItems(list);
@@ -152,7 +150,7 @@ public class Employee implements Initializable {
             }
             stmt.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Employee: error in changedetails function");
             return;
         }
         Main.showalert("Success", "New "+content+" has been updated Successfully", pane, Color.GREEN);
@@ -168,7 +166,7 @@ public class Employee implements Initializable {
             String query="UPDATE allrecord SET status = \"Close\", closedtime =\""+date+"\" WHERE status = \"Open\" and id="+ workid;  //always put timestamp datatype under quotes otherwise it will throw an error
             Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Employee: error in markcompleted function");
             return;
         }
         Main.showalert("Success", "Work has been marked as completed Successfully", pane, Color.GREEN);

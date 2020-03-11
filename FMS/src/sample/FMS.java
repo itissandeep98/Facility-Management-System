@@ -1,10 +1,8 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -27,6 +25,10 @@ public class FMS  implements Initializable {
 
     @FXML
     private TableColumn<Record , String> requesttype;
+    @FXML
+    private TableColumn<Record , String> hostel;
+    @FXML
+    private TableColumn<Record , String> comment;
 
     @FXML
     private TableColumn<Record , Integer> roomnum;
@@ -61,6 +63,8 @@ public class FMS  implements Initializable {
         requesttype.setCellValueFactory(new PropertyValueFactory<>("requesttype"));
         roomnum.setCellValueFactory(new PropertyValueFactory<>("roomnum"));
         status.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        hostel.setCellValueFactory(new PropertyValueFactory<>("hostel"));
+        comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
         tablequery="Select * From allrecord";
         filltable();
 
@@ -94,22 +98,25 @@ public class FMS  implements Initializable {
                 });
             }
         }
+        recordtable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection!=null && !newSelection.getStatus().equals("Close"))
+                editrecord.edit(newSelection);
+        });
 
     }
 
     public void filltable(){
-//        System.out.println("update");
+
         ObservableList<Record> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {
             rs= Main.con.createStatement().executeQuery(tablequery);
             while (rs.next()){
-                list.add(new Record(rs.getInt("ID"),rs.getInt("workerid"),rs.getInt("studentid"), rs.getInt("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime")));
+                list.add(new Record(rs.getInt("ID"),rs.getInt("workerid"),rs.getInt("studentid"), rs.getInt("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("AddEmployee.java: error in connection");
+            System.out.println("AddEmployee: error in filltable function");
             return;
         }
 

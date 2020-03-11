@@ -9,9 +9,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="pane" prefHeight="568.0" prefWidth="543.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
+<StackPane fx:id="pane" prefHeight="608.0" prefWidth="598.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="460.0" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="500.0" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
          <children>
             <GridPane layoutX="77.0" layoutY="104.0" prefHeight="239.0" prefWidth="306.0">
               <columnConstraints>
@@ -32,15 +32,18 @@
                   <ChoiceBox fx:id="hostels" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1">
                      <effect>
                         <DropShadow />
-                     </effect></ChoiceBox>
+                     </effect>
+                  </ChoiceBox>
                   <ChoiceBox fx:id="floor" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <effect>
                         <DropShadow />
-                     </effect></ChoiceBox>
+                     </effect>
+                  </ChoiceBox>
                   <ChoiceBox fx:id="requesttype" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <effect>
                         <DropShadow />
-                     </effect></ChoiceBox>
+                     </effect>
+                  </ChoiceBox>
                   <Label text="Floor:" GridPane.rowIndex="1" />
                   <Label text="Comments:" GridPane.rowIndex="4" />
                   <JFXTextField fx:id="room" promptText="eg - 1,2,3,....." GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -58,10 +61,12 @@
             <Label fx:id="userid" layoutX="77.0" layoutY="63.0" prefHeight="41.0" prefWidth="121.0" text="User ID:">
                <effect>
                   <ColorAdjust brightness="0.05" contrast="0.86" hue="0.36" />
-               </effect></Label>
+               </effect>
+            </Label>
             <JFXButton fx:id="request" buttonType="RAISED" layoutX="107.0" layoutY="392.0" onAction="#request" prefHeight="31.0" prefWidth="75.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Request" />
             <JFXButton buttonType="RAISED" layoutX="278.0" layoutY="395.0" onAction="#reset" ripplerFill="#a11010" style="-fx-background-color: #f01669; -fx-background-radius: 50;" text="Reset" />
             <JFXButton buttonType="RAISED" layoutX="199.0" layoutY="446.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout" />
+            <JFXButton layoutX="352.0" layoutY="440.0" onAction="#showhistory" text="History" />
          </children>
          <effect>
             <DropShadow />
