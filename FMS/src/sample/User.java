@@ -94,4 +94,10 @@ public class User implements Initializable {
     public void showhistory(){
         //todo: show user request history and ability to cancel a request before it has been assigned
     }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> master
 }
