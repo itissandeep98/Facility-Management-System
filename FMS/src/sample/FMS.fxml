@@ -24,7 +24,7 @@
               <tabs>
                   <Tab closable="false" text="Records">
                      <content>
-                        <TableView fx:id="recordtable" onMouseMoved="#filltable" prefHeight="546.0" prefWidth="896.0" tableMenuButtonVisible="true">
+                        <TableView fx:id="recordtable" editable="true" onMouseMoved="#filltable" prefHeight="546.0" prefWidth="896.0" tableMenuButtonVisible="true">
                           <columns>
                             <TableColumn fx:id="id" prefWidth="10.0" text="ID" />
                             <TableColumn fx:id="status" prefWidth="60.0" text="Status" />
@@ -40,6 +40,9 @@
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
                         </TableView>
                      </content>
                   </Tab>

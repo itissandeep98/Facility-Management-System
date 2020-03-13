@@ -100,7 +100,7 @@ public class FMS  implements Initializable {
         }
         recordtable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if(newSelection!=null && !newSelection.getStatus().equals("Close"))
-                editrecord.edit(newSelection);
+                EditRecord.edit(newSelection);
         });
 
     }

@@ -1,22 +1,26 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class User implements Initializable {
-    //Todo: create a fxml file for user request history
     @FXML
     private ChoiceBox<String> hostels;
     @FXML
@@ -31,6 +35,23 @@ public class User implements Initializable {
     private Label userid;
     @FXML
     private StackPane pane;
+
+    @FXML
+    private TableView<Record> historytable;
+    @FXML
+    private TableColumn<Record, String> hostelcol;
+    @FXML
+    private TableColumn<Record, Timestamp> starttimecol;
+    @FXML
+    private TableColumn<Record, String> requestcol;
+    @FXML
+    private TableColumn<Record, String> roomcol;
+    @FXML
+    private TableColumn<Record, Timestamp> completetimecol;
+    @FXML
+    private TableColumn<Record, String> commentcol;
+    @FXML
+    private ScrollPane scrollpane;
 
     int id;
 
@@ -50,6 +71,17 @@ public class User implements Initializable {
         values=new String[]{"Cleaner","Carpenter","Plumber","Electrician"};
         requesttype.setItems(FXCollections.observableArrayList(values));
 
+        starttimecol.setCellValueFactory(new PropertyValueFactory<>("starttime"));
+        completetimecol.setCellValueFactory(new PropertyValueFactory<>("closedtime"));
+        commentcol.setCellValueFactory(new PropertyValueFactory<>("comment"));
+        hostelcol.setCellValueFactory(new PropertyValueFactory<>("hostel"));
+        requestcol.setCellValueFactory(new PropertyValueFactory<>("requesttype"));
+        roomcol.setCellValueFactory(new PropertyValueFactory<>("roomnum"));
+
+        historytable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if(newSelection!=null && newSelection.getWorkerid()==0) // only those records can be update which have not been assigned to anyone
+                EditHistory.edit(newSelection);
+        });
         reset();
     }
 
@@ -85,14 +117,45 @@ public class User implements Initializable {
         room.setText("");
         requesttype.setValue("Cleaner");
         comment.setText("");
+        filltable();
 
     }
     public void login(ActionEvent e){
         Main.changeScene("WelcomeScreen.fxml");
+    }  // logout option
+
+    public void showhistory(){ // scrolls the window to show the user history table
+        final Timeline timeline = new Timeline();
+        final KeyValue kv = new KeyValue(scrollpane.hvalueProperty(), 2.0);
+        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
     }
 
-    public void showhistory(){
-        //todo: show user request history and ability to cancel a request before it has been assigned
+    public void back(){  // scrolls the window back to its original request form page
+        final Timeline timeline = new Timeline();
+        final KeyValue kv = new KeyValue(scrollpane.hvalueProperty(), 0.0);
+        final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    @FXML
+    void filltable() { // fills the user history table
+        ObservableList<Record> list= FXCollections.observableArrayList();
+        ResultSet rs;
+        try {
+            rs= Main.con.createStatement().executeQuery("Select * FROM allrecord WHERE studentid="+id);
+            while (rs.next()){
+                list.add(new Record(rs.getInt("ID"),rs.getInt("workerid"),rs.getInt("studentid"), rs.getInt("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("User: error in filltable function");
+            return;
+        }
+        historytable.setItems(list);
     }
 
 }

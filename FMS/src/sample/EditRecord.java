@@ -12,13 +12,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class editrecord implements Initializable {
+public class EditRecord implements Initializable {
     static Record toedit;
     @FXML
     private JFXTextField workerid;
@@ -104,7 +103,7 @@ public class editrecord implements Initializable {
             Stage stage= new Stage();
             toedit=selection;  //Todo: change this way of data transfer between classes
             stage.initModality(Modality.APPLICATION_MODAL);
-            Parent root= FXMLLoader.load(editemployee.class.getResource("editrecord.fxml"));
+            Parent root= FXMLLoader.load(EditEmployee.class.getResource("EditRecord.fxml"));
             stage.setTitle("Edit Record");
             stage.setScene(new Scene(root));
             stage.show();

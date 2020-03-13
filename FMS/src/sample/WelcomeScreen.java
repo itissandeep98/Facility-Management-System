@@ -44,7 +44,7 @@ public class WelcomeScreen implements Initializable {
         user.setToggleGroup(group);
         fms.setToggleGroup(group);
 
-        fms.setSelected(true);
+        user.setSelected(true);
 
     }
 

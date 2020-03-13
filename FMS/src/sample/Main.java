@@ -28,13 +28,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         stage=primaryStage;
         root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-//      root = FXMLLoader.load(getClass().getResource("User.fxml"));
-//        root = FXMLLoader.load(getClass().getResource("Employee.fxml"));
         Image icon=new Image("sample/icon.png");
         primaryStage.getIcons().add(icon);
         primaryStage.setTitle("Facility  Management System");
         primaryStage.setScene(new Scene(root));
-
         primaryStage.show();
     }
 
@@ -44,7 +41,6 @@ public class Main extends Application {
             Main.stage.setScene(new Scene(root));
         }
         catch (Exception e){
-
             System.out.println("Main:Error in changing scene to "+file);
         }
     }
@@ -99,6 +95,7 @@ public class Main extends Application {
     }
 
     public static Connection getConnection(String username,String password)  {
+        //ToDo: Proper login needs to be implemented
         if (con==null) {
             try {
                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",username,password);  //localhost

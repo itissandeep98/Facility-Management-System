@@ -1,6 +1,5 @@
 package sample;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +62,7 @@ public class AddEmployee implements Initializable {
 
         employeeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if(newSelection!=null)
-            editemployee.edit(newSelection);
+            EditEmployee.edit(newSelection);
         });
 
     }
@@ -73,7 +72,6 @@ public class AddEmployee implements Initializable {
     }
 
     public void filltable(){
-//        System.out.println("update");
         ObservableList<Workers> list= FXCollections.observableArrayList();
         ResultSet rs;
         try {

@@ -17,7 +17,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class editemployee implements Initializable {
+public class EditEmployee implements Initializable {
     @FXML
     private ChoiceBox<String> speciality;
 
@@ -38,10 +38,8 @@ public class editemployee implements Initializable {
         name.setText(toedit.getName());
         contact.setText(toedit.getContactInfo());
         id.setText("ID: "+toedit.getID());
-
-
-
     }
+
     @FXML
     public void update() {
         String query="Update worker SET ";
@@ -92,7 +90,7 @@ public class editemployee implements Initializable {
             Stage stage= new Stage();
             toedit=selection;  //Todo: change this way of data transfer between classes
             stage.initModality(Modality.APPLICATION_MODAL);
-            Parent root= FXMLLoader.load(editemployee.class.getResource("editemployee.fxml"));
+            Parent root= FXMLLoader.load(EditEmployee.class.getResource("EditEmployee.fxml"));
             stage.setTitle("Edit Details");
             stage.setScene(new Scene(root));
             stage.show();

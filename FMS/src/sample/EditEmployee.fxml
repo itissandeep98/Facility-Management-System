@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.editemployee">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.EditEmployee">
    <children>
       <JFXTextField fx:id="name" focusColor="#0ee82b" labelFloat="true" layoutX="149.0" layoutY="75.0" promptText="Name" />
       <JFXTextField fx:id="contact" focusColor="#0ee82b" labelFloat="true" layoutX="149.0" layoutY="191.0" promptText="Contact" />
