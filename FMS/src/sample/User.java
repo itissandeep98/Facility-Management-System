@@ -120,9 +120,10 @@ public class User implements Initializable {
         filltable();
 
     }
-    public void login(ActionEvent e){
+    public void login(ActionEvent e){ // logout option
+        Main.stage.setWidth(-1);
         Main.changeScene("WelcomeScreen.fxml");
-    }  // logout option
+    }
 
     public void showhistory(){ // scrolls the window to show the user history table
         final Timeline timeline = new Timeline();
@@ -130,6 +131,10 @@ public class User implements Initializable {
         final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
+        Main.stage.setWidth(950);
+        pane.setPrefWidth(900);
+        scrollpane.setPrefWidth(850);
+
     }
 
     public void back(){  // scrolls the window back to its original request form page
@@ -138,6 +143,9 @@ public class User implements Initializable {
         final KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
         timeline.getKeyFrames().add(kf);
         timeline.play();
+        Main.stage.setWidth(550);
+        pane.setPrefWidth(550);
+        scrollpane.setPrefWidth(507);
     }
 
     @FXML
