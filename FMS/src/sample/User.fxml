@@ -10,13 +10,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="893.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
+<StackPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="550.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.User">
    <children>
-      <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="838.0" style="-fx-background-color: #000000; -fx-background-radius: 50;">
+      <ScrollPane fx:id="scrollpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="507.0" style="-fx-background-color: #000000; -fx-background-radius: 50;">
          <content>
             <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="1638.0" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
                <children>
-                  <Pane layoutX="177.0" layoutY="15.0">
+                  <Pane layoutX="14.0" layoutY="14.0" prefHeight="480.0" prefWidth="460.0">
                      <children>
                         <GridPane layoutX="55.0" layoutY="113.0" prefHeight="239.0" prefWidth="306.0">
                           <columnConstraints>
@@ -71,6 +71,7 @@
                               <ColorAdjust brightness="0.05" contrast="0.86" hue="0.36" />
                            </effect>
                         </Label>
+                        <JFXButton buttonType="RAISED" layoutX="381.0" layoutY="181.0" onAction="#showhistory" ripplerFill="#e04d02" style="-fx-background-color: #fff59a; -fx-background-radius: 50;" text="History" />
                      </children>
                   </Pane>
                   <TableView fx:id="historytable" editable="true" layoutX="830.0" layoutY="54.0" onMouseMoved="#filltable" prefHeight="445.0" prefWidth="807.0" tableMenuButtonVisible="true">
@@ -87,7 +88,6 @@
                      </columnResizePolicy>
                   </TableView>
                   <JFXButton buttonType="RAISED" layoutX="839.0" layoutY="15.0" onAction="#back" ripplerFill="#de0202" style="-fx-background-color: #00ff08; -fx-background-radius: 50;" text="Back" />
-                  <JFXButton buttonType="RAISED" layoutX="653.0" layoutY="208.0" onAction="#showhistory" ripplerFill="#e04d02" style="-fx-background-color: #fff59a; -fx-background-radius: 50;" text="History" />
                </children>
                <effect>
                   <DropShadow />
