@@ -7,10 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -22,6 +19,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class WelcomeScreen implements Initializable {
+    //Todo: Add Tooltips everywhere. tooltips are the message we see when we hover over some object
     @FXML
     private RadioButton employee;
     @FXML
@@ -45,7 +43,6 @@ public class WelcomeScreen implements Initializable {
         fms.setToggleGroup(group);
 
         user.setSelected(true);
-
     }
 
     public void execute_login(ActionEvent e) throws Exception {
