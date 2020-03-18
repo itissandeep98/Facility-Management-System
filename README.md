@@ -2,6 +2,8 @@
 
 # Facility-Management-System
 ### BY- [Sandeep](https://github.com/itissandeep98), [Sarthak](https://github.com/sarthak144), [Nandesh](https://github.com/nandesh26), [Avinash](https://github.com/avinash18227), Anjali
+
+Website is hosted on (https://itissandeep98.github.io/Facility-Management-System/index.html) \
 This is a group project extensively based on DBMS, its an attempt in creating an interface for the various Facilities provided inside our college
 
 1.[Drive Link](https://drive.google.com/open?id=1hB0hikIpySNjIzEfQ7HzhressygbK1Fb) <- Project Documentation\
