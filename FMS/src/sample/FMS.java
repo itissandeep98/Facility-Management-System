@@ -1,5 +1,6 @@
 package sample;
 
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,19 +10,21 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class FMS  implements Initializable {
     @FXML
     private TableColumn<Record , Integer> studentid;
 
     @FXML
-    private TableColumn<Record , Integer> workerid;
+    private TableColumn<Record , String> workerid;
 
     @FXML
     private TableColumn<Record , String> requesttype;
@@ -98,9 +101,29 @@ public class FMS  implements Initializable {
                 });
             }
         }
-        recordtable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if(newSelection!=null && !newSelection.getStatus().equals("Close"))
-                EditRecord.edit(newSelection);
+
+        //ToDo: make this a combobox and it will only have values according to the request type of that row
+        workerid.setCellFactory(TextFieldTableCell.<Record>forTableColumn());
+        workerid.setOnEditCommit(event -> {
+            String query="Update allrecord SET workerid = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("FMS: error in workerid update");
+                return;
+            }
+            filltable();
+        });
+        status.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList("Open", "Closed", "Unassigned")));
+        status.setOnEditCommit(event -> {
+            String query="Update allrecord SET status=\""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("User: error in hostel update");
+                return;
+            }
+            filltable();
         });
 
     }
@@ -112,7 +135,7 @@ public class FMS  implements Initializable {
         try {
             rs= Main.con.createStatement().executeQuery(tablequery);
             while (rs.next()){
-                list.add(new Record(rs.getInt("ID"),rs.getInt("workerid"),rs.getInt("studentid"), rs.getInt("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
+                list.add(new Record(rs.getInt("ID"),rs.getString("workerid"),rs.getInt("studentid"), rs.getString("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
             }
 
         } catch (Exception e) {

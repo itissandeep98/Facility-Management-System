@@ -4,9 +4,9 @@ import java.sql.Timestamp;
 
 public class Record {
     private int id;
-    private int workerid;
+    private String workerid;
     private int studentid;
-    private int roomnum;
+    private String roomnum;
     private String status;
     private String requesttype;
     private String hostel;
@@ -14,7 +14,7 @@ public class Record {
     private Timestamp starttime;
     private Timestamp closedtime;
 
-    Record(int id,int workerid,int studentid,int roomnum, String status,String requesttype,Timestamp starttime,Timestamp closedtime,String hostel,String comment){
+    Record(int id,String workerid,int studentid,String roomnum, String status,String requesttype,Timestamp starttime,Timestamp closedtime,String hostel,String comment){
         this.id=id;
         this.workerid=workerid;
         this.studentid=studentid;
@@ -50,11 +50,11 @@ public class Record {
         this.id = id;
     }
 
-    public int getWorkerid() {
+    public String getWorkerid() {
         return workerid;
     }
 
-    public void setWorkerid(int workerid) {
+    public void setWorkerid(String workerid) {
         this.workerid = workerid;
     }
 
@@ -66,11 +66,11 @@ public class Record {
         this.studentid = studentid;
     }
 
-    public int getRoomnum() {
+    public String getRoomnum() {
         return roomnum;
     }
 
-    public void setRoomnum(int roomnum) {
+    public void setRoomnum(String roomnum) {
         this.roomnum = roomnum;
     }
 

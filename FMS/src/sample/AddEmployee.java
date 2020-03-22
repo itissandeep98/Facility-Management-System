@@ -1,22 +1,34 @@
 package sample;
 
 import com.jfoenix.controls.JFXTextField;
+import java.util.ArrayList;
+import java.util.Arrays;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.util.Callback;
 
 public class AddEmployee implements Initializable {
     @FXML
@@ -38,13 +50,13 @@ public class AddEmployee implements Initializable {
     @FXML
     private TableView<Workers> employeeTable;
     @FXML
-    private TableColumn<Worker, Integer> empIdColumn;
+    private TableColumn<Workers, Integer> empIdColumn;
     @FXML
-    private TableColumn<Worker, String> empphonenumcol;
+    private TableColumn<Workers, String> empphonenumcol;
     @FXML
-    private TableColumn<Worker, String> empspecialitycol;
+    private TableColumn<Workers, String> empspecialitycol;
     @FXML
-    private TableColumn<Worker, String> empnamecol;
+    private TableColumn<Workers, String> empnamecol;
 
     String tablequery;
     @Override
@@ -60,10 +72,74 @@ public class AddEmployee implements Initializable {
         reset();
         filltable();
 
-        employeeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if(newSelection!=null)
-            EditEmployee.edit(newSelection);
+        employeeTable.getSelectionModel().setCellSelectionEnabled(true);
+        employeeTable.setEditable(true);
+
+        empnamecol.setCellFactory(TextFieldTableCell.<Workers>forTableColumn());
+        empnamecol.setOnEditCommit(event -> {
+            String query="Update worker SET name = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getID();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("AddEmployee: error in name update");
+                return;
+            }
+            filltable();
         });
+
+        empphonenumcol.setCellFactory(TextFieldTableCell.<Workers>forTableColumn());
+        empphonenumcol.setOnEditCommit(event -> {
+            String query="Update worker SET contactinfo = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getID();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("AddEmployee: error in contact info update");
+                return;
+            }
+            filltable();
+        });
+
+        ArrayList<String> exportDataTypeValues=new ArrayList<String>(Arrays.asList(values));
+
+        empspecialitycol.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList(values)));
+        empspecialitycol.setOnEditCommit(event -> {
+            String query="Update worker SET speciality = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getID();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("AddEmployee: error in speciality update");
+                return;
+            }
+            filltable();
+
+        });
+
+        employeeTable.setRowFactory(tableView -> {
+            final TableRow<Workers> row = new TableRow<>();
+            final ContextMenu contextMenu = new ContextMenu();
+            final MenuItem removeMenuItem = new MenuItem("Remove");
+            removeMenuItem.setOnAction(event -> {
+                String query = "Delete From worker where id=" + row.getTableView().getSelectionModel().getSelectedItem().getID();
+
+                try {
+                    Main.con.createStatement().executeUpdate(query);
+                } catch (SQLException e) {
+                    System.out.println("AddEmployee: error in deleting");
+                    return;
+                }
+                filltable();
+            });
+            contextMenu.getItems().add(removeMenuItem);
+            // Set context menu on row, but use a binding to make it only show for non-empty rows:
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                    .then((ContextMenu)null)
+                    .otherwise(contextMenu)
+            );
+            return row ;
+        });
+
+
 
     }
 

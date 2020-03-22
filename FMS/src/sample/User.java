@@ -3,13 +3,16 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -78,9 +81,80 @@ public class User implements Initializable {
         requestcol.setCellValueFactory(new PropertyValueFactory<>("requesttype"));
         roomcol.setCellValueFactory(new PropertyValueFactory<>("roomnum"));
 
-        historytable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if(newSelection!=null && newSelection.getWorkerid()==0) // only those records can be update which have not been assigned to anyone
-                EditHistory.edit(newSelection);
+        historytable.getSelectionModel().setCellSelectionEnabled(true);
+        historytable.setEditable(true);
+
+        commentcol.setCellFactory(TextFieldTableCell.forTableColumn());
+        commentcol.setOnEditCommit(event -> {
+            String query="Update allrecord SET comment = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("User: error in comment update");
+                return;
+            }
+            filltable();
+        });
+
+        roomcol.setCellFactory(TextFieldTableCell.forTableColumn());
+        roomcol.setOnEditCommit(event -> {
+            String query="Update allrecord SET roomnum = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("User: error in room update");
+                return;
+            }
+            filltable();
+        });
+
+        hostelcol.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList("H1", "H2", "Old Boys", "Girls")));
+        hostelcol.setOnEditCommit(event -> {
+            String query="Update allrecord SET hostel = \""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("User: error in hostel update");
+                return;
+            }
+            filltable();
+        });
+
+        requestcol.setCellFactory(ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList("Cleaner","Carpenter","Plumber","Electrician")));
+        requestcol.setOnEditCommit(event -> {
+            String query="Update allrecord SET hostel=\""+event.getNewValue()+"\" Where id="+event.getRowValue().getId();
+            try {
+                Main.con.createStatement().executeUpdate(query);
+            } catch (SQLException e) {
+                System.out.println("User: error in request update");
+                return;
+            }
+            filltable();
+        });
+
+        historytable.setRowFactory(tableView -> {
+            final TableRow<Record> row = new TableRow<>();
+            final ContextMenu contextMenu = new ContextMenu();
+            final MenuItem removeMenuItem = new MenuItem("Remove");
+            removeMenuItem.setOnAction(event -> {
+                String query = "Delete From allrecord where id=" + row.getTableView().getSelectionModel().getSelectedItem().getId();
+
+                try {
+                    Main.con.createStatement().executeUpdate(query);
+                } catch (SQLException e) {
+                    System.out.println("User: error in deleting");
+                    return;
+                }
+                filltable();
+            });
+            contextMenu.getItems().add(removeMenuItem);
+            // Set context menu on row, but use a binding to make it only show for non-empty rows:
+            row.contextMenuProperty().bind(
+                Bindings.when(row.emptyProperty())
+                    .then((ContextMenu)null)
+                    .otherwise(contextMenu)
+            );
+            return row ;
         });
         reset();
     }
@@ -155,7 +229,7 @@ public class User implements Initializable {
         try {
             rs= Main.con.createStatement().executeQuery("Select * FROM allrecord WHERE studentid="+id);
             while (rs.next()){
-                list.add(new Record(rs.getInt("ID"),rs.getInt("workerid"),rs.getInt("studentid"), rs.getInt("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
+                list.add(new Record(rs.getInt("ID"),rs.getString("workerid"),rs.getInt("studentid"), rs.getString("roomnum"),rs.getString("Status"), rs.getString("requesttype"), rs.getTimestamp("starttime"),rs.getTimestamp("closedtime"),rs.getString("hostel"),rs.getString("comment")));
             }
 
         } catch (Exception e) {
