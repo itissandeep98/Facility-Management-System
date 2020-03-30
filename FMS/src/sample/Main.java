@@ -100,10 +100,11 @@ public class Main extends Application {
         if (con==null) {
             try {
                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",username,password);  //localhost
+//                con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
 //                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
 //                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
             } catch (SQLException e) {
-                System.out.println("Main: Unable to connect in getconnection function");
+                System.out.println("Main: Unable to connect in getconnection function "+e);
             }
         }
         return con;

@@ -37,7 +37,7 @@ CREATE TABLE `allrecord` (
   `comment` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`,`Status`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `allrecord` (
 
 LOCK TABLES `allrecord` WRITE;
 /*!40000 ALTER TABLE `allrecord` DISABLE KEYS */;
-INSERT INTO `allrecord` VALUES (11,'Open',102,'2020-03-10 19:30:12',1,'Carpenter',3,NULL,'h1',NULL),(12,'Unassigned',103,'2020-03-11 06:30:12',NULL,'Carpenter',2,NULL,'h2',NULL),(13,'Open',104,'2020-03-10 20:30:21',4,'Carpenter',6,NULL,'old boys',NULL),(14,'Open',105,'2020-03-11 05:30:12',5,'Cleaner',4,NULL,'girls',NULL),(15,'Close',201,'2020-03-11 04:30:29',1,'Cleaner',1,'2020-03-11 09:08:41','girls',NULL),(16,'Unassigned',205,'2020-03-11 03:48:57',NULL,'Cleaner',2,NULL,'old boys',NULL),(17,'Unassigned',206,'2020-03-11 02:30:09',NULL,'Electrician',5,NULL,'h1',NULL),(19,'Close',208,'2020-03-10 23:30:56',2,'Plumber',9,'2020-03-11 09:10:29','h2',NULL);
+INSERT INTO `allrecord` VALUES (11,'Close',103,'2020-03-10 19:30:12',1,'Carpenter',3,'2020-03-11 13:51:28','Girls',NULL),(12,'Open',103,'2020-03-11 06:30:12',9,'Carpenter',2,NULL,'h2',NULL),(13,'Unassigned',104,'2020-03-10 20:30:21',NULL,'Carpenter',6,NULL,'old boys',NULL),(14,'Open',105,'2020-03-11 05:30:12',5,'Cleaner',4,NULL,'girls',NULL),(15,'Close',201,'2020-03-11 04:30:29',1,'Cleaner',1,'2020-03-11 09:08:41','girls',NULL),(16,'Open',205,'2020-03-11 03:48:57',NULL,'Cleaner',2,NULL,'old boys',NULL),(17,'Unassigned',206,'2020-03-11 02:30:09',NULL,'Electrician',5,NULL,'h1',NULL),(19,'Close',208,'2020-03-10 23:30:56',2,'Plumber',9,'2020-03-11 09:10:29','h2',NULL),(22,'Unassigned',404,'2020-03-11 20:08:22',NULL,'Cleaner',3,NULL,'H1','');
 /*!40000 ALTER TABLE `allrecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -64,7 +64,7 @@ CREATE TABLE `building` (
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +91,7 @@ CREATE TABLE `eateries` (
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -120,7 +120,7 @@ CREATE TABLE `faculty` (
   `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `fmshead` (
   `Contact` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +174,7 @@ CREATE TABLE `hostels` (
   `SupervisorID` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `room` (
   UNIQUE KEY `RoomID_UNIQUE` (`id`),
   KEY `Hostel ID_idx` (`HostelID`),
   CONSTRAINT `Hostel ID` FOREIGN KEY (`HostelID`) REFERENCES `students` (`HostelID`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +256,7 @@ CREATE TABLE `schedule` (
   `starttime` timestamp NULL DEFAULT NULL,
   `closetime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`,`WorkerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +284,7 @@ CREATE TABLE `specialrequest` (
   `Requirement` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -313,7 +313,7 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`),
   KEY `Hostel ID_idx` (`HostelID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -339,7 +339,7 @@ CREATE TABLE `supervisor` (
   `Contact` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +376,7 @@ CREATE TABLE `worker` (
 
 LOCK TABLES `worker` WRITE;
 /*!40000 ALTER TABLE `worker` DISABLE KEYS */;
-INSERT INTO `worker` VALUES (1,'swastik','Cleaner','12345',1),(2,'Navy','Electrician','23456',2),(3,'Nitin','Plumber','34567',3),(4,'Arka','Carpenter','45678',4),(5,'Kinshuk','Cleaner','56789',5),(6,'Rishabh','Painter','98990',2),(7,'Dhruv','Plumber','88605',4),(8,'Pratham','Carpenter','93129',1),(9,'Yash','Electrician','93503',1),(10,'Naman','Cleaner','55500',3),(11,'anmol','plumber','23123',NULL),(13,'shubham','carpenter','1234444',NULL),(14,'gaurav','painter','191279',NULL);
+INSERT INTO `worker` VALUES (1,'swasti','Carpenter','123458',1),(2,'Navya','Electrician','23456',2),(3,'Nitin','Cleaner','34567',3),(4,'Arka','Carpenter','45678',4),(5,'Kinshuk','Cleaner','56789',5),(6,'Rishabh','Painter','98990',2),(10,'Naman','Cleaner','55500',3),(11,'anmol','plumber','23123',NULL),(13,'shubham','carpenter','1234444',NULL),(14,'gaurav','painter','191279',NULL);
 /*!40000 ALTER TABLE `worker` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,4 +397,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-11 15:19:27
+-- Dump completed on 2020-03-30 11:37:15
