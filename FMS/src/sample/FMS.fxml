@@ -1,64 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<StackPane prefHeight="704.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FMS">
-   <children>
-      <Pane prefHeight="695.0" prefWidth="957.0">
-         <children>
-            <MenuButton fx:id="recordmenu" layoutX="57.0" layoutY="89.0" mnemonicParsing="false" text="Type of Record">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Open Record" />
-                <MenuItem mnemonicParsing="false" text="Closed Record" />
-                  <MenuItem mnemonicParsing="false" text="Unassigned Record" />
-                  <MenuItem mnemonicParsing="false" text="All Records" />
-              </items>
-            </MenuButton>
-            <TabPane layoutX="17.0" layoutY="157.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="935.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                  <Tab closable="false" text="Records">
-                     <content>
-                        <TableView fx:id="recordtable" editable="true" onMouseMoved="#filltable" prefHeight="546.0" prefWidth="896.0" tableMenuButtonVisible="true">
-                          <columns>
-                            <TableColumn fx:id="id" prefWidth="10.0" text="ID" />
-                            <TableColumn fx:id="status" prefWidth="60.0" text="Status" />
-                              <TableColumn fx:id="workerid" prefWidth="50.0" text="Worker ID" />
-                              <TableColumn fx:id="studentid" prefWidth="50.0" text="Student ID" />
-                              <TableColumn fx:id="requesttype" prefWidth="75.0" text="Request Type" />
-                              <TableColumn fx:id="starttime" prefWidth="75.0" text="Request Time" />
-                              <TableColumn fx:id="closedtime" prefWidth="75.0" text="Close Time" />
-                              <TableColumn fx:id="roomnum" prefWidth="50.0" text="Room No." />
-                              <TableColumn fx:id="hostel" prefWidth="60.0" text="Hostel" />
-                              <TableColumn fx:id="comment" prefWidth="10.0" text="Comment" />
-                          </columns>
-                           <columnResizePolicy>
-                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                           </columnResizePolicy>
-                           <cursor>
-                              <Cursor fx:constant="TEXT" />
-                           </cursor>
-                        </TableView>
-                     </content>
-                  </Tab>
-              </tabs>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </TabPane>
-            <Label alignment="CENTER" layoutX="178.0" layoutY="23.0" prefHeight="34.0" prefWidth="510.0" text="Records Table">
-               <font>
-                  <Font name="Liberation Mono Bold Italic" size="34.0" />
-               </font>
-            </Label>
-            <JFXButton buttonType="RAISED" layoutX="725.0" layoutY="32.0" onAction="#addemployee" ripplerFill="#46de02" style="-fx-background-color: #f79a05; -fx-background-radius: 50;" text="Employee Details" />
-            <JFXButton buttonType="RAISED" layoutX="57.0" layoutY="32.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout" />
-         </children>
-      </Pane>
-   </children>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<StackPane prefHeight="704.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/8"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FMS">
+  <children>
+    <Pane prefHeight="695.0" prefWidth="957.0">
+      <children>
+        <MenuButton fx:id="recordmenu" layoutX="57.0" layoutY="89.0" mnemonicParsing="false"
+          text="Type of Record">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Open Record"/>
+            <MenuItem mnemonicParsing="false" text="Closed Record"/>
+            <MenuItem mnemonicParsing="false" text="Unassigned Record"/>
+            <MenuItem mnemonicParsing="false" text="All Records"/>
+          </items>
+        </MenuButton>
+        <TabPane layoutX="17.0" layoutY="157.0" maxHeight="-Infinity" maxWidth="-Infinity"
+          minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="935.0"
+          side="LEFT" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+            <Tab closable="false" text="Records">
+              <content>
+                <TableView fx:id="recordtable" editable="true" onMouseMoved="#filltable"
+                  prefHeight="546.0" prefWidth="896.0" tableMenuButtonVisible="true">
+                  <columns>
+                    <TableColumn fx:id="id" prefWidth="10.0" text="ID"/>
+                    <TableColumn fx:id="status" prefWidth="60.0" text="Status"/>
+                    <TableColumn fx:id="workerid" prefWidth="50.0" text="Worker ID"/>
+                    <TableColumn fx:id="studentid" prefWidth="50.0" text="Student ID"/>
+                    <TableColumn fx:id="requesttype" prefWidth="75.0" text="Request Type"/>
+                    <TableColumn fx:id="starttime" prefWidth="75.0" text="Request Time"/>
+                    <TableColumn fx:id="closedtime" prefWidth="75.0" text="Close Time"/>
+                    <TableColumn fx:id="roomnum" prefWidth="50.0" text="Room No."/>
+                    <TableColumn fx:id="hostel" prefWidth="60.0" text="Hostel"/>
+                    <TableColumn fx:id="comment" prefWidth="10.0" text="Comment"/>
+                  </columns>
+                  <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                  </columnResizePolicy>
+                  <cursor>
+                    <Cursor fx:constant="TEXT"/>
+                  </cursor>
+                </TableView>
+              </content>
+            </Tab>
+          </tabs>
+          <effect>
+            <DropShadow/>
+          </effect>
+        </TabPane>
+        <Label alignment="CENTER" layoutX="178.0" layoutY="23.0" prefHeight="34.0" prefWidth="510.0"
+          text="Records Table">
+          <font>
+            <Font name="Liberation Mono Bold Italic" size="34.0"/>
+          </font>
+        </Label>
+        <JFXButton buttonType="RAISED" layoutX="725.0" layoutY="32.0" onAction="#addemployee"
+          ripplerFill="#46de02" style="-fx-background-color: #f79a05; -fx-background-radius: 50;"
+          text="Employee Details"/>
+        <JFXButton buttonType="RAISED" layoutX="57.0" layoutY="32.0" onAction="#login"
+          ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;"
+          text="Logout"/>
+      </children>
+    </Pane>
+  </children>
 </StackPane>

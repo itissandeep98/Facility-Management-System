@@ -1,66 +1,70 @@
 package sample;
 
-public class Workers  {
-    private int ID;
-    private String Name;
-    private String Speciality;
-    private String ContactInfo;
-    private int SupervisorID;
-    Workers(int ID,String Name,String Spec,String ContactInfo){
-        this.ID=ID;
-        this.Name=Name;
-        this.Speciality=Spec;
-        this.ContactInfo = ContactInfo;
-    }
-    Workers(int ID, String Name, String Spec, String ContactInfo, int SupID){
-        this.ID=ID;
-        this.Name=Name;
-        this.Speciality=Spec;
-        this.ContactInfo = ContactInfo;
-        this.SupervisorID=SupID;
-    }
-    public int getID() {
-        return ID;
-    }
+public class Workers {
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+		private int ID;
+		private String Name;
+		private String Speciality;
+		private String ContactInfo;
+		private int SupervisorID;
 
-    public String getName() {
-        return Name;
-    }
+		Workers(int ID, String Name, String Spec, String ContactInfo) {
+				this.ID = ID;
+				this.Name = Name;
+				this.Speciality = Spec;
+				this.ContactInfo = ContactInfo;
+		}
 
-    public void setName(String name) {
-        Name = name;
-    }
+		Workers(int ID, String Name, String Spec, String ContactInfo, int SupID) {
+				this.ID = ID;
+				this.Name = Name;
+				this.Speciality = Spec;
+				this.ContactInfo = ContactInfo;
+				this.SupervisorID = SupID;
+		}
 
-    public String getSpeciality() {
-        return Speciality;
-    }
+		public int getID() {
+				return ID;
+		}
 
-    public void setSpeciality(String speciality) {
-        Speciality = speciality;
-    }
+		public void setID(int ID) {
+				this.ID = ID;
+		}
 
-    public String getContactInfo() {
-        return ContactInfo;
-    }
+		public String getName() {
+				return Name;
+		}
 
-    public void setContactInfo(String contactInfo) {
-        ContactInfo = contactInfo;
-    }
+		public void setName(String name) {
+				Name = name;
+		}
 
-    public int getSupervisorID() {
-        return SupervisorID;
-    }
+		public String getSpeciality() {
+				return Speciality;
+		}
 
-    public void setSupervisorID(int supervisorID) {
-        SupervisorID = supervisorID;
-    }
+		public void setSpeciality(String speciality) {
+				Speciality = speciality;
+		}
 
-    @Override
-    public String toString() {
-        return "ID:"+ID+" Name:"+Name+" Speciality:"+Speciality+" Phone:"+ ContactInfo;
-    }
+		public String getContactInfo() {
+				return ContactInfo;
+		}
+
+		public void setContactInfo(String contactInfo) {
+				ContactInfo = contactInfo;
+		}
+
+		public int getSupervisorID() {
+				return SupervisorID;
+		}
+
+		public void setSupervisorID(int supervisorID) {
+				SupervisorID = supervisorID;
+		}
+
+		@Override
+		public String toString() {
+				return "ID:" + ID + " Name:" + Name + " Speciality:" + Speciality + " Phone:" + ContactInfo;
+		}
 }

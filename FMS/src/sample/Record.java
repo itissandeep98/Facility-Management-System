@@ -3,107 +3,111 @@ package sample;
 import java.sql.Timestamp;
 
 public class Record {
-    private int id;
-    private String workerid;
-    private int studentid;
-    private String roomnum;
-    private String status;
-    private String requesttype;
-    private String hostel;
-    private String comment;
-    private Timestamp starttime;
-    private Timestamp closedtime;
 
-    Record(int id,String workerid,int studentid,String roomnum, String status,String requesttype,Timestamp starttime,Timestamp closedtime,String hostel,String comment){
-        this.id=id;
-        this.workerid=workerid;
-        this.studentid=studentid;
-        this.requesttype=requesttype;
-        this.roomnum=roomnum;
-        this.status=status;
-        this.starttime=starttime;
-        this.closedtime=closedtime;
-        this.hostel=hostel;
-        this.comment=comment;
-    }
+		private int id;
+		private String workerid;
+		private int studentid;
+		private String roomnum;
+		private String status;
+		private String requesttype;
+		private String hostel;
+		private String comment;
+		private Timestamp starttime;
+		private Timestamp closedtime;
 
-    public String getHostel() {
-        return hostel;
-    }
+		Record(int id, String workerid, int studentid, String roomnum, String status,
+				String requesttype,
+				Timestamp starttime, Timestamp closedtime, String hostel, String comment) {
+				this.id = id;
+				this.workerid = workerid;
+				this.studentid = studentid;
+				this.requesttype = requesttype;
+				this.roomnum = roomnum;
+				this.status = status;
+				this.starttime = starttime;
+				this.closedtime = closedtime;
+				this.hostel = hostel;
+				this.comment = comment;
+		}
 
-    public void setHostel(String hostel) {
-        this.hostel = hostel;
-    }
-    public String getComment() {
-        return comment;
-    }
+		public String getHostel() {
+				return hostel;
+		}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+		public void setHostel(String hostel) {
+				this.hostel = hostel;
+		}
 
-    public int getId() {
-        return id;
-    }
+		public String getComment() {
+				return comment;
+		}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+		public void setComment(String comment) {
+				this.comment = comment;
+		}
 
-    public String getWorkerid() {
-        return workerid;
-    }
+		public int getId() {
+				return id;
+		}
 
-    public void setWorkerid(String workerid) {
-        this.workerid = workerid;
-    }
+		public void setId(int id) {
+				this.id = id;
+		}
 
-    public int getStudentid() {
-        return studentid;
-    }
+		public String getWorkerid() {
+				return workerid;
+		}
 
-    public void setStudentid(int studentid) {
-        this.studentid = studentid;
-    }
+		public void setWorkerid(String workerid) {
+				this.workerid = workerid;
+		}
 
-    public String getRoomnum() {
-        return roomnum;
-    }
+		public int getStudentid() {
+				return studentid;
+		}
 
-    public void setRoomnum(String roomnum) {
-        this.roomnum = roomnum;
-    }
+		public void setStudentid(int studentid) {
+				this.studentid = studentid;
+		}
 
-    public String getStatus() {
-        return status;
-    }
+		public String getRoomnum() {
+				return roomnum;
+		}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+		public void setRoomnum(String roomnum) {
+				this.roomnum = roomnum;
+		}
 
-    public String getRequesttype() {
-        return requesttype;
-    }
+		public String getStatus() {
+				return status;
+		}
 
-    public void setRequesttype(String requesttype) {
-        this.requesttype = requesttype;
-    }
+		public void setStatus(String status) {
+				this.status = status;
+		}
 
-    public Timestamp getStarttime() {
-        return starttime;
-    }
+		public String getRequesttype() {
+				return requesttype;
+		}
 
-    public void setStarttime(Timestamp starttime) {
-        this.starttime = starttime;
-    }
+		public void setRequesttype(String requesttype) {
+				this.requesttype = requesttype;
+		}
 
-    public Timestamp getClosedtime() {
-        return closedtime;
-    }
+		public Timestamp getStarttime() {
+				return starttime;
+		}
 
-    public void setClosedtime(Timestamp closedtime) {
-        this.closedtime = closedtime;
-    }
+		public void setStarttime(Timestamp starttime) {
+				this.starttime = starttime;
+		}
+
+		public Timestamp getClosedtime() {
+				return closedtime;
+		}
+
+		public void setClosedtime(Timestamp closedtime) {
+				this.closedtime = closedtime;
+		}
 
 }

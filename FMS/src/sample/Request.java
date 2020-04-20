@@ -1,53 +1,55 @@
 package sample;
 
 public class Request {
-    private String Hostel;
-    private String Room;
-    private String RequestType;
-    private String comment;
 
-    Request(String Hostel, String Room, String requestType,String comment){
-        this.Hostel=Hostel;
-        this.Room=Room;
-        this.RequestType=requestType;
-        this.comment=comment;
-    }
-    @Override
-    public String toString(){
-        return Hostel+"-"+ Room+" has requested for "+RequestType;
-    }
+		private String Hostel;
+		private String Room;
+		private String RequestType;
+		private String comment;
 
-    public String getHostel() {
-        return Hostel;
-    }
+		Request(String Hostel, String Room, String requestType, String comment) {
+				this.Hostel = Hostel;
+				this.Room = Room;
+				this.RequestType = requestType;
+				this.comment = comment;
+		}
 
-    public void setHostel(String hostel) {
-        Hostel = hostel;
-    }
+		@Override
+		public String toString() {
+				return Hostel + "-" + Room + " has requested for " + RequestType;
+		}
 
-    public String getRoom() {
-        return Room;
-    }
+		public String getHostel() {
+				return Hostel;
+		}
 
-    public void setRoom(String room) {
-        Room = room;
-    }
+		public void setHostel(String hostel) {
+				Hostel = hostel;
+		}
 
-    public String getRequestType() {
-        return RequestType;
-    }
+		public String getRoom() {
+				return Room;
+		}
 
-    public void setRequestType(String requestType) {
-        RequestType = requestType;
-    }
+		public void setRoom(String room) {
+				Room = room;
+		}
 
-    public String getComment() {
-        return comment;
-    }
+		public String getRequestType() {
+				return RequestType;
+		}
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+		public void setRequestType(String requestType) {
+				RequestType = requestType;
+		}
+
+		public String getComment() {
+				return comment;
+		}
+
+		public void setComment(String comment) {
+				this.comment = comment;
+		}
 
 
 }

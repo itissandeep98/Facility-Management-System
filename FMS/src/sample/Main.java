@@ -3,158 +3,146 @@ package sample;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Main extends Application {
-    public static Parent root;
-    public static Stage stage;
-    public static Connection con;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        stage=primaryStage;
-        root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-        Image icon=new Image("sample/icon.png");
-        primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Facility  Management System");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
+		public static Parent root;
+		public static Stage stage;
+		public static Connection con;
 
-    public static void changeScene(String file){ // custom made function which helps in changing the scene
-        try {
-            root = FXMLLoader.load(Main.class.getResource(file));
-            Main.stage.setWidth(-1);
-            Main.stage.setScene(new Scene(root));
-        }
-        catch (Exception e){
-            System.out.println("Main:Error in changing scene to "+file);
-        }
-    }
+		@Override
+		public void start(Stage primaryStage) throws Exception {
+				stage = primaryStage;
+				root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
+				Image icon = new Image("sample/icon.png");
+				primaryStage.getIcons().add(icon);
+				primaryStage.setTitle("Facility  Management System");
+				primaryStage.setScene(new Scene(root));
+				primaryStage.show();
+		}
 
-    public static void showalert(String title, String message, StackPane pane,Color col){
-        JFXDialogLayout content=new JFXDialogLayout();
-        Text t=new Text(title);
-        t.setFill(col);
-        content.setHeading(t);
-        t=new Text(message);
-        t.setFill(col);
-        content.setBody(t);
-        JFXButton button =new JFXButton("Done");
-        button.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-        JFXDialog dialog =new JFXDialog(pane,content,JFXDialog.DialogTransition.CENTER);
-        button.setOnAction(actionEvent -> dialog.close());
-        content.setActions(button);
-        dialog.show();
-    }
+		public static void changeScene(
+				String file) { // custom made function which helps in changing the scene
+				try {
+						root = FXMLLoader.load(Main.class.getResource(file));
+						Main.stage.setWidth(-1);
+						Main.stage.setScene(new Scene(root));
+				} catch (Exception e) {
+						System.out.println("Main:Error in changing scene to " + file);
+				}
+		}
 
-    public static void warnconnection(String title, String message, StackPane pane,Color col,String username, String password){
-        JFXDialogLayout content=new JFXDialogLayout();
-        Text t=new Text(title);
-        t.setFill(col);
-        content.setHeading(t);
-        t=new Text(message);
-        t.setFill(col);
-        content.setBody(t);
+		public static void showalert(String title, String message, StackPane pane, Color col) {
+				JFXDialogLayout content = new JFXDialogLayout();
+				Text t = new Text(title);
+				t.setFill(col);
+				content.setHeading(t);
+				t = new Text(message);
+				t.setFill(col);
+				content.setBody(t);
+				JFXButton button = new JFXButton("Done");
+				button.setBackground(
+						new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+				JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
+				button.setOnAction(actionEvent -> dialog.close());
+				content.setActions(button);
+				dialog.show();
+		}
 
-        JFXDialog dialog =new JFXDialog(pane,content,JFXDialog.DialogTransition.CENTER);
+		public static void warnconnection(String title, String message, StackPane pane, Color col,
+				String username, String password) {
+				JFXDialogLayout content = new JFXDialogLayout();
+				Text t = new Text(title);
+				t.setFill(col);
+				content.setHeading(t);
+				t = new Text(message);
+				t.setFill(col);
+				content.setBody(t);
 
-        JFXButton button =new JFXButton("Done");
-        button.setBackground(new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-        button.setOnAction(actionEvent -> dialog.close());
+				JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
 
-        JFXButton retry =new JFXButton("Retry");
-        retry.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-        retry.setOnAction(actionEvent -> {
-            if(checkinternet()!=null){
-                Text te=new Text("Success");
-                te.setFill(Color.GREEN);
-                content.setHeading(te);
-                te=new Text("Connection Established successfully");
-                te.setFill(Color.GREEN);
-                content.setBody(te);
-                retry.setVisible(false);
-            }
-        });
-        content.getActions().addAll(button,retry);
+				JFXButton button = new JFXButton("Done");
+				button.setBackground(
+						new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+				button.setOnAction(actionEvent -> dialog.close());
 
-        dialog.show();
-    }
+				JFXButton retry = new JFXButton("Retry");
+				retry.setBackground(
+						new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+				retry.setOnAction(actionEvent -> {
+						if (checkinternet() != null) {
+								Text te = new Text("Success");
+								te.setFill(Color.GREEN);
+								content.setHeading(te);
+								te = new Text("Connection Established successfully");
+								te.setFill(Color.GREEN);
+								content.setBody(te);
+								retry.setVisible(false);
+						}
+				});
+				content.getActions().addAll(button, retry);
 
-    public static int getConnection(String username,String password)  {
-        //ToDo: Proper login needs to be implemented
+				dialog.show();
+		}
 
+		public static int getConnection(String username, String password) {
+				try {
+//    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
+//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
+//    con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
+						con = DriverManager.getConnection(
+								"jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
+								"fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
 
-            try {
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
+						ResultSet rs;
+						String query = "SELECT ar.ID FROM allusers ar WHERE ar.Username = \"" + username
+								+ "\" and ar.Password = \"" + password + "\"";
+						rs = Main.con.createStatement().executeQuery(query);
+						if (rs.next()) {
+								return rs.getInt("ID");
+						}
 
-//                con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
-//                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
-//                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
+				} catch (Exception e) {
+						System.out.println("No Such User Found");
+				}
 
-                ResultSet rs;
-                try {
-                    String query="SELECT ar.ID FROM allusers ar WHERE ar.Username = \""+username+"\" and ar.Password = \""+password+"\"";
-                    rs= Main.con.createStatement().executeQuery(query);
-//                    System.out.println(rs);
-//                    System.out.println("this");
-//                    while (rs.next()){
-//                        list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getTimestamp("closedtime"),rs.getString("requesttype"),Workerid,rs.getString("hostel")));
-//                    }
-                    if(rs.next())
-                    {
-//                        System.out.println(ID);
-                        return rs.getInt("ID");
-                    }
-
-                } catch (Exception e) {
-                    System.out.println("No Such User Found");
-                    System.out.println(e);
-
-                    return -1;
-                }
+				return -1;
+		}
 
 
+		public static Boolean checkinternet() { // check internet connection
+				try {
+						URL url = new URL("http://www.google.com");
+						HttpURLConnection con = (HttpURLConnection) url.openConnection();
+						con.connect();
+						if (con.getResponseCode() == 200) {
+								return false;
+						}
+				} catch (Exception exception) {
+						return true;
+				}
+				return true;
+		}
 
-
-            } catch (SQLException e) {
-                System.out.println("Main: Unable to connect in getconnection function "+e);
-            }
-
-        return -1;
-    }
-
-
-    public static Boolean checkinternet(){ // check internet connection
-        try {
-            URL url = new URL("http://www.google.com");
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.connect();
-            if (con.getResponseCode() == 200){
-                return false;
-            }
-        } catch (Exception exception) {
-            return true;
-        }
-        return true;
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+		public static void main(String[] args) {
+				launch(args);
+		}
 }
