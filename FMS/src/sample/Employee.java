@@ -127,7 +127,8 @@ public class Employee implements Initializable {
         try {
             String query="SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="+ Workerid+" and ar.status=\"Close\"";
             rs= Main.con.createStatement().executeQuery(query);
-
+            System.out.println(rs);
+            System.out.println("this");
             while (rs.next()){
                 list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getTimestamp("closedtime"),rs.getString("requesttype"),Workerid,rs.getString("hostel")));
             }

@@ -16,6 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class WelcomeScreen implements Initializable {
@@ -32,6 +34,8 @@ public class WelcomeScreen implements Initializable {
     private PasswordField password;
     @FXML
     private StackPane pane;
+    private int ID;
+
 
 
     @Override
@@ -69,13 +73,14 @@ public class WelcomeScreen implements Initializable {
             password.setText("");
             return;
         }
-
+//
         showalert("Success", "Logged in Successfully",pane,Color.GREEN);
 
     }
-    public Boolean check(String Username,String Password){  // check if user id and password is correct
-        Main.con=Main.getConnection(Username,Password);
-        return Main.con==null;
+    public Boolean check(String Username,String Password) throws SQLException {  // check if user id and password is correct
+        ID=Main.getConnection(Username,Password);
+        System.out.println(ID);
+        return ID==-1;
     }
 
 

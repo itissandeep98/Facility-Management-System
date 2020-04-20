@@ -17,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Main extends Application {
@@ -95,19 +96,47 @@ public class Main extends Application {
         dialog.show();
     }
 
-    public static Connection getConnection(String username,String password)  {
+    public static int getConnection(String username,String password)  {
         //ToDo: Proper login needs to be implemented
-        if (con==null) {
+
+
             try {
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",username,password);  //localhost
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
+
 //                con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
 //                con = DriverManager.getConnection("jdbc:mysql://itissandeep.mysql.database.azure.com:3306/dbms?serverTimezone=UTC", username, password); // Azure credentials
 //                con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
+
+                ResultSet rs;
+                try {
+                    String query="SELECT ar.ID FROM allusers ar WHERE ar.Username = \""+username+"\" and ar.Password = \""+password+"\"";
+                    rs= Main.con.createStatement().executeQuery(query);
+//                    System.out.println(rs);
+//                    System.out.println("this");
+//                    while (rs.next()){
+//                        list.add(new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"), rs.getTimestamp("closedtime"),rs.getString("requesttype"),Workerid,rs.getString("hostel")));
+//                    }
+                    if(rs.next())
+                    {
+//                        System.out.println(ID);
+                        return rs.getInt("ID");
+                    }
+
+                } catch (Exception e) {
+                    System.out.println("No Such User Found");
+                    System.out.println(e);
+
+                    return -1;
+                }
+
+
+
+
             } catch (SQLException e) {
                 System.out.println("Main: Unable to connect in getconnection function "+e);
             }
-        }
-        return con;
+
+        return -1;
     }
 
 
