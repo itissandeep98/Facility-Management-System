@@ -103,8 +103,8 @@ public class FMS implements Initializable {
 				workerid.setCellFactory(TextFieldTableCell.<Record>forTableColumn());
 				workerid.setOnEditCommit(event -> {
 						String query =
-								"Update allrecord SET workerid = \"" + event.getNewValue() + "\" Where id=" + event
-										.getRowValue().getId();
+								String.format("Update allrecord SET workerid = \"%s\" Where id=%d",
+										event.getNewValue(), event.getRowValue().getId());
 						try {
 								Main.con.createStatement().executeUpdate(query);
 						} catch (SQLException e) {
@@ -117,8 +117,8 @@ public class FMS implements Initializable {
 						.forTableColumn(FXCollections.observableArrayList("Open", "Closed", "Unassigned")));
 				status.setOnEditCommit(event -> {
 						String query =
-								"Update allrecord SET status=\"" + event.getNewValue() + "\" Where id=" + event
-										.getRowValue().getId();
+								String.format("Update allrecord SET status=\"%s\" Where id=%d", event.getNewValue(),
+										event.getRowValue().getId());
 						try {
 								Main.con.createStatement().executeUpdate(query);
 						} catch (SQLException e) {

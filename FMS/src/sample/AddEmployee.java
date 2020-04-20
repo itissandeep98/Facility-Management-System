@@ -4,8 +4,6 @@ import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -75,9 +73,8 @@ public class AddEmployee implements Initializable {
 				empnamecol.setCellFactory(TextFieldTableCell.<Workers>forTableColumn());
 				empnamecol.setOnEditCommit(event -> {
 						String query =
-								"Update worker SET name = \"" + event.getNewValue() + "\" Where id=" + event
-										.getRowValue()
-										.getID();
+								String.format("Update worker SET name = \"%s\" Where id=%d", event.getNewValue(),
+										event.getRowValue().getID());
 						try {
 								Main.con.createStatement().executeUpdate(query);
 						} catch (SQLException e) {
@@ -90,8 +87,8 @@ public class AddEmployee implements Initializable {
 				empphonenumcol.setCellFactory(TextFieldTableCell.<Workers>forTableColumn());
 				empphonenumcol.setOnEditCommit(event -> {
 						String query =
-								"Update worker SET contactinfo = \"" + event.getNewValue() + "\" Where id=" + event
-										.getRowValue().getID();
+								String.format("Update worker SET contactinfo = \"%s\" Where id=%d",
+										event.getNewValue(), event.getRowValue().getID());
 						try {
 								Main.con.createStatement().executeUpdate(query);
 						} catch (SQLException e) {
@@ -101,14 +98,12 @@ public class AddEmployee implements Initializable {
 						filltable();
 				});
 
-				ArrayList<String> exportDataTypeValues = new ArrayList<String>(Arrays.asList(values));
-
 				empspecialitycol.setCellFactory(
 						ComboBoxTableCell.forTableColumn(FXCollections.observableArrayList(values)));
 				empspecialitycol.setOnEditCommit(event -> {
 						String query =
-								"Update worker SET speciality = \"" + event.getNewValue() + "\" Where id=" + event
-										.getRowValue().getID();
+								String.format("Update worker SET speciality = \"%s\" Where id=%d",
+										event.getNewValue(), event.getRowValue().getID());
 						try {
 								Main.con.createStatement().executeUpdate(query);
 						} catch (SQLException e) {
@@ -125,8 +120,8 @@ public class AddEmployee implements Initializable {
 						final MenuItem removeMenuItem = new MenuItem("Remove");
 						removeMenuItem.setOnAction(event -> {
 								String query =
-										"Delete From worker where id=" + row.getTableView().getSelectionModel()
-												.getSelectedItem().getID();
+										String.format("Delete From worker where id=%d",
+												row.getTableView().getSelectionModel().getSelectedItem().getID());
 
 								try {
 										Main.con.createStatement().executeUpdate(query);
@@ -178,8 +173,8 @@ public class AddEmployee implements Initializable {
 				String empphone = phonenum.getText();
 				try {
 						Main.con.createStatement().executeUpdate(
-								"Insert into worker (name,speciality,contactinfo) VALUES (\"" + empname + "\", \""
-										+ empspeciality + "\", \"" + empphone + "\")");
+								String.format("Insert into worker (name,speciality,contactinfo) "
+										+ "VALUES (\"%s\", \"%s\", \"%s\")", empname, empspeciality, empphone));
 				} catch (SQLException e) {
 						System.out.println("AddEmployee: error in addnewemployee function");
 						return;

@@ -67,8 +67,7 @@ public class Main extends Application {
 				dialog.show();
 		}
 
-		public static void warnconnection(String title, String message, StackPane pane, Color col,
-				String username, String password) {
+		public static void warnconnection(String title, String message, StackPane pane, Color col) {
 				JFXDialogLayout content = new JFXDialogLayout();
 				Text t = new Text(title);
 				t.setFill(col);
@@ -88,7 +87,7 @@ public class Main extends Application {
 				retry.setBackground(
 						new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 				retry.setOnAction(actionEvent -> {
-						if (checkinternet() != null) {
+						if (!checkinternet()) {
 								Text te = new Text("Success");
 								te.setFill(Color.GREEN);
 								content.setHeading(te);
@@ -113,8 +112,9 @@ public class Main extends Application {
 								"fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
 
 						ResultSet rs;
-						String query = "SELECT ar.ID FROM allusers ar WHERE ar.Username = \"" + username
-								+ "\" and ar.Password = \"" + password + "\"";
+						String query = String.format(
+								"SELECT ar.ID FROM allusers ar WHERE ar.Username = \"%s\" and ar.Password = \"%s\"",
+								username, password);
 						rs = Main.con.createStatement().executeQuery(query);
 						if (rs.next()) {
 								return rs.getInt("ID");

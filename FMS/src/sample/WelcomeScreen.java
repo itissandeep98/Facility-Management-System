@@ -62,8 +62,7 @@ public class WelcomeScreen implements Initializable {
 				}
 
 				if (Main.checkinternet()) { //check internet connection
-						Main.warnconnection("Failure", "NO internet connection!!", pane, Color.RED, Username,
-								Password);
+						Main.warnconnection("Failure", "NO internet connection!!", pane, Color.RED);
 						return;
 				}
 
@@ -78,16 +77,15 @@ public class WelcomeScreen implements Initializable {
 
 		}
 
-		public Boolean check(String Username,
-				String Password) {  // check if user id and password is correct
+		// check if user id and password is correct
+		public Boolean check(String Username, String Password) {
 				ID = Main.getConnection(Username, Password);
-				System.out.println(ID);
 				return ID == -1;
 		}
 
 
-		public void showalert(String title, String message, StackPane pane,
-				Color col) { // Same Function as in Main Class just a little bit different
+		// Same Function as in Main Class just a little bit different
+		public void showalert(String title, String message, StackPane pane, Color col) {
 				JFXDialogLayout content = new JFXDialogLayout();
 				Text t = new Text(title);
 				t.setFill(col);

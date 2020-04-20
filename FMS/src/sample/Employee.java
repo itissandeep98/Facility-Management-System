@@ -86,14 +86,19 @@ public class Employee implements Initializable {
 						try {
 								ResultSet rs = Main.con.createStatement().executeQuery("SELECT  * FROM worker");
 								rs.next();
-								if (details.getValue().equals("Name")) {
-										newvalue.setText(rs.getString("name"));
-								} else if (details.getValue().equals("Phone Number")) {
-										newvalue.setText(rs.getString("contactinfo"));
-								} else if (details.getValue().equals("Speciality")) {
-										newvalue.setText(rs.getString("speciality"));
-								} else if (details.getValue().equals("Supervisor ID")) {
-										newvalue.setText(rs.getString("SupervisorID"));
+								switch (details.getValue()) {
+										case "Name":
+												newvalue.setText(rs.getString("name"));
+												break;
+										case "Phone Number":
+												newvalue.setText(rs.getString("contactinfo"));
+												break;
+										case "Speciality":
+												newvalue.setText(rs.getString("speciality"));
+												break;
+										case "Supervisor ID":
+												newvalue.setText(rs.getString("SupervisorID"));
+												break;
 								}
 						} catch (SQLException e) {
 								System.out.println("Employee: error in initialize function");
@@ -124,11 +129,12 @@ public class Employee implements Initializable {
 				ResultSet rs;
 				try {
 						String query =
-								"SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="
-										+ Workerid + " and ar.status=\"Close\"";
+								String.format(
+										"SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel "
+												+ "FROM allrecord ar,students s "
+												+ "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Close\"",
+										Workerid);
 						rs = Main.con.createStatement().executeQuery(query);
-						System.out.println(rs);
-						System.out.println("this");
 						while (rs.next()) {
 								list.add(
 										new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"),
@@ -137,7 +143,7 @@ public class Employee implements Initializable {
 						}
 
 				} catch (Exception e) {
-						System.out.println("Employee: error in Fillcompletedtable");
+						System.out.println("Employee: error in Fillcompletedtable" + e);
 						return;
 				}
 				completedtable.setItems(list);
@@ -148,8 +154,11 @@ public class Employee implements Initializable {
 				ResultSet rs;
 				try {
 						String query =
-								"SELECT ar.id,starttime,requesttype,roomno,ar.hostel FROM allrecord ar,students s WHERE s.id=ar.studentid and ar.workerid="
-										+ Workerid + " and ar.status=\"Open\"";
+								String.format(
+										"SELECT ar.id,starttime,requesttype,roomno,ar.hostel "
+												+ "FROM allrecord ar,students s "
+												+ "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Open\"",
+										Workerid);
 						rs = Main.con.createStatement().executeQuery(query);
 
 						while (rs.next()) {
@@ -173,17 +182,26 @@ public class Employee implements Initializable {
 				try {
 
 						stmt = (Statement) Main.con.createStatement();
-						if (content.equals("Name")) {
-								query = "UPDATE worker set name=\"" + value + "\" where id =" + Workerid;
+						switch (content) {
+								case "Name":
+										query = String
+												.format("UPDATE worker set name=\"%s\" where id =%d", value, Workerid);
 
-						} else if (content.equals("Phone Number")) {
-								query = "UPDATE worker set contactinfo=\"" + value + "\" where id =" + Workerid;
-						} else if (content.equals("Speciality")) {
-								query = "UPDATE worker set speciality=\"" + value + "\" where id =" + Workerid;
-						} else {
-								query =
-										"UPDATE worker set supervisorid=" + Integer.parseInt(value) + " where id ="
-												+ Workerid;
+										break;
+								case "Phone Number":
+										query = String
+												.format("UPDATE worker set contactinfo=\"%s\" where id =%d", value,
+														Workerid);
+										break;
+								case "Speciality":
+										query = String
+												.format("UPDATE worker set speciality=\"%s\" where id =%d", value,
+														Workerid);
+										break;
+								default:
+										query = String.format("UPDATE worker set supervisorid= %d" + " where id = %d",
+												Integer.parseInt(value), Workerid);
+										break;
 						}
 						stmt.executeUpdate(query);
 				} catch (SQLException e) {
@@ -201,9 +219,10 @@ public class Employee implements Initializable {
 
 				try {
 						java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
-						String query = "UPDATE allrecord SET status = \"Close\", closedtime =\"" + date
-								+ "\" WHERE status = \"Open\" and id="
-								+ workid;  //always put timestamp datatype under quotes otherwise it will throw an error
+						//always put timestamp datatype under quotes otherwise it will throw an error
+						String query = String.format(
+								"UPDATE allrecord SET status = \"Close\", closedtime =\"%s\" WHERE status = \"Open\" and id= %d",
+								date, workid);
 						Main.con.createStatement().executeUpdate(query);
 				} catch (SQLException e) {
 						System.out.println("Employee: error in markcompleted function");
