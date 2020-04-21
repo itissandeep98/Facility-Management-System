@@ -141,7 +141,7 @@ public class User implements Initializable {
 						FXCollections.observableArrayList("Cleaner", "Carpenter", "Plumber", "Electrician")));
 				requestcol.setOnEditCommit(event -> {
 						String query =
-								String.format("Update allrecord SET hostel=\"%s\" Where id=%d", event.getNewValue(),
+								String.format("Update allrecord SET requesttype=\"%s\" Where id=%d", event.getNewValue(),
 										event.getRowValue().getId());
 						try {
 								Main.con.createStatement().executeUpdate(query);
