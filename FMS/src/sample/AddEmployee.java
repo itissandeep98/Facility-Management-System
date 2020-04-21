@@ -32,7 +32,7 @@ import javax.print.DocFlavor.STRING;
 public class AddEmployee implements Initializable {
 
   @FXML
-  private JFXTextField eid;
+  private JFXTextField ename;
   @FXML
   private JFXTextField name;
   @FXML
@@ -194,7 +194,7 @@ public class AddEmployee implements Initializable {
       }
 
     } catch (Exception e) {
-      System.out.println("AddEmployee: error in filltable function");
+      System.out.println("AddEmployee: error in filltable function \n"+e);
       return;
     }
 
@@ -220,8 +220,8 @@ public class AddEmployee implements Initializable {
   public void search() {
     tablequery = "Select * From worker Where";
     boolean flag = false;
-    if (eid.getText() != null) {
-      tablequery += " id= " + eid.getText();
+    if (ename.getText() != null) {
+      tablequery += " name LIKE '%" + ename.getText()+"%'";
       flag = true;
     }
     if (spec.getValue() != null) {
@@ -236,7 +236,7 @@ public class AddEmployee implements Initializable {
   public void reset() {
     tablequery = "SELECT  * FROM worker";
     filltable();
-    eid.setText(null);
+    ename.setText(null);
     spec.setValue(null);
   }
 }

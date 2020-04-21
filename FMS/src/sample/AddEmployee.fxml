@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -17,113 +25,83 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<StackPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #000000;"
-  prefHeight="772.0" prefWidth="1063.0"
-  xmlns="http://javafx.com/javafx/8" fx:controller="sample.AddEmployee"
-  fx:id="pane">
+
+<StackPane fx:id="pane" prefHeight="772.0" prefWidth="1063.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddEmployee">
   <children>
-    <AnchorPane style="-fx-background-color: #ffffff;" maxHeight="-Infinity" maxWidth="-Infinity"
-      minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0"
-      prefWidth="969.0">
+    <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="969.0" style="-fx-background-color: #ffffff;">
       <children>
         <GridPane layoutX="511.0" layoutY="82.0" prefHeight="69.0" prefWidth="254.0">
           <children>
-            <ChoiceBox style="-fx-background-radius: 50;" GridPane.columnIndex="1"
-              GridPane.rowIndex="1"
-              prefWidth="150.0" fx:id="spec">
+            <ChoiceBox fx:id="spec" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1">
               <opaqueInsets>
-                <Insets left="10.0"/>
+                <Insets left="10.0" />
               </opaqueInsets>
             </ChoiceBox>
-            <JFXTextField GridPane.rowIndex="1" labelFloat="true" promptText="Employee Name"
-              fx:id="eid">
+            <JFXTextField fx:id="ename" labelFloat="true" promptText="Employee Name" GridPane.rowIndex="1">
               <GridPane.margin>
-                <Insets right="10.0"/>
+                <Insets right="10.0" />
               </GridPane.margin>
               <opaqueInsets>
-                <Insets right="10.0"/>
+                <Insets right="10.0" />
               </opaqueInsets>
             </JFXTextField>
-            <Label GridPane.columnIndex="1" text="Speciality"/>
+            <Label text="Speciality" GridPane.columnIndex="1" />
           </children>
           <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0"
-              prefWidth="127.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0"
-              prefWidth="127.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="127.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="127.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           </rowConstraints>
         </GridPane>
-        <JFXButton style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;"
-          buttonType="RAISED" layoutX="253.0" layoutY="144.0"
-          onAction="#addnewemployee" ripplerFill="#0ef04e"
-          text="Add Employee"/>
-        <JFXButton style="-fx-background-color: #f7059a; -fx-background-radius: 50;"
-          buttonType="RAISED" layoutX="42.0" layoutY="27.0"
-          onAction="#back" ripplerFill="#e04d02"
-          text="Back"/>
-        <JFXButton style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;"
-          buttonType="RAISED" layoutX="547.0" layoutY="190.0"
-          onAction="#search" prefHeight="25.0" prefWidth="69.0"
-          ripplerFill="#0ef04e" text="Search"/>
-        <JFXButton style="-fx-background-color: #f1a1ef; -fx-background-radius: 50;"
-          buttonType="RAISED" layoutX="696.0" layoutY="190.0"
-          onAction="#reset" prefHeight="25.0" prefWidth="69.0"
-          ripplerFill="#0ef04e" text="Reset"/>
-        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="51.0" prefWidth="430.0"
-          text="Employee Modification">
+        <JFXButton buttonType="RAISED" layoutX="253.0" layoutY="144.0" onAction="#addnewemployee" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Add Employee" />
+        <JFXButton buttonType="RAISED" layoutX="42.0" layoutY="27.0" onAction="#back" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Back" />
+        <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="190.0" onAction="#search" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Search" />
+        <JFXButton buttonType="RAISED" layoutX="696.0" layoutY="190.0" onAction="#reset" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #f1a1ef; -fx-background-radius: 50;" text="Reset" />
+        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="51.0" prefWidth="430.0" text="Employee Modification">
           <font>
-            <Font name="Comic Sans MS Bold" size="34.0"/>
+            <Font name="Comic Sans MS Bold" size="34.0" />
           </font>
         </Label>
-        <Separator layoutX="42.0" layoutY="74.0" prefHeight="3.0" prefWidth="868.0"/>
-        <Separator layoutX="391.0" layoutY="82.0" orientation="VERTICAL" prefHeight="190.0"
-          prefWidth="0.0"/>
-        <TableView style="-fx-background-radius: 50;" AnchorPane.bottomAnchor="10.0"
-          AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="8.0"
-          AnchorPane.topAnchor="279.0" editable="true" layoutX="17.0"
-          layoutY="279.0" onMouseMoved="#filltable"
-          prefHeight="414.0" prefWidth="944.0" tableMenuButtonVisible="true"
-          fx:id="employeeTable">
+        <Separator layoutX="42.0" layoutY="74.0" prefHeight="3.0" prefWidth="868.0" />
+        <Separator layoutX="391.0" layoutY="82.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" />
+        <TableView fx:id="employeeTable" editable="true" layoutX="17.0" layoutY="279.0" onMouseMoved="#filltable" prefHeight="414.0" prefWidth="944.0" style="-fx-background-radius: 50;" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="279.0">
           <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>
           <columns>
-            <TableColumn prefWidth="77.0" text="Id" fx:id="empIdColumn"/>
-            <TableColumn prefWidth="394.0" text="Name" fx:id="empnamecol"/>
-            <TableColumn prefWidth="92.0" text="Speciality" fx:id="empspecialitycol"/>
-            <TableColumn prefWidth="78.0" text="Contact Info" fx:id="empphonenumcol"/>
+            <TableColumn fx:id="empIdColumn" prefWidth="77.0" text="Id" />
+            <TableColumn fx:id="empnamecol" prefWidth="394.0" text="Name" />
+            <TableColumn fx:id="empspecialitycol" prefWidth="92.0" text="Speciality" />
+            <TableColumn fx:id="empphonenumcol" prefWidth="78.0" text="Contact Info" />
           </columns>
           <cursor>
-            <Cursor fx:constant="TEXT"/>
+            <Cursor fx:constant="TEXT" />
           </cursor>
           <effect>
-            <InnerShadow/>
+            <InnerShadow />
           </effect>
         </TableView>
         <VBox layoutX="43.0" layoutY="82.0" prefHeight="112.0" prefWidth="177.0" spacing="4.0">
           <children>
-            <ChoiceBox style="-fx-background-radius: 50;" GridPane.columnIndex="1"
-              GridPane.rowIndex="1"
-              prefWidth="150.0" fx:id="speciality">
-              <VBox.margin>
-                <Insets top="10.0"/>
-              </VBox.margin>
-              <opaqueInsets>
-                <Insets left="10.0"/>
-              </opaqueInsets>
-            </ChoiceBox>
-            <JFXTextField labelFloat="true" promptText="Name" fx:id="name">
+            <JFXTextField fx:id="name" labelFloat="true" promptText="Name">
               <padding>
-                <Insets bottom="12.0" top="12.0"/>
+                <Insets bottom="12.0" top="12.0" />
               </padding>
             </JFXTextField>
-            <JFXTextField labelFloat="true" promptText="Phone Number" fx:id="phonenum">
+            <ChoiceBox fx:id="speciality" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+              <VBox.margin>
+                <Insets top="10.0" />
+              </VBox.margin>
+              <opaqueInsets>
+                <Insets left="10.0" />
+              </opaqueInsets>
+            </ChoiceBox>
+            <JFXTextField fx:id="phonenum" labelFloat="true" promptText="Phone Number">
               <padding>
-                <Insets bottom="12.0" top="12.0"/>
+                <Insets bottom="12.0" top="12.0" />
               </padding>
             </JFXTextField>
           </children>
