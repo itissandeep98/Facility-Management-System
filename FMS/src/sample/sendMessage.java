@@ -9,14 +9,14 @@ import java.nio.charset.StandardCharsets;
 public class sendMessage {
 
   static String apikey = "qb0D+13jsho-tidiqrAJCoQe2UqRxhKcDvxWfVZ9wJ";
+  //jgzG0pSNTqc-oB2LD3OLxicWcfqC4Wg66neukvANMQ
 
-  public static String sendSms(String msg) {
+  public static String send(String msg, String tophone) {
     try {
-      // Construct data
       String apiKey = "apikey=" + apikey;
       String message = "&message=" + msg;
-      String sender = "&sender=" + "DBMS";
-      String numbers = "&numbers=" + "8448145804";
+      String sender = "&sender=" + "TXTLCL";
+      String numbers = "&numbers=" + tophone;
 
       HttpURLConnection conn = (HttpURLConnection) new URL("https://api.textlocal.in/send/?")
           .openConnection();
@@ -29,6 +29,10 @@ public class sendMessage {
       final StringBuilder stringBuffer = new StringBuilder();
       String line;
       while ((line = rd.readLine()) != null) {
+        if(line.contains("success")){
+          rd.close();
+          return "Success";
+        }
         stringBuffer.append(line);
       }
       rd.close();
@@ -40,8 +44,5 @@ public class sendMessage {
     }
   }
 
-  public static void main(String[] args) {
-    System.out.println(sendSms("test"));
-  }
 }
 
