@@ -1,79 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="pane" prefHeight="772.0" prefWidth="1063.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddEmployee">
+<StackPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddEmployee">
   <children>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="969.0" style="-fx-background-color: #ffffff;">
       <children>
-        <GridPane layoutX="511.0" layoutY="82.0" prefHeight="69.0" prefWidth="254.0">
-          <children>
-            <ChoiceBox fx:id="spec" prefWidth="150.0" style="-fx-background-radius: 50;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <opaqueInsets>
-                <Insets left="10.0" />
-              </opaqueInsets>
-            </ChoiceBox>
-            <JFXTextField fx:id="ename" labelFloat="true" promptText="Employee Name" GridPane.rowIndex="1">
-              <GridPane.margin>
-                <Insets right="10.0" />
-              </GridPane.margin>
-              <opaqueInsets>
-                <Insets right="10.0" />
-              </opaqueInsets>
-            </JFXTextField>
-            <Label text="Speciality" GridPane.columnIndex="1" />
-          </children>
-          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="209.0" minWidth="10.0" prefWidth="127.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="127.0" />
-          </columnConstraints>
-          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          </rowConstraints>
-        </GridPane>
-        <JFXButton buttonType="RAISED" layoutX="253.0" layoutY="144.0" onAction="#addnewemployee" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Add Employee" />
-        <JFXButton buttonType="RAISED" layoutX="42.0" layoutY="27.0" onAction="#back" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Back" />
-        <JFXButton buttonType="RAISED" layoutX="547.0" layoutY="190.0" onAction="#search" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Search" />
-        <JFXButton buttonType="RAISED" layoutX="696.0" layoutY="190.0" onAction="#reset" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #f1a1ef; -fx-background-radius: 50;" text="Reset" />
-        <Label alignment="CENTER" layoutX="253.0" layoutY="14.0" prefHeight="51.0" prefWidth="430.0" text="Employee Modification">
+      <ChoiceBox fx:id="spec" layoutX="31.0" layoutY="485.0" prefWidth="150.0" style="-fx-background-radius: 50;">
+        <opaqueInsets>
+          <Insets left="10.0" />
+        </opaqueInsets>
+      </ChoiceBox>
+      <JFXTextField fx:id="ename" labelFloat="true" layoutX="31.0" layoutY="409.0" prefWidth="178.0" promptText="Employee Name">
+        <opaqueInsets>
+          <Insets right="10.0" />
+        </opaqueInsets>
+      </JFXTextField>
+      <Label layoutX="31.0" layoutY="457.0" text="Speciality" />
+        <JFXButton layoutX="62.0" layoutY="304.0" onAction="#addnewemployee" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Add Employee">
+               <font>
+                  <Font name="Oswald Regular" size="12.0" />
+               </font></JFXButton>
+        <JFXButton layoutX="42.0" layoutY="27.0" onAction="#back" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Back">
+               <font>
+                  <Font name="Oswald Regular" size="12.0" />
+               </font></JFXButton>
+        <JFXButton layoutX="29.0" layoutY="537.0" onAction="#search" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #0ef0e4; -fx-background-radius: 50;" text="Search">
+               <font>
+                  <Font name="Oswald Regular" size="12.0" />
+               </font></JFXButton>
+        <JFXButton layoutX="129.0" layoutY="537.0" onAction="#reset" prefHeight="25.0" prefWidth="69.0" ripplerFill="#0ef04e" style="-fx-background-color: #f1a1ef; -fx-background-radius: 50;" text="Reset">
+               <font>
+                  <Font name="Oswald Regular" size="12.0" />
+               </font></JFXButton>
+        <Label alignment="CENTER" layoutX="269.0" layoutY="12.0" prefHeight="51.0" prefWidth="430.0" text="Employee Modification">
           <font>
-            <Font name="Comic Sans MS Bold" size="34.0" />
+            <Font name="Oswald Regular" size="34.0" />
           </font>
         </Label>
         <Separator layoutX="42.0" layoutY="74.0" prefHeight="3.0" prefWidth="868.0" />
-        <Separator layoutX="391.0" layoutY="82.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" />
-        <TableView fx:id="employeeTable" editable="true" layoutX="17.0" layoutY="279.0" onMouseMoved="#filltable" prefHeight="414.0" prefWidth="944.0" style="-fx-background-radius: 50;" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="279.0">
+        <Separator layoutX="12.0" layoutY="342.0" prefHeight="18.0" prefWidth="214.0" />
+        <TableView fx:id="employeeTable" editable="true" layoutX="215.0" layoutY="94.0" onMouseMoved="#filltable" prefHeight="599.0" prefWidth="747.0" style="-fx-background-radius: 50;" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="94.0">
           <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>
           <columns>
+            <TableColumn fx:id="empnamecol" prefWidth="200.0" text="Name" />
             <TableColumn fx:id="empIdColumn" prefWidth="77.0" text="Id" />
-            <TableColumn fx:id="empnamecol" prefWidth="394.0" text="Name" />
             <TableColumn fx:id="empspecialitycol" prefWidth="92.0" text="Speciality" />
             <TableColumn fx:id="empphonenumcol" prefWidth="78.0" text="Contact Info" />
           </columns>
@@ -81,10 +68,10 @@
             <Cursor fx:constant="TEXT" />
           </cursor>
           <effect>
-            <InnerShadow />
+            <InnerShadow height="0.0" radius="0.0" width="0.0" />
           </effect>
         </TableView>
-        <VBox layoutX="43.0" layoutY="82.0" prefHeight="112.0" prefWidth="177.0" spacing="4.0">
+        <VBox layoutX="31.0" layoutY="152.0" prefHeight="112.0" prefWidth="177.0" spacing="4.0">
           <children>
             <JFXTextField fx:id="name" labelFloat="true" promptText="Name">
               <padding>
@@ -106,6 +93,16 @@
             </JFXTextField>
           </children>
         </VBox>
+            <Label alignment="CENTER" layoutX="64.0" layoutY="128.0" prefHeight="18.0" prefWidth="110.0" text="Add Employee">
+               <font>
+                  <Font name="Oswald Regular" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="28.0" layoutY="368.0" prefHeight="26.0" prefWidth="162.0" text="Search For Employee">
+               <font>
+                  <Font name="Oswald Regular" size="20.0" />
+               </font>
+            </Label>
       </children>
     </AnchorPane>
   </children>
