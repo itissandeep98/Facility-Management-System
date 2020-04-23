@@ -71,7 +71,7 @@ public class User implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
     //Todo: get user id for below label
-    id = 3;
+    id = WelcomeScreen.ID;
     userid.setText(userid.getText()+" " + id);
 
     String[] values = {"H1", "H2", "Old Boys", "Girls"};

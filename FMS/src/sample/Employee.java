@@ -118,7 +118,7 @@ public class Employee implements Initializable {
     assigned_hostel.setCellValueFactory(new PropertyValueFactory<>("Hostel"));
 
     //Todo: Workerid needs to be updated everytime
-    Workerid = 1;
+    Workerid = WelcomeScreen.ID;;
     empid.setText(empid.getText()+ " " + Workerid);
     FillAssignedTable();
   }

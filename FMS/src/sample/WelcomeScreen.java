@@ -34,7 +34,8 @@ public class WelcomeScreen implements Initializable {
   private PasswordField password;
   @FXML
   private StackPane pane;
-  private int ID;
+  public static int ID;
+  public static String Name;
 
 
   @Override
