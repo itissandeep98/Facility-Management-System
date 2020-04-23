@@ -32,7 +32,7 @@ public class Main extends Application {
 		public void start(Stage primaryStage) throws Exception {
 				stage = primaryStage;
 				root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
-				Image icon = new Image("sample/icon.png");
+				Image icon = new Image("sample/icons/icon.png");
 				primaryStage.getIcons().add(icon);
 				primaryStage.setTitle("Facility  Management System");
 				primaryStage.setScene(new Scene(root));
