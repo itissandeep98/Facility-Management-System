@@ -78,7 +78,16 @@ public class WelcomeScreen implements Initializable {
 
   // check if user id and password is correct
   public Boolean check(String Username, String Password) {
-    ID = Main.getConnection(Username, Password);
+    if (fms.isSelected()) {
+      ID = Main.getConnection(Username, Password, "fms");
+    }
+    else if (user.isSelected()) {
+      ID = Main.getConnection(Username, Password, "user");
+    }
+    else{
+      ID = Main.getConnection(Username, Password, "employee");
+    }
+
     return ID == -1;
   }
 

@@ -102,7 +102,7 @@ public class Main extends Application {
     dialog.show();
   }
 
-  public static int getConnection(String username, String password) {
+  public static int getConnection(String username, String password, String type) {
     try {
 //    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
 //    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
@@ -113,8 +113,8 @@ public class Main extends Application {
 
       ResultSet rs;
       String query = String.format(
-          "SELECT ar.ID FROM allusers ar WHERE ar.Username = \"%s\" and ar.Password = \"%s\"",
-          username, password);
+          "SELECT ar.ID FROM allusers ar WHERE ar.Username = \"%s\" and ar.Password = \"%s\" and ar.Type = \"%s\"",
+          username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
         return rs.getInt("ID");
