@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuButton;
@@ -163,11 +162,11 @@ public class FMS implements Initializable {
     recordtable.setItems(list);
   }
 
-  public void addemployee(ActionEvent e) {
+  public void addemployee() {
     Main.changeScene("AddEmployee.fxml");
   }
 
-  public void login(ActionEvent e) {
+  public void login() {
     Main.changeScene("WelcomeScreen.fxml");
   }
 }

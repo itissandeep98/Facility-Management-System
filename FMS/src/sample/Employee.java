@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -73,7 +72,7 @@ public class Employee implements Initializable {
   private ChoiceBox<String> details;
   public int Workerid;
 
-  public void login(ActionEvent e) {
+  public void login() {
     Main.changeScene("WelcomeScreen.fxml");
   }
 
@@ -174,14 +173,14 @@ public class Employee implements Initializable {
     assignedtable.setItems(list);
   }
 
-  public void changedetails(ActionEvent ev) {
+  public void changedetails() {
     String content = details.getValue();
     String value = newvalue.getText();
-    Statement stmt = null;
-    String query = "";
+    Statement stmt;
+    String query;
     try {
 
-      stmt = (Statement) Main.con.createStatement();
+      stmt = Main.con.createStatement();
       switch (content) {
         case "Name":
           query = String
@@ -213,9 +212,8 @@ public class Employee implements Initializable {
     reset();
   }
 
-  public void markcompleted(ActionEvent ev) {
+  public void markcompleted() {
     int workid = Integer.parseInt(id.getText());
-    Statement stmt = null;
 
     try {
       java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
@@ -224,6 +222,7 @@ public class Employee implements Initializable {
           "UPDATE allrecord SET status = \"Close\", closedtime =\"%s\" WHERE status = \"Open\" and id= %d",
           date, workid);
       Main.con.createStatement().executeUpdate(query);
+      System.out.println(sendMessage.send("FO", "+916284414874"));
     } catch (SQLException e) {
       System.out.println("Employee: error in markcompleted function");
       return;

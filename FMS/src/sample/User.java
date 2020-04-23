@@ -219,7 +219,7 @@ public class User implements Initializable {
     filltable();
   }
 
-  public void login(ActionEvent e) { // logout option
+  public void login() { // logout option
     Main.changeScene("WelcomeScreen.fxml");
   }
 

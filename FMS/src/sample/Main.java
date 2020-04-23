@@ -39,8 +39,8 @@ public class Main extends Application {
     primaryStage.show();
   }
 
-  public static void changeScene(
-      String file) { // custom made function which helps in changing the scene
+  // custom made function which helps in changing the scene
+  public static void changeScene(String file) {
     try {
       root = FXMLLoader.load(Main.class.getResource(file));
       Main.stage.setWidth(-1);

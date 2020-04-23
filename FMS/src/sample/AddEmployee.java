@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -177,7 +176,7 @@ public class AddEmployee implements Initializable {
 
   }
 
-  public void back(ActionEvent e) {
+  public void back() {
     Main.changeScene("FMS.fxml");
   }
 

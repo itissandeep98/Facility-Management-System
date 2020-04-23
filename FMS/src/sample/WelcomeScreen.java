@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -49,7 +48,7 @@ public class WelcomeScreen implements Initializable {
     user.setSelected(true);
   }
 
-  public void execute_login(ActionEvent e) throws Exception {
+  public void execute_login() {
 
     String Username = username.getText();
     String Password = password.getText();
