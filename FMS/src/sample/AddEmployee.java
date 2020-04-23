@@ -27,7 +27,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javax.print.DocFlavor.STRING;
 
 public class AddEmployee implements Initializable {
 
@@ -143,7 +142,7 @@ public class AddEmployee implements Initializable {
         showHistory(row);
 
       });
-      contextMenu.getItems().addAll( viewHistory,removeMenuItem);
+      contextMenu.getItems().addAll(viewHistory, removeMenuItem);
       // Set context menu on row, but use a binding to make it only show for non-empty rows:
       row.contextMenuProperty().bind(
           Bindings.when(row.emptyProperty())
@@ -157,8 +156,8 @@ public class AddEmployee implements Initializable {
   }
 
   private void showHistory(TableRow<Workers> row) {
-    int id=row.getTableView().getSelectionModel().getSelectedItem().getID();
-    String name=row.getTableView().getSelectionModel().getSelectedItem().getName();
+    int id = row.getTableView().getSelectionModel().getSelectedItem().getID();
+    String name = row.getTableView().getSelectionModel().getSelectedItem().getName();
     try {
       Stage stage = new Stage();
       FXMLLoader root = new FXMLLoader(
@@ -168,7 +167,7 @@ public class AddEmployee implements Initializable {
       controller.setWorkerid(id);
       Scene scene = new Scene(rootPane);
       stage.setScene(scene);
-      stage.setTitle("History for "+name);
+      stage.setTitle("History for " + name);
       stage.show();
 
     } catch (IOException e) {
@@ -194,7 +193,7 @@ public class AddEmployee implements Initializable {
       }
 
     } catch (Exception e) {
-      System.out.println("AddEmployee: error in filltable function \n"+e);
+      System.out.println("AddEmployee: error in filltable function \n" + e);
       return;
     }
 
@@ -221,7 +220,7 @@ public class AddEmployee implements Initializable {
     tablequery = "Select * From worker Where";
     boolean flag = false;
     if (ename.getText() != null) {
-      tablequery += " name LIKE '%" + ename.getText()+"%'";
+      tablequery += " name LIKE '%" + ename.getText() + "%'";
       flag = true;
     }
     if (spec.getValue() != null) {

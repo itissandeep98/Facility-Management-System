@@ -113,7 +113,6 @@ public class FMS implements Initializable {
                 event.getNewValue(), event.getRowValue().getId());
         System.out.println(sendMessage.send("FO", "+916284414874"));
 
-
         try {
           Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {

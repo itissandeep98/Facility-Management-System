@@ -29,7 +29,7 @@ public class sendMessage {
       final StringBuilder stringBuffer = new StringBuilder();
       String line;
       while ((line = rd.readLine()) != null) {
-        if(line.contains("success")){
+        if (line.contains("success")) {
           rd.close();
           return "Success";
         }

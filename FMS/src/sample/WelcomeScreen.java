@@ -22,92 +22,92 @@ import javafx.scene.text.Text;
 
 public class WelcomeScreen implements Initializable {
 
-		//Todo: Add Tooltips everywhere. tooltips are the message we see when we hover over some object
-		@FXML
-		private RadioButton employee;
-		@FXML
-		private RadioButton user;
-		@FXML
-		private RadioButton fms;
-		@FXML
-		private TextField username;
-		@FXML
-		private PasswordField password;
-		@FXML
-		private StackPane pane;
-		private int ID;
+  //Todo: Add Tooltips everywhere. tooltips are the message we see when we hover over some object
+  @FXML
+  private RadioButton employee;
+  @FXML
+  private RadioButton user;
+  @FXML
+  private RadioButton fms;
+  @FXML
+  private TextField username;
+  @FXML
+  private PasswordField password;
+  @FXML
+  private StackPane pane;
+  private int ID;
 
 
-		@Override
-		public void initialize(URL url, ResourceBundle resourceBundle) {
-				ToggleGroup group = new ToggleGroup();
+  @Override
+  public void initialize(URL url, ResourceBundle resourceBundle) {
+    ToggleGroup group = new ToggleGroup();
 
-				employee.setToggleGroup(group);
-				user.setToggleGroup(group);
-				fms.setToggleGroup(group);
+    employee.setToggleGroup(group);
+    user.setToggleGroup(group);
+    fms.setToggleGroup(group);
 
-				user.setSelected(true);
-		}
+    user.setSelected(true);
+  }
 
-		public void execute_login(ActionEvent e) throws Exception {
+  public void execute_login(ActionEvent e) throws Exception {
 
-				String Username = username.getText();
-				String Password = password.getText();
-				if (Username.isEmpty()) { // if username is empty
-						Main.showalert("Failure", "Username Can't be empty", pane, Color.RED);
-						return;
-				} else if (Password.isEmpty()) { // if password is empty
-						Main.showalert("Failure", "Password Can't be empty", pane, Color.RED);
-						return;
-				}
+    String Username = username.getText();
+    String Password = password.getText();
+    if (Username.isEmpty()) { // if username is empty
+      Main.showalert("Failure", "Username Can't be empty", pane, Color.RED);
+      return;
+    } else if (Password.isEmpty()) { // if password is empty
+      Main.showalert("Failure", "Password Can't be empty", pane, Color.RED);
+      return;
+    }
 
-				if (Main.checkinternet()) { //check internet connection
-						Main.warnconnection("Failure", "NO internet connection!!", pane, Color.RED);
-						return;
-				}
+    if (Main.checkinternet()) { //check internet connection
+      Main.warnconnection("Failure", "NO internet connection!!", pane, Color.RED);
+      return;
+    }
 
-				if (check(Username, Password)) { // check if user id and password is correct
-						Main.showalert("Failure", "Wrong Username or Password!!", pane, Color.RED);
-						username.setText("");
-						password.setText("");
-						return;
-				}
+    if (check(Username, Password)) { // check if user id and password is correct
+      Main.showalert("Failure", "Wrong Username or Password!!", pane, Color.RED);
+      username.setText("");
+      password.setText("");
+      return;
+    }
 
-				showalert("Success", "Logged in Successfully", pane, Color.GREEN);
+    showalert("Success", "Logged in Successfully", pane, Color.GREEN);
 
-		}
+  }
 
-		// check if user id and password is correct
-		public Boolean check(String Username, String Password) {
-				ID = Main.getConnection(Username, Password);
-				return ID == -1;
-		}
+  // check if user id and password is correct
+  public Boolean check(String Username, String Password) {
+    ID = Main.getConnection(Username, Password);
+    return ID == -1;
+  }
 
 
-		// Same Function as in Main Class just a little bit different
-		public void showalert(String title, String message, StackPane pane, Color col) {
-				JFXDialogLayout content = new JFXDialogLayout();
-				Text t = new Text(title);
-				t.setFill(col);
-				content.setHeading(t);
-				t = new Text(message);
-				t.setFill(col);
-				content.setBody(t);
-				JFXButton button = new JFXButton("Done");
-				button.setBackground(
-						new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-				JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
-				button.setOnAction(actionEvent -> {
-						dialog.close();
-						if (fms.isSelected()) {
-								Main.changeScene("FMS.fxml");
-						} else if (user.isSelected()) {
-								Main.changeScene("User.fxml");
-						} else {
-								Main.changeScene("Employee.fxml");
-						}
-				});
-				content.setActions(button);
-				dialog.show();
-		}
+  // Same Function as in Main Class just a little bit different
+  public void showalert(String title, String message, StackPane pane, Color col) {
+    JFXDialogLayout content = new JFXDialogLayout();
+    Text t = new Text(title);
+    t.setFill(col);
+    content.setHeading(t);
+    t = new Text(message);
+    t.setFill(col);
+    content.setBody(t);
+    JFXButton button = new JFXButton("Done");
+    button.setBackground(
+        new Background(new BackgroundFill(Color.ALICEBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+    JFXDialog dialog = new JFXDialog(pane, content, JFXDialog.DialogTransition.CENTER);
+    button.setOnAction(actionEvent -> {
+      dialog.close();
+      if (fms.isSelected()) {
+        Main.changeScene("FMS.fxml");
+      } else if (user.isSelected()) {
+        Main.changeScene("User.fxml");
+      } else {
+        Main.changeScene("Employee.fxml");
+      }
+    });
+    content.setActions(button);
+    dialog.show();
+  }
 }
