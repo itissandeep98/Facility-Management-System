@@ -12,20 +12,20 @@
     </content>
     <orderEntry type="jdk" jdkName="11" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/jfoenix-9.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/external libraries/jfoenix-9.0.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-java-8.0.19.jar!/" />
+          <root url="jar://$MODULE_DIR$/external libraries/mysql-connector-java-8.0.19.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
