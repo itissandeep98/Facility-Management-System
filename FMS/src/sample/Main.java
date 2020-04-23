@@ -23,8 +23,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
-
-
 public class Main extends Application {
 
   public static Parent root;
@@ -116,13 +114,11 @@ public class Main extends Application {
 
       ResultSet rs;
       String query = String.format(
-          "SELECT ar.ID FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,3) = \"%s\" and ar.Type = \"%s\"",
+          "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,3) = \"%s\" and ar.Type = \"%s\"",
           username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
-//        System.out.println(rs.getString("Name").substring());
         return rs.getInt("ID");
-//        return 1;
       }
 
     } catch (Exception e) {

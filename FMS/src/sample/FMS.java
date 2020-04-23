@@ -155,7 +155,7 @@ public class FMS implements Initializable {
       }
 
     } catch (Exception e) {
-      System.out.println("AddEmployee: error in filltable function");
+      System.out.println("FMS: error in filltable function");
       return;
     }
 
