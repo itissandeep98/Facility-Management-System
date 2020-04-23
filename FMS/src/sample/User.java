@@ -72,7 +72,7 @@ public class User implements Initializable {
   public void initialize(URL url, ResourceBundle resourceBundle) {
     //Todo: get user id for below label
     id = 3;
-    userid.setText("User ID: " + id);
+    userid.setText(userid.getText()+" " + id);
 
     String[] values = {"H1", "H2", "Old Boys", "Girls"};
     hostels.setItems(FXCollections.observableArrayList(values));

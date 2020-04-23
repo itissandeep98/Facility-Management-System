@@ -119,7 +119,7 @@ public class Employee implements Initializable {
 
     //Todo: Workerid needs to be updated everytime
     Workerid = 1;
-    empid.setText("Employee ID: " + Workerid);
+    empid.setText(empid.getText()+ " " + Workerid);
     FillAssignedTable();
   }
 
