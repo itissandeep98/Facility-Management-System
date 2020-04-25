@@ -163,7 +163,7 @@ public class FMS implements Initializable {
   }
 
   public void addemployee() {
-    Main.changeScene("AddEmployee.fxml");
+    AddEmployee e= (AddEmployee) Main.changeScene("AddEmployee.fxml");
   }
 
   public void login() {

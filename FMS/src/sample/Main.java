@@ -37,18 +37,27 @@ public class Main extends Application {
     primaryStage.getIcons().add(icon);
     primaryStage.setTitle("Facility  Management System");
     primaryStage.setScene(new Scene(root));
+    //    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
+//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
+//    con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
+    con = DriverManager.getConnection(
+        "jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
+        "fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
     primaryStage.show();
   }
 
   // custom made function which helps in changing the scene
-  public static void changeScene(String file) {
+  public static Object changeScene(String file) {
     try {
-      root = FXMLLoader.load(Main.class.getResource(file));
-      Main.stage.setWidth(-1);
+      FXMLLoader root1 = new FXMLLoader(Main.class.getResource(file));
+      root = root1.load();
       Main.stage.setScene(new Scene(root));
+      return root1.getController();
+
     } catch (Exception e) {
       System.out.println("Main:Error in changing scene to " + file);
     }
+    return null;
   }
 
   public static void showalert(String title, String message, StackPane pane, Color col) {
@@ -103,29 +112,23 @@ public class Main extends Application {
     dialog.show();
   }
 
-  public static int getConnection(String username, String password, String type) {
+  public static LoginUser getConnection(String username, String password, String type) {
     try {
-//    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
-//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
-//    con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
-      con = DriverManager.getConnection(
-          "jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
-          "fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
-
       ResultSet rs;
       String query = String.format(
           "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,3) = \"%s\" and ar.Type = \"%s\"",
           username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
-        return rs.getInt("ID");
+        LoginUser user= new LoginUser(rs.getInt("ID"), rs.getString("Name"));
+        return user;
       }
 
     } catch (Exception e) {
       System.out.println("No Such User Found");
     }
 
-    return -1;
+    return new LoginUser(-1, "");
   }
 
 

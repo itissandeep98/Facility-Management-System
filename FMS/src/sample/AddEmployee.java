@@ -177,7 +177,7 @@ public class AddEmployee implements Initializable {
   }
 
   public void back() {
-    Main.changeScene("FMS.fxml");
+    FMS f= (FMS) Main.changeScene("FMS.fxml");
   }
 
   public void filltable() {

@@ -34,8 +34,7 @@ public class WelcomeScreen implements Initializable {
   private PasswordField password;
   @FXML
   private StackPane pane;
-  public static int ID;
-  public static String Name;
+  private LoginUser log;
 
 
   @Override
@@ -79,17 +78,16 @@ public class WelcomeScreen implements Initializable {
 
   // check if user id and password is correct
   public Boolean check(String Username, String Password) {
+
     if (fms.isSelected()) {
-      ID = Main.getConnection(Username, Password, "fms");
-    }
-    else if (user.isSelected()) {
-      ID = Main.getConnection(Username, Password, "user");
-    }
-    else{
-      ID = Main.getConnection(Username, Password, "employee");
+      log = Main.getConnection(Username, Password, "fms");
+    } else if (user.isSelected()) {
+      log = Main.getConnection(Username, Password, "user");
+    } else {
+      log = Main.getConnection(Username, Password, "employee");
     }
 
-    return ID == -1;
+    return log.getID() == -1;
   }
 
 
@@ -111,9 +109,13 @@ public class WelcomeScreen implements Initializable {
       if (fms.isSelected()) {
         Main.changeScene("FMS.fxml");
       } else if (user.isSelected()) {
-        Main.changeScene("User.fxml");
+        User u = (User) Main.changeScene("User.fxml");
+        assert u != null;
+        u.updatelabel(log);
       } else {
-        Main.changeScene("Employee.fxml");
+        Employee e = (Employee) Main.changeScene("Employee.fxml");
+        assert e != null;
+        e.updatelabel(log);
       }
     });
     content.setActions(button);

@@ -70,7 +70,7 @@ public class Employee implements Initializable {
 
   @FXML
   private ChoiceBox<String> details;
-  public int Workerid;
+  private LoginUser user;
 
   public void login() {
     Main.changeScene("WelcomeScreen.fxml");
@@ -78,6 +78,7 @@ public class Employee implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
+    user = new LoginUser();
     String[] values = new String[]{"Name", "Phone Number", "Speciality", "Supervisor ID"};
     details.setItems(FXCollections.observableArrayList(values));
     details.setValue("Choose Below");
@@ -116,14 +117,18 @@ public class Employee implements Initializable {
     assigned_request.setCellValueFactory(new PropertyValueFactory<>("RequestType"));
     assigned_time.setCellValueFactory(new PropertyValueFactory<>("starttime"));
     assigned_hostel.setCellValueFactory(new PropertyValueFactory<>("Hostel"));
+  }
 
-    //Todo: Workerid needs to be updated everytime
-    Workerid = WelcomeScreen.ID;;
-    empid.setText(empid.getText()+ " " + Workerid);
+  public void updatelabel(LoginUser user) {
+    this.user = user;
+    empid.setText(empid.getText() + " " + user.getName());
     FillAssignedTable();
   }
 
   public void FillCompletedTable() {
+    if(user==null){
+      return;
+    }
     ObservableList<Work> list = FXCollections.observableArrayList();
     ResultSet rs;
     try {
@@ -132,12 +137,12 @@ public class Employee implements Initializable {
               "SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel "
                   + "FROM allrecord ar,students s "
                   + "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Close\"",
-              Workerid);
+              user.getID());
       rs = Main.con.createStatement().executeQuery(query);
       while (rs.next()) {
         list.add(
             new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"),
-                rs.getTimestamp("closedtime"), rs.getString("requesttype"), Workerid,
+                rs.getTimestamp("closedtime"), rs.getString("requesttype"), user.getID(),
                 rs.getString("hostel")));
       }
 
@@ -149,6 +154,9 @@ public class Employee implements Initializable {
   }
 
   public void FillAssignedTable() {
+    if(user==null){
+      return;
+    }
     ObservableList<Work> list = FXCollections.observableArrayList();
     ResultSet rs;
     try {
@@ -157,17 +165,19 @@ public class Employee implements Initializable {
               "SELECT ar.id,starttime,requesttype,roomno,ar.hostel "
                   + "FROM allrecord ar,students s "
                   + "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Open\"",
-              Workerid);
+              user.getID());
       rs = Main.con.createStatement().executeQuery(query);
 
       while (rs.next()) {
         list.add(
             new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"),
-                rs.getString("requesttype"), Workerid, rs.getString("hostel")));
+                rs.getString("requesttype"), user.getID(), rs.getString("hostel")));
       }
 
     } catch (Exception e) {
-      System.out.println("Employee:error in Fillassignedtable");
+      e.printStackTrace();;
+      System.out.println("Employee:error in Fillassignedtable\n"+e);
+
       return;
     }
     assignedtable.setItems(list);
@@ -184,22 +194,22 @@ public class Employee implements Initializable {
       switch (content) {
         case "Name":
           query = String
-              .format("UPDATE worker set name=\"%s\" where id =%d", value, Workerid);
+              .format("UPDATE worker set name=\"%s\" where id =%d", value, user.getID());
 
           break;
         case "Phone Number":
           query = String
               .format("UPDATE worker set contactinfo=\"%s\" where id =%d", value,
-                  Workerid);
+                  user.getID());
           break;
         case "Speciality":
           query = String
               .format("UPDATE worker set speciality=\"%s\" where id =%d", value,
-                  Workerid);
+                  user.getID());
           break;
         default:
           query = String.format("UPDATE worker set supervisorid= %d" + " where id = %d",
-              Integer.parseInt(value), Workerid);
+              Integer.parseInt(value), user.getID());
           break;
       }
       stmt.executeUpdate(query);

@@ -31,7 +31,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
-public class User implements Initializable {
+public class User<user> implements Initializable {
 
   @FXML
   private ChoiceBox<String> hostels;
@@ -65,15 +65,11 @@ public class User implements Initializable {
   @FXML
   private ScrollPane scrollpane;
 
-  int id;
-
+  private LoginUser user;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    //Todo: get user id for below label
-    id = WelcomeScreen.ID;
-    userid.setText(userid.getText()+" " + id);
-
+    user=new LoginUser();
     String[] values = {"H1", "H2", "Old Boys", "Girls"};
     hostels.setItems(FXCollections.observableArrayList(values));
 
@@ -180,6 +176,11 @@ public class User implements Initializable {
     reset();
   }
 
+  public void updatelabel(LoginUser user){
+    this.user=user;
+    userid.setText(userid.getText()+" "+user.getName());
+  }
+
   public void request(ActionEvent e) { // action handler after pressing the request button
     try {
       int i = Integer.parseInt(room.getText());
@@ -197,7 +198,7 @@ public class User implements Initializable {
         String.format(
             "Insert into allrecord (hostel,roomnum,status,requesttype,comment,studentid,starttime) "
                 + "Values (\"%s\", %s, \"Unassigned\", \"%s\", \"%s\",%d,\"%s\")",
-            r.getHostel(), r.getRoom(), r.getRequestType(), r.getComment(), id, date);
+            r.getHostel(), r.getRoom(), r.getRequestType(), r.getComment(), user.getID(), date);
 
     try {
       Main.con.createStatement().executeUpdate(query);
@@ -245,7 +246,7 @@ public class User implements Initializable {
     ResultSet rs;
     try {
       rs = Main.con.createStatement()
-          .executeQuery("Select * FROM allrecord WHERE studentid=" + id);
+          .executeQuery("Select * FROM allrecord WHERE studentid=" + user.getID());
       while (rs.next()) {
         list.add(
             new Record(rs.getInt("ID"), rs.getString("workerid"), rs.getInt("studentid"),
