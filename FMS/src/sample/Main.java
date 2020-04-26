@@ -38,11 +38,13 @@ public class Main extends Application {
     primaryStage.setTitle("Facility  Management System");
     primaryStage.setScene(new Scene(root));
     //    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
-//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud
-//    con = DriverManager.getConnection("jdbc:mysql://dbms-proj.cndnhuvgnze7.ap-south-1.rds.amazonaws.com:3306/DBMS", "sandeep", "BHTebyH3EphEcRJB4Jyb"); // AWS credentials
-    con = DriverManager.getConnection(
-        "jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
-        "fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
+//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud//    con = DriverManager.getConnection(
+//        "jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
+//        "fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
+
+    con = DriverManager
+        .getConnection("jdbc:mysql://fms.cd3si0vwuilu.us-east-1.rds.amazonaws.com:3306/dbms",
+            "admin", "Fmsdb123"); // AWS credentials
     primaryStage.show();
   }
 
@@ -120,7 +122,7 @@ public class Main extends Application {
           username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
-        LoginUser user= new LoginUser(rs.getInt("ID"), rs.getString("Name"));
+        LoginUser user = new LoginUser(rs.getInt("ID"), rs.getString("Name"));
         return user;
       }
 
