@@ -69,7 +69,7 @@ public class User<user> implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    user=new LoginUser();
+    user = new LoginUser();
     String[] values = {"H1", "H2", "Old Boys", "Girls"};
     hostels.setItems(FXCollections.observableArrayList(values));
 
@@ -176,9 +176,9 @@ public class User<user> implements Initializable {
     reset();
   }
 
-  public void updatelabel(LoginUser user){
-    this.user=user;
-    userid.setText(userid.getText()+" "+user.getName());
+  public void updatelabel(LoginUser user) {
+    this.user = user;
+    userid.setText(userid.getText() + " " + user.getName());
   }
 
   public void request(ActionEvent e) { // action handler after pressing the request button
@@ -262,6 +262,10 @@ public class User<user> implements Initializable {
       return;
     }
     historytable.setItems(list);
+  }
+
+  public void export() {
+    Exportexcel.export(historytable, "HistoryStudent-" + user.getName());
   }
 
 }

@@ -256,4 +256,9 @@ public class Employee implements Initializable {
     FillAssignedTable();
     FillCompletedTable();
   }
+
+  public void export() {
+    Exportexcel.export(assignedtable, "AssignedWork-" + user.getName());
+    Exportexcel.export(completedtable, "CompletedWork" + user.getName());
+  }
 }

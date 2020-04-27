@@ -106,6 +106,10 @@
           </graphic>
         </JFXButton>
         <Label fx:id="count" layoutX="223.0" layoutY="109.0" text="Count:" />
+        <JFXButton layoutX="68.0" layoutY="285.0" onAction="#export" ripplerFill="#e04d02" style="-fx-background-color: #34eb5e; -fx-background-radius: 50;" text="Export to Excel">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
       </children>
     </AnchorPane>
   </children>

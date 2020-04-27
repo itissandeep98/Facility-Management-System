@@ -144,7 +144,7 @@ public class FMS implements Initializable {
       filltable();
     });
     status.setCellFactory(ComboBoxTableCell
-        .forTableColumn(FXCollections.observableArrayList("Open", "Closed", "Unassigned")));
+        .forTableColumn(FXCollections.observableArrayList("Open", "Close", "Unassigned")));
     status.setOnEditCommit(event -> {
       String query =
           String.format("Update allrecord SET status=\"%s\" Where id=%d", event.getNewValue(),
@@ -176,13 +176,13 @@ public class FMS implements Initializable {
                 rs.getString("hostel"),
                 rs.getString("comment")));
       }
-      if(rs1.next()){
-        count.setText("Count: "+rs1.getInt("cnt"));
+      if (rs1.next()) {
+        count.setText("Count: " + rs1.getInt("cnt"));
       }
 
     } catch (Exception e) {
       System.out.println(countquery);
-      System.out.println("FMS: error in filltable function\n"+e);
+      System.out.println("FMS: error in filltable function\n" + e);
       return;
     }
 
@@ -195,5 +195,9 @@ public class FMS implements Initializable {
 
   public void login() {
     Main.changeScene("WelcomeScreen.fxml");
+  }
+
+  public void export() {
+    Exportexcel.export(recordtable, "Allrecords");
   }
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -11,6 +11,7 @@
 <?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -96,9 +97,10 @@
         <Pane prefHeight="57.0" prefWidth="983.0" BorderPane.alignment="CENTER">
           <children>
             <Label fx:id="empid" layoutX="443.0" layoutY="11.0" prefHeight="35.0" prefWidth="138.0" text="Hey," textAlignment="RIGHT">
-                     <font>
-                        <Font name="FreeMono" size="23.0" />
-                     </font></Label>
+              <font>
+                <Font name="FreeMono" size="23.0" />
+              </font>
+            </Label>
             <JFXButton layoutX="49.0" layoutY="17.0" onAction="#login" ripplerFill="#713517" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout">
               <font>
                 <Font name="Oswald Regular" size="12.0" />
@@ -113,6 +115,11 @@
                   </image>
                 </ImageView>
               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="1029.0" layoutY="24.0" onAction="#export" ripplerFill="#e04d02" style="-fx-background-color: #34eb5e; -fx-background-radius: 50;" text="Export To Excel">
+              <cursor>
+                <Cursor fx:constant="HAND" />
+              </cursor>
             </JFXButton>
           </children>
         </Pane>
@@ -163,9 +170,9 @@
           <effect>
             <DropShadow />
           </effect>
-               <BorderPane.margin>
-                  <Insets bottom="10.0" right="10.0" />
-               </BorderPane.margin>
+          <BorderPane.margin>
+            <Insets bottom="10.0" right="10.0" />
+          </BorderPane.margin>
         </TabPane>
       </center>
     </BorderPane>

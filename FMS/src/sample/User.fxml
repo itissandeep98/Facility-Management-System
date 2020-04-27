@@ -192,6 +192,13 @@
                 <ColorAdjust brightness="0.05" contrast="0.86" hue="0.36"/>
               </effect>
             </Label>
+            <JFXButton layoutX="33.0" layoutY="641.0" ripplerFill="#e04d02"
+              style="-fx-background-color: #34eb5e; -fx-background-radius: 50;" onAction="#export"
+              text="Export to Excel">
+              <cursor>
+                <Cursor fx:constant="HAND"/>
+              </cursor>
+            </JFXButton>
           </children>
           <effect>
             <DropShadow/>

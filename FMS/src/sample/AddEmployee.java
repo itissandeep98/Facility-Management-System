@@ -177,7 +177,7 @@ public class AddEmployee implements Initializable {
   }
 
   public void back() {
-    FMS f= (FMS) Main.changeScene("FMS.fxml");
+    FMS f = (FMS) Main.changeScene("FMS.fxml");
   }
 
   public void filltable() {
@@ -207,6 +207,9 @@ public class AddEmployee implements Initializable {
       Main.con.createStatement().executeUpdate(
           String.format("Insert into worker (name,speciality,contactinfo) "
               + "VALUES (\"%s\", \"%s\", \"%s\")", empname, empspeciality, empphone));
+
+      String msg = "CONGRATULATIONS!!! \nYou have been Successfully added to FMS services";
+      System.out.println(sendMessage.send(msg, empphone));
     } catch (SQLException e) {
       System.out.println("AddEmployee: error in addnewemployee function");
       return;
@@ -236,5 +239,9 @@ public class AddEmployee implements Initializable {
     filltable();
     ename.setText(null);
     spec.setValue(null);
+  }
+
+  public void export() {
+    Exportexcel.export(employeeTable, "employeeTable");
   }
 }
