@@ -134,14 +134,14 @@ public class Employee implements Initializable {
     try {
       String query =
           String.format(
-              "SELECT ar.id,starttime,requesttype,roomno,closedtime,ar.hostel "
+              "SELECT ar.id,starttime,requesttype,ar.roomnum,closedtime,ar.hostel "
                   + "FROM allrecord ar,students s "
                   + "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Close\"",
               user.getID());
       rs = Main.con.createStatement().executeQuery(query);
       while (rs.next()) {
         list.add(
-            new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"),
+            new Work(rs.getInt("ID"), rs.getString("RoomNum"), rs.getTimestamp("starttime"),
                 rs.getTimestamp("closedtime"), rs.getString("requesttype"), user.getID(),
                 rs.getString("hostel")));
       }
@@ -162,7 +162,7 @@ public class Employee implements Initializable {
     try {
       String query =
           String.format(
-              "SELECT ar.id,starttime,requesttype,roomno,ar.hostel "
+              "SELECT ar.id,starttime,requesttype,ar.roomnum,ar.hostel "
                   + "FROM allrecord ar,students s "
                   + "WHERE s.id=ar.studentid and ar.workerid=%d and ar.status=\"Open\"",
               user.getID());
@@ -170,7 +170,7 @@ public class Employee implements Initializable {
 
       while (rs.next()) {
         list.add(
-            new Work(rs.getInt("ID"), rs.getString("RoomNo"), rs.getTimestamp("starttime"),
+            new Work(rs.getInt("ID"), rs.getString("RoomNum"), rs.getTimestamp("starttime"),
                 rs.getString("requesttype"), user.getID(), rs.getString("hostel")));
       }
 
