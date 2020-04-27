@@ -84,7 +84,7 @@ public class Employee implements Initializable {
     details.setValue("Choose Below");
     details.setOnAction(actionEvent -> {
       try {
-        ResultSet rs = Main.con.createStatement().executeQuery("SELECT  * FROM worker");
+        ResultSet rs = Main.con.createStatement().executeQuery("SELECT  * FROM worker WHERE id="+user.getID());
         rs.next();
         switch (details.getValue()) {
           case "Name":
