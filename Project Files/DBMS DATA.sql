@@ -48,7 +48,7 @@ CREATE TABLE `allrecord` (
   CONSTRAINT `allrecord_chk_1` CHECK ((`Status` in (_utf8mb3'Open',_utf8mb3'Close',_utf8mb3'Unassigned'))),
   CONSTRAINT `allrecord_chk_3` CHECK ((`Hostel` in (_utf8mb3'H2',_utf8mb3'H1',_utf8mb3'old boys',_utf8mb3'Girls'))),
   CONSTRAINT `allrecord_chk_4` CHECK ((`RequestType` in (_utf8mb4'Carpenter',_utf8mb4'Cleaner',_utf8mb4'Plumber',_utf8mb4'Electrician',_utf8mb4'Painter')))
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -57,7 +57,7 @@ CREATE TABLE `allrecord` (
 
 LOCK TABLES `allrecord` WRITE;
 /*!40000 ALTER TABLE `allrecord` DISABLE KEYS */;
-INSERT INTO `allrecord` VALUES (11,'Close',103,'2020-03-10 19:30:12',1,'Carpenter',3,'2020-03-11 13:51:28','Girls',NULL),(12,'Open',103,'2020-03-11 06:30:12',2,'Carpenter',2,'2020-04-27 04:24:53','H2',NULL),(13,'Unassigned',104,'2020-03-10 20:30:21',NULL,'Carpenter',6,NULL,'old boys',NULL),(14,'Open',105,'2020-03-11 05:30:12',5,'Cleaner',4,NULL,'Girls',NULL),(15,'Close',201,'2020-03-11 04:30:29',5,'Painter',1,'2020-03-11 09:08:41','Girls',NULL),(16,'Open',205,'2020-03-11 03:48:57',NULL,'Cleaner',2,NULL,'old boys',NULL),(17,'Unassigned',206,'2020-03-11 02:30:09',NULL,'Electrician',5,NULL,'H1',NULL),(19,'Open',208,'2020-03-10 23:30:56',2,'Plumber',9,'2020-03-11 09:10:29','H2',NULL),(22,'Unassigned',404,'2020-03-11 20:08:22',NULL,'Cleaner',3,NULL,'H1','');
+INSERT INTO `allrecord` VALUES (11,'Close',103,'2020-03-10 19:30:12',1,'Carpenter',1,'2020-03-11 13:51:28','Girls',NULL),(12,'Close',103,'2020-03-11 06:30:12',2,'Carpenter',1,'2020-04-27 12:32:51','H2','not ok'),(13,'Close',104,'2020-03-10 20:30:21',18,'Carpenter',6,NULL,'old boys',NULL),(14,'Close',105,'2020-03-11 05:30:12',2,'Cleaner',1,'2020-04-27 14:08:55','Girls','nice '),(15,'Close',201,'2020-03-11 04:30:29',2,'Painter',1,'2020-03-11 09:08:41','Girls','nice work'),(17,'Close',206,'2020-03-11 02:30:09',2,'Electrician',2,'2020-04-27 14:09:21','H1',NULL),(23,'Open',210,'2020-04-11 08:10:20',2,'Cleaner',9,NULL,'H2','clean'),(24,'Open',117,'2020-04-11 08:50:20',2,'Plumber',2,NULL,'H2','fast'),(25,'Open',400,'2020-04-11 10:10:20',2,'Cleaner',6,NULL,'old boys',NULL),(26,'Close',109,'2020-04-11 11:40:20',2,'Electrician',10,'2020-04-11 11:45:19','H2',NULL),(27,'Unassigned',111,'2020-04-11 11:45:20',0,'Electrician',9,NULL,'H2',NULL),(28,'Open',232,'2020-04-11 15:30:02',13,'Carpenter',3,NULL,'H1','could be better'),(29,'Close',312,'2020-04-11 17:18:55',2,'Plumber',3,'2020-04-11 18:10:19','H1',NULL),(30,'Open',106,'2020-04-11 18:10:20',2,'Carpenter',1,NULL,'Girls',NULL),(31,'Open',224,'2020-04-11 20:05:56',2,'Cleaner',2,NULL,'H2',NULL),(32,'Close',212,'2020-05-11 09:30:26',2,'Cleaner',4,'2020-05-11 12:12:15','H1','nice'),(33,'Close',345,'2020-05-11 12:12:16',2,'Painter',7,'2020-05-11 13:12:16','H1','good job'),(34,'Close',236,'2020-05-11 15:20:16',2,'Electrician',1,'2020-04-27 15:29:44','Girls',NULL);
 /*!40000 ALTER TABLE `allrecord` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +85,7 @@ CREATE TABLE `allusers` (
 
 LOCK TABLES `allusers` WRITE;
 /*!40000 ALTER TABLE `allusers` DISABLE KEYS */;
-INSERT INTO `allusers` VALUES (1,'sandeep','user','u2','aabcd'),(2,'sarthak','employee','u1','gabci'),(3,'Nandesh','fms','u3','eabcp');
+INSERT INTO `allusers` VALUES (1,'sandeep','user','u2','aabcd'),(2,'sarthak','employee','u1','hxyze'),(3,'Nandesh','fms','u3','eabcp');
 /*!40000 ALTER TABLE `allusers` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -244,7 +244,7 @@ CREATE TABLE `eateries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `eateries` (
 
 LOCK TABLES `eateries` WRITE;
 /*!40000 ALTER TABLE `eateries` DISABLE KEYS */;
-INSERT INTO `eateries` VALUES ('Bikano','Seminar','Seminar',1),('BrewBakes','Acad','Acad',2),('Mess-1','Student Center','Student Center',3),('Mess-2','Student Center','Student Center',4);
+INSERT INTO `eateries` VALUES ('Bikano','Seminar Block','Seminar Building',31),('ChaiPani','near R&D Block','Open Auditorium',32),('SunShine Mess','near  Seminar Block','Mess Building',33),('Café Coffee Day','Old Acadamics','Old Acadamic',34),('Punjabi Dhaba','near  Seminar Block','Mess Building',35);
 /*!40000 ALTER TABLE `eateries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +300,7 @@ CREATE TABLE `fmshead` (
   `Contact` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1224 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +309,7 @@ CREATE TABLE `fmshead` (
 
 LOCK TABLES `fmshead` WRITE;
 /*!40000 ALTER TABLE `fmshead` DISABLE KEYS */;
-INSERT INTO `fmshead` VALUES (1,'Sanskar',1,'100'),(2,'Sachdeva',2,'101'),(3,'Nandesh',NULL,NULL),(4,'Salman',4,'103');
+INSERT INTO `fmshead` VALUES (1221,'Subhash',2018101,'1234567890'),(1222,'Sandeep',2018102,'6982392892'),(1223,'Nandesh',2018103,'4689654368');
 /*!40000 ALTER TABLE `fmshead` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -354,7 +354,7 @@ CREATE TABLE `reviews` (
   `ReviewerID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,7 +363,7 @@ CREATE TABLE `reviews` (
 
 LOCK TABLES `reviews` WRITE;
 /*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES ('Nice',4,1,1),('Good',3,2,2),('Awesome',4,3,3),('Better than last time',1,4,2);
+INSERT INTO `reviews` VALUES ('good',1,81,91),('good',2,82,92),('satisfactory',3,83,93),('okay',4,84,94),('nice',5,85,95),('okay',6,86,96),('nice',7,87,97),('not satisfactory',8,88,98),('good',9,89,99),('satisfactory',10,90,100);
 /*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,7 +381,7 @@ CREATE TABLE `room` (
   `Student2ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`,`HostelID`),
   UNIQUE KEY `RoomID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=707 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,7 +390,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (101,1,1,2),(102,1,3,4),(103,2,5,NULL),(104,2,6,11),(105,1,8,10),(106,3,7,9),(107,3,33,21),(108,1,14,13),(109,2,16,20),(110,3,NULL,NULL);
+INSERT INTO `room` VALUES (701,101,2018001,2016270),(702,102,2016242,2016232),(703,103,2016276,2016278),(704,104,2016240,2017286),(705,105,2014066,2017190),(706,106,2016235,2018380);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -407,7 +407,7 @@ CREATE TABLE `schedule` (
   `starttime` timestamp NULL DEFAULT NULL,
   `closetime` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`,`WorkerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -416,7 +416,7 @@ CREATE TABLE `schedule` (
 
 LOCK TABLES `schedule` WRITE;
 /*!40000 ALTER TABLE `schedule` DISABLE KEYS */;
-INSERT INTO `schedule` VALUES (1,1,'2020-02-29 08:00:00','2020-02-29 10:00:00'),(2,2,'2020-02-29 09:00:00','2020-02-29 11:00:00'),(3,3,'2020-02-29 10:00:00','2020-02-29 12:00:00'),(4,4,'2020-02-29 11:00:00','2020-02-29 13:00:00'),(5,5,'2020-02-29 12:00:00','2020-02-29 14:00:00'),(6,7,'2020-02-29 18:30:00','2020-02-29 21:00:00'),(7,10,'2020-02-29 13:00:00','2020-02-29 14:00:00'),(8,6,'2020-02-29 15:00:00','2020-02-29 15:30:00'),(9,8,'2020-02-29 17:00:00','2020-02-29 18:00:00'),(10,9,'2020-02-29 20:00:00','2020-02-29 21:00:00');
+INSERT INTO `schedule` VALUES (11,1,'2020-02-29 08:00:00','2020-02-29 10:00:00'),(12,2,'2020-02-29 09:00:00','2020-02-29 11:00:00'),(13,3,'2020-02-29 10:00:00','2020-02-29 12:00:00'),(14,4,'2020-02-29 11:00:00','2020-02-29 13:00:00'),(15,5,'2020-02-29 12:00:00','2020-02-29 14:00:00'),(16,6,'2020-02-29 18:30:00','2020-02-29 21:00:00'),(17,7,'2020-02-29 13:00:00','2020-02-29 14:00:00'),(18,8,'2020-02-29 15:00:00','2020-02-29 15:30:00'),(19,9,'2020-02-29 17:00:00','2020-02-29 18:00:00'),(20,10,'2020-02-29 20:00:00','2020-02-29 21:00:00');
 /*!40000 ALTER TABLE `schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -490,7 +490,7 @@ CREATE TABLE `supervisor` (
   `Contact` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1045 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -499,7 +499,7 @@ CREATE TABLE `supervisor` (
 
 LOCK TABLES `supervisor` WRITE;
 /*!40000 ALTER TABLE `supervisor` DISABLE KEYS */;
-INSERT INTO `supervisor` VALUES (1,'Sanskar','101'),(2,'Avi','102'),(3,'Sunny','103'),(4,'Happy','104'),(5,'Lucky','105');
+INSERT INTO `supervisor` VALUES (10,'Mukesh','7290001359'),(1011,'Sourabh','7290001364'),(1033,'Meraj Alam','9810918603'),(1044,'Ganesh','9899949873');
 /*!40000 ALTER TABLE `supervisor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -519,7 +519,7 @@ CREATE TABLE `worker` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `ID_UNIQUE` (`id`),
   CONSTRAINT `worker_chk_1` CHECK ((`Speciality` in (_utf8mb3'Carpenter',_utf8mb3'Cleaner',_utf8mb3'Plumber',_utf8mb3'Electrician',_utf8mb3'Painter')))
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -528,7 +528,7 @@ CREATE TABLE `worker` (
 
 LOCK TABLES `worker` WRITE;
 /*!40000 ALTER TABLE `worker` DISABLE KEYS */;
-INSERT INTO `worker` VALUES (1,'Navya','Electrician','+916284414874',2),(2,'sarthak','Cleaner','',NULL),(3,'Nitin','Cleaner','+916284414874',3),(4,'Arka','Carpenter','+916284414874',4),(5,'Kinshuk','Cleaner','+918448145804',5),(6,'Rishabh','Painter','+918448145804',2),(7,'swasti','Carpenter','+918448145804',1),(10,'Naman','Cleaner','+918448145804',3),(11,'anmol','Plumber','+916284414874',NULL),(13,'shubham','Carpenter','+916284414874',NULL),(14,'gaurav','Painter','+916284414874',NULL);
+INSERT INTO `worker` VALUES (1,'Navya','Electrician','+916284414874',9101),(2,'sarthak','Cleaner','+918860597094',9102),(3,'Nitin','Cleaner','+916284414874',9103),(4,'Arka','Carpenter','+916284414874',9104),(5,'Kinshuk','Cleaner','+918448145804',9105),(6,'Rishabh','Painter','+918448145804',9106),(7,'swasti','Carpenter','+918448145804',9107),(8,'Naman','Cleaner','+918448145804',9108),(9,'anmol','Plumber','+916284414874',9109),(10,'shubham','Carpenter','+916284414874',9110),(11,'gaurav','Painter','+916284414874',9111),(12,'Navya','Cleaner','+739729473947',9112),(13,'Nandesh','Carpenter','+918860597094',9113),(17,'Anjali','Plumber','+919700006597',NULL),(18,'Akansha','Plumber','+917678307757',NULL);
 /*!40000 ALTER TABLE `worker` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -550,4 +550,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-27  6:52:35
+-- Dump completed on 2020-04-27 17:17:44
