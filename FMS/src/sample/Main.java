@@ -118,7 +118,7 @@ public class Main extends Application {
     try {
       ResultSet rs;
       String query = String.format(
-          "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,3) = \"%s\" and ar.Type = \"%s\"",
+          "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,CHAR_LENGTH(ar.Password)-2) = \"%s\" and ar.Type = \"%s\"",
           username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
@@ -127,10 +127,10 @@ public class Main extends Application {
       }
 
     } catch (Exception e) {
-      System.out.println("No Such User Found");
+      System.out.println("No Such User Found\n" + e);
     }
 
-    return new LoginUser(-1, "");
+    return new LoginUser();
   }
 
 

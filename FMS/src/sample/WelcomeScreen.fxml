@@ -25,6 +25,26 @@
       prefHeight="678.0" prefWidth="1219.0"
       style="-fx-background-color: #ffffff; -fx-background-radius: 100;">
       <children>
+        <Label alignment="CENTER" layoutX="182.0" layoutY="48.0" prefHeight="69.0" prefWidth="825.0"
+          text="Welcome To Facility Mangement Services" textAlignment="CENTER"
+          textOverrun="LEADING_ELLIPSIS" wrapText="true">
+          <font>
+            <Font name="Oswald Regular" size="32.0"/>
+          </font>
+        </Label>
+        <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="526.0" layoutY="110.0"
+          pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@icons/fms.png"/>
+          </image>
+        </ImageView>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="194.0"
+          prefHeight="69.0" prefWidth="825.0" text="Please Login" textAlignment="CENTER"
+          textOverrun="LEADING_ELLIPSIS" wrapText="true">
+          <font>
+            <Font name="Oswald Regular" size="32.0"/>
+          </font>
+        </Label>
         <GridPane layoutX="507.0" layoutY="288.0" prefHeight="80.0" prefWidth="174.0">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0"
@@ -68,7 +88,7 @@
             <JFXRadioButton fx:id="fms" text="FMS" GridPane.columnIndex="2"/>
           </children>
         </GridPane>
-        <JFXButton fx:id="login" alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT"
+        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT"
           defaultButton="true" layoutX="547.0" layoutY="493.0" onAction="#execute_login"
           prefHeight="38.0" prefWidth="111.0"
           style="-fx-background-color: #06deff; -fx-background-radius: 50;" text="Login">
@@ -91,29 +111,19 @@
               <image>
                 <Image url="@icons/login.png"/>
               </image>
+              <cursor>
+                <Cursor fx:constant="HAND"/>
+              </cursor>
             </ImageView>
           </graphic>
         </JFXButton>
-        <Label alignment="CENTER" layoutX="182.0" layoutY="48.0" prefHeight="69.0" prefWidth="825.0"
-          text="Welcome To Facility Mangement Services" textAlignment="CENTER"
-          textOverrun="LEADING_ELLIPSIS" wrapText="true">
-          <font>
-            <Font name="Oswald Regular" size="32.0"/>
-          </font>
-        </Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="194.0"
-          prefHeight="69.0" prefWidth="825.0" text="Please Login" textAlignment="CENTER"
-          textOverrun="LEADING_ELLIPSIS" wrapText="true">
-          <font>
-            <Font name="Oswald Regular" size="32.0"/>
-          </font>
-        </Label>
-        <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="526.0" layoutY="110.0"
-          pickOnBounds="true" preserveRatio="true">
-          <image>
-            <Image url="@icons/fms.png"/>
-          </image>
-        </ImageView>
+        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="350.0" layoutY="493.0"
+          onAction="#forgotpasswd" prefHeight="38.0" prefWidth="149.0" ripplerFill="#de3e3e"
+          style="-fx-background-color: #eba434; -fx-background-radius: 50;" text="Reset Password?">
+          <cursor>
+            <Cursor fx:constant="HAND"/>
+          </cursor>
+        </JFXButton>
       </children>
     </Pane>
   </children>

@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -51,9 +52,13 @@ public class FMS implements Initializable {
   private TableColumn<Record, String> status;
 
   String tablequery;
+  String countquery;
 
   @FXML
   private MenuButton recordmenu;
+
+  @FXML
+  private Label count;
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +73,7 @@ public class FMS implements Initializable {
     hostel.setCellValueFactory(new PropertyValueFactory<>("hostel"));
     comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
     tablequery = "Select * From allrecord";
+    countquery = "select count(*) AS cnt from allrecord";
     filltable();
 
     for (MenuItem i : recordmenu.getItems()) {
@@ -75,6 +81,7 @@ public class FMS implements Initializable {
         case "Open Record":
           i.setOnAction(actionEvent -> {
             tablequery = "Select * From allrecord where status =\"Open\"";
+            countquery = "select count(*) AS cnt from allrecord group by status having status=\"Open\"";
             recordmenu.setText(i.getText());
             filltable();
           });
@@ -82,6 +89,7 @@ public class FMS implements Initializable {
         case "Closed Record":
           i.setOnAction(actionEvent -> {
             tablequery = "Select * From allrecord where status =\"Close\"";
+            countquery = "select count(*) AS cnt  from allrecord group by status having status=\"Close\"";
             recordmenu.setText(i.getText());
             filltable();
           });
@@ -89,6 +97,7 @@ public class FMS implements Initializable {
         case "All Records":
           i.setOnAction(actionEvent -> {
             tablequery = "Select * From allrecord ";
+            countquery = "select count(*) AS cnt from allrecord";
             recordmenu.setText(i.getText());
             filltable();
           });
@@ -96,6 +105,7 @@ public class FMS implements Initializable {
         case "Unassigned Record":
           i.setOnAction(actionEvent -> {
             tablequery = "Select * From allrecord where status=\"Unassigned\"";
+            countquery = "select count(*) AS cnt from allrecord group by status having status=\"Unassigned\"";
             recordmenu.setText(i.getText());
             filltable();
           });
@@ -110,12 +120,24 @@ public class FMS implements Initializable {
         String query =
             String.format("Update allrecord SET workerid = \"%s\" Where id=%d",
                 event.getNewValue(), event.getRowValue().getId());
-        System.out.println(sendMessage.send("FO", "+916284414874"));
+        String query2 = String
+            .format("SELECT contactinfo FROM worker WHERE id=%s", event.getNewValue());
 
         try {
+          ResultSet rs = Main.con.createStatement().executeQuery(query2);
+          if (rs.next()) {
+            String msg = "FMS services \nNew Work \nLocation: " +
+                event.getRowValue().getHostel() + " " + event.getRowValue().getRoomnum() + "\n";
+
+            if (event.getRowValue().getComment() != null) {
+              msg += "Comment: " + event.getRowValue().getComment();
+            }
+            System.out.println(sendMessage.send(msg, rs.getString("ContactInfo")));
+          }
+
           Main.con.createStatement().executeUpdate(query);
         } catch (SQLException e) {
-          System.out.println("FMS: error in workerid update");
+          System.out.println("FMS: error in workerid update\n" + e);
           return;
         }
       }
@@ -141,9 +163,10 @@ public class FMS implements Initializable {
   public void filltable() {
 
     ObservableList<Record> list = FXCollections.observableArrayList();
-    ResultSet rs;
+    ResultSet rs, rs1;
     try {
       rs = Main.con.createStatement().executeQuery(tablequery);
+      rs1 = Main.con.createStatement().executeQuery(countquery);
       while (rs.next()) {
         list.add(
             new Record(rs.getInt("ID"), rs.getString("workerid"), rs.getInt("studentid"),
@@ -153,9 +176,13 @@ public class FMS implements Initializable {
                 rs.getString("hostel"),
                 rs.getString("comment")));
       }
+      if(rs1.next()){
+        count.setText("Count: "+rs1.getInt("cnt"));
+      }
 
     } catch (Exception e) {
-      System.out.println("FMS: error in filltable function");
+      System.out.println(countquery);
+      System.out.println("FMS: error in filltable function\n"+e);
       return;
     }
 
@@ -163,7 +190,7 @@ public class FMS implements Initializable {
   }
 
   public void addemployee() {
-    AddEmployee e= (AddEmployee) Main.changeScene("AddEmployee.fxml");
+    AddEmployee e = (AddEmployee) Main.changeScene("AddEmployee.fxml");
   }
 
   public void login() {

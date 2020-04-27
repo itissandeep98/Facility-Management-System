@@ -126,7 +126,7 @@ public class Employee implements Initializable {
   }
 
   public void FillCompletedTable() {
-    if(user==null){
+    if (user == null) {
       return;
     }
     ObservableList<Work> list = FXCollections.observableArrayList();
@@ -154,7 +154,7 @@ public class Employee implements Initializable {
   }
 
   public void FillAssignedTable() {
-    if(user==null){
+    if (user == null) {
       return;
     }
     ObservableList<Work> list = FXCollections.observableArrayList();
@@ -175,11 +175,10 @@ public class Employee implements Initializable {
       }
 
     } catch (Exception e) {
-      e.printStackTrace();;
-      System.out.println("Employee:error in Fillassignedtable\n"+e);
-
+      System.out.println("Employee:error in Fillassignedtable\n" + e);
       return;
     }
+
     assignedtable.setItems(list);
   }
 
@@ -232,9 +231,17 @@ public class Employee implements Initializable {
           "UPDATE allrecord SET status = \"Close\", closedtime =\"%s\" WHERE status = \"Open\" and id= %d",
           date, workid);
       Main.con.createStatement().executeUpdate(query);
-      System.out.println(sendMessage.send("FO", "+916284414874"));
-    } catch (SQLException e) {
-      System.out.println("Employee: error in markcompleted function");
+      String query2 = String.format(
+          "SELECT contactinfo FROM students s,allrecord ar WHERE s.id=ar.StudentID and ar.id=%d",
+          workid);
+      ResultSet rs = Main.con.createStatement().executeQuery(query2);
+      if (rs.next()) {
+        String msg = "FMS services \nWork Completed \n";
+
+        System.out.println(sendMessage.send(msg, rs.getString("ContactInfo")));
+      }
+    } catch (Exception e) {
+      System.out.println("Employee: error in markcompleted function\n" + e);
       return;
     }
     Main.showalert("Success", "Work has been marked as completed Successfully", pane,

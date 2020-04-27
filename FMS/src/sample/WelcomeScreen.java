@@ -4,10 +4,19 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -15,9 +24,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 public class WelcomeScreen implements Initializable {
 
@@ -120,5 +131,77 @@ public class WelcomeScreen implements Initializable {
     });
     content.setActions(button);
     dialog.show();
+  }
+
+  public void forgotpasswd() {
+    Dialog<Pair<String, String>> dialog = new Dialog<>();
+    dialog.setTitle("Set New Password");
+
+    ButtonType loginButtonType = new ButtonType("OK", ButtonData.OK_DONE);
+    dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+    Node buttok=dialog.getDialogPane().lookupButton(loginButtonType);
+    buttok.setDisable(true);
+
+    GridPane gridPane = new GridPane();
+    gridPane.setHgap(10);
+    gridPane.setVgap(10);
+    gridPane.setPadding(new Insets(20, 10, 10, 10));
+
+    TextField name = new TextField();
+    name.setPromptText("Username");
+    PasswordField oldpasswd = new PasswordField();
+    oldpasswd.setPromptText("Old Password");
+    PasswordField newpasswd = new PasswordField();
+    newpasswd.setPromptText("New Password");
+    gridPane.add(new Label("Username:"), 0, 0);
+    gridPane.add(name, 1, 0);
+    gridPane.add(new Label("Old Password:"), 0, 1);
+    gridPane.add(oldpasswd, 1, 1);
+    gridPane.add(new Label("New Password:"), 0, 2);
+    gridPane.add(newpasswd, 1, 2);
+
+    dialog.getDialogPane().setContent(gridPane);
+    newpasswd.textProperty().addListener(observable -> {
+      if(newpasswd.getText().length()>3 && name.getText()!=null && oldpasswd.getText()!=null){
+        buttok.setDisable(false);
+      }
+    });
+
+
+
+    Platform.runLater(name::requestFocus);
+    dialog.setResultConverter(dialogButton -> {
+      if (dialogButton == loginButtonType ) {
+        if (execute_query(name.getText(), oldpasswd.getText(), newpasswd.getText())) {
+          Main.showalert("Password change failed", "Username and Old Password doesn't Match\n Password not changed!!", pane, Color.RED);
+        }
+      }
+      return null;
+    });
+    dialog.showAndWait();
+
+  }
+
+  private boolean execute_query(String usrname, String oldpasswd, String newpasswd) {
+    ResultSet rs;
+    String query = String.format(
+        "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" AND "
+            + "substring(ar.Password,2,CHAR_LENGTH(ar.Password)-2) = \"%s\"", usrname, oldpasswd);
+    Random r = new Random();
+    newpasswd = (char) (r.nextInt(26) + 'a') + newpasswd + (char) (r.nextInt(26) + 'a');
+    try {
+      rs = Main.con.createStatement().executeQuery(query);
+      if (rs.next()) {
+        query = String
+            .format("UPDATE allusers SET Password=\"%s\" WHERE ID=%d", newpasswd, rs.getInt("ID"));
+        Main.con.createStatement().executeUpdate(query);
+        return false;
+      }
+
+    } catch (SQLException e) {
+      System.out.println("error in execute query\n" + e);
+    }
+    return true;
+
   }
 }
