@@ -16,19 +16,19 @@ This is a group project extensively based on DBMS, its an attempt in creating an
 4.Change the VM options in configurations (for eg in Ubuntu : `"--module-path /usr/lib/jvm/javafx-sdk-14/lib --add-modules=javafx.controls,javafx.fxml"`)\
 
 ## IF ALL GOES WELL THEN YOU WILL SEE THE FOLLOWING SCREENS
-### Login Screen
+### >Login Screen
 ![image](https://user-images.githubusercontent.com/44255731/80458729-de677d00-894e-11ea-9fc4-c3e21b61ca60.png)
-### On Successfull Login
+### >On Successfull Login
 ![image](https://user-images.githubusercontent.com/44255731/80458829-1373cf80-894f-11ea-9729-1609a5e004da.png)
-### Employee Screen (Interface for the workers) 
+### >Employee Screen (Interface for the workers) 
 ![image](https://user-images.githubusercontent.com/44255731/80458898-2b4b5380-894f-11ea-9b1d-f8535146a560.png)
-### User Screen (Interface for the Students or Faculty)
+### >User Screen (Interface for the Students or Faculty)
 ![image](https://user-images.githubusercontent.com/44255731/80458945-428a4100-894f-11ea-9982-12af753d50b7.png)
-### History of User
+### >History of User
 ![image](https://user-images.githubusercontent.com/44255731/80458987-4e760300-894f-11ea-9e5e-4580ed79cedf.png)
-### FMS Screen (Interface for the FMS head to manage everything)
+### >FMS Screen (Interface for the FMS head to manage everything)
 ![image](https://user-images.githubusercontent.com/44255731/80459056-6b123b00-894f-11ea-9be4-78955e62b07a.png)
-### Interface for FMS head to modify employee database
+### >Interface for FMS head to modify employee database
 ![image](https://user-images.githubusercontent.com/44255731/80459081-76fdfd00-894f-11ea-996b-cf7a823406bf.png)
 
 
