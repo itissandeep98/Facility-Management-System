@@ -209,7 +209,7 @@ public class AddEmployee implements Initializable {
               + "VALUES (\"%s\", \"%s\", \"%s\")", empname, empspeciality, empphone));
 
       String msg = "CONGRATULATIONS!!! \nYou have been Successfully added to FMS services";
-      System.out.println(sendMessage.send(msg, empphone));
+      System.out.println(Features.sendSMS(msg, empphone));
     } catch (SQLException e) {
       System.out.println("AddEmployee: error in addnewemployee function");
       return;
@@ -242,6 +242,6 @@ public class AddEmployee implements Initializable {
   }
 
   public void export() {
-    Exportexcel.export(employeeTable, "employeeTable");
+    Features.exportExcel(employeeTable, "employeeTable");
   }
 }

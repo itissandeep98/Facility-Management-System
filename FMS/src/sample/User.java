@@ -265,7 +265,7 @@ public class User<user> implements Initializable {
   }
 
   public void export() {
-    Exportexcel.export(historytable, "HistoryStudent-" + user.getName());
+    Features.exportExcel(historytable, "HistoryStudent-" + user.getName());
   }
 
 }

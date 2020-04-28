@@ -29,6 +29,10 @@ public class Main extends Application {
   public static Stage stage;
   public static Connection con;
 
+  //ToDo: Don't forget to update the below strings according to your local MySQL Host
+  private static String dbusername = "root";
+  private static String dbpassword = "1234";
+
   @Override
   public void start(Stage primaryStage) throws Exception {
     stage = primaryStage;
@@ -37,14 +41,11 @@ public class Main extends Application {
     primaryStage.getIcons().add(icon);
     primaryStage.setTitle("Facility  Management System");
     primaryStage.setScene(new Scene(root));
-    //    con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms","root","qwerty123");  //localhost
-//    con=DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms",username,password); //googlecloud//    con = DriverManager.getConnection(
-//        "jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
-//        "fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
-
-    con = DriverManager
-        .getConnection("jdbc:mysql://fms.cd3si0vwuilu.us-east-1.rds.amazonaws.com:3306/dbms",
-            "admin", "Fmsdb123"); // AWS credentials
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",
+        dbusername, dbpassword);  //localhost
+//    con = DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms", username, password); //googlecloud
+//    con = DriverManager.getConnection("jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC","fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
+//    con = DriverManager.getConnection("jdbc:mysql://fms.cd3si0vwuilu.us-east-1.rds.amazonaws.com:3306/dbms","admin", "Fmsdb123"); // AWS credentials
     primaryStage.show();
   }
 

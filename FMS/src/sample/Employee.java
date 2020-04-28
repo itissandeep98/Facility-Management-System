@@ -238,7 +238,7 @@ public class Employee implements Initializable {
       if (rs.next()) {
         String msg = "FMS services \nWork Completed \n";
 
-        System.out.println(sendMessage.send(msg, rs.getString("ContactInfo")));
+        System.out.println(Features.sendSMS(msg, rs.getString("ContactInfo")));
       }
     } catch (Exception e) {
       System.out.println("Employee: error in markcompleted function\n" + e);
@@ -258,7 +258,7 @@ public class Employee implements Initializable {
   }
 
   public void export() {
-    Exportexcel.export(assignedtable, "AssignedWork-" + user.getName());
-    Exportexcel.export(completedtable, "CompletedWork" + user.getName());
+    Features.exportExcel(assignedtable, "AssignedWork-" + user.getName());
+    Features.exportExcel(completedtable, "CompletedWork" + user.getName());
   }
 }

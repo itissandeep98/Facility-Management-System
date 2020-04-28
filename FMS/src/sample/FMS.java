@@ -132,7 +132,7 @@ public class FMS implements Initializable {
             if (event.getRowValue().getComment() != null) {
               msg += "Comment: " + event.getRowValue().getComment();
             }
-            System.out.println(sendMessage.send(msg, rs.getString("ContactInfo")));
+            System.out.println(Features.sendSMS(msg, rs.getString("ContactInfo")));
           }
 
           Main.con.createStatement().executeUpdate(query);
@@ -198,6 +198,6 @@ public class FMS implements Initializable {
   }
 
   public void export() {
-    Exportexcel.export(recordtable, "Allrecords");
+    Features.exportExcel(recordtable, "Allrecords");
   }
 }

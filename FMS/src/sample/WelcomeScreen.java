@@ -32,7 +32,6 @@ import javafx.util.Pair;
 
 public class WelcomeScreen implements Initializable {
 
-  //Todo: Add Tooltips everywhere. tooltips are the message we see when we hover over some object
   @FXML
   private RadioButton employee;
   @FXML
