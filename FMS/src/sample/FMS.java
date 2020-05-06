@@ -146,13 +146,33 @@ public class FMS implements Initializable {
     status.setCellFactory(ComboBoxTableCell
         .forTableColumn(FXCollections.observableArrayList("Open", "Close", "Unassigned")));
     status.setOnEditCommit(event -> {
-      String query =
-          String.format("Update allrecord SET status=\"%s\" Where id=%d", event.getNewValue(),
-              event.getRowValue().getId());
+      String query = "";
+      java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+      if (event.getOldValue().equals("Open") && event.getNewValue().equals("Close")) {
+        query = String.format("Update allrecord SET status=\"%s\", closedtime=\"%s\"  Where id=%d",
+            event.getNewValue(), date, event.getRowValue().getId());
+      } else if (event.getOldValue().equals("Open") && event.getNewValue().equals("Unassigned")) {
+        query = String.format(
+            "Update allrecord SET status=\"%s\", WorkerID=NULL , comment=\"\"  Where id=%d",
+            event.getNewValue(), event.getRowValue().getId());
+      } else if (event.getOldValue().equals("Close") && event.getNewValue().equals("Open")) {
+        query = String.format(
+            "Update allrecord SET status=\"%s\", closedtime=NULL, comment=\"\"  Where id=%d",
+            event.getNewValue(), event.getRowValue().getId());
+      } else if (event.getOldValue().equals("Close") && event.getNewValue().equals("Unassigned")) {
+        query = String.format(
+            "Update allrecord SET status=\"%s\", closedtime= NULL , WorkerID=NULL, comment=\"\" Where id=%d",
+            event.getNewValue(), event.getRowValue().getId());
+      } else if (event.getOldValue().equals("Unassigned") && event.getNewValue().equals("Open")) {
+        query = String.format(
+            "Update allrecord SET status=\"%s\", Where id=%d", event.getNewValue(),
+            event.getRowValue().getId());
+      }
+
       try {
         Main.con.createStatement().executeUpdate(query);
       } catch (SQLException e) {
-        System.out.println("User: error in hostel update");
+        System.out.println("User: error in hostel update\n" + e);
         return;
       }
       filltable();
