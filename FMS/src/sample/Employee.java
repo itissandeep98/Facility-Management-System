@@ -84,7 +84,8 @@ public class Employee implements Initializable {
     details.setValue("Choose Below");
     details.setOnAction(actionEvent -> {
       try {
-        ResultSet rs = Main.con.createStatement().executeQuery("SELECT  * FROM worker WHERE id="+user.getID());
+        ResultSet rs = Main.con.createStatement()
+            .executeQuery("SELECT  * FROM worker WHERE id=" + user.getID());
         rs.next();
         switch (details.getValue()) {
           case "Name":
@@ -212,6 +213,15 @@ public class Employee implements Initializable {
           break;
       }
       stmt.executeUpdate(query);
+
+      query = String
+          .format("SELECT contactinfo FROM worker where id =%d", user.getID());
+      ResultSet rs = Main.con.createStatement().executeQuery(query);
+      if (rs.next()) {
+        System.out.println(Features.sendSMS("New " + content + " has been updated Successfully",
+            rs.getString("ContactInfo")));
+      }
+
     } catch (SQLException e) {
       System.out.println("Employee: error in changedetails function");
       return;
@@ -231,15 +241,16 @@ public class Employee implements Initializable {
           "UPDATE allrecord SET status = \"Close\", closedtime =\"%s\" WHERE status = \"Open\" and id= %d",
           date, workid);
       Main.con.createStatement().executeUpdate(query);
+
       String query2 = String.format(
           "SELECT contactinfo FROM students s,allrecord ar WHERE s.id=ar.StudentID and ar.id=%d",
           workid);
       ResultSet rs = Main.con.createStatement().executeQuery(query2);
       if (rs.next()) {
         String msg = "FMS services \nWork Completed \n";
-
         System.out.println(Features.sendSMS(msg, rs.getString("ContactInfo")));
       }
+
     } catch (Exception e) {
       System.out.println("Employee: error in markcompleted function\n" + e);
       return;

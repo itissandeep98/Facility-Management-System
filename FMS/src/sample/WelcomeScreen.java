@@ -6,7 +6,6 @@ import com.jfoenix.controls.JFXDialogLayout;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -138,7 +137,7 @@ public class WelcomeScreen implements Initializable {
 
     ButtonType loginButtonType = new ButtonType("OK", ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-    Node buttok=dialog.getDialogPane().lookupButton(loginButtonType);
+    Node buttok = dialog.getDialogPane().lookupButton(loginButtonType);
     buttok.setDisable(true);
 
     GridPane gridPane = new GridPane();
@@ -161,18 +160,18 @@ public class WelcomeScreen implements Initializable {
 
     dialog.getDialogPane().setContent(gridPane);
     newpasswd.textProperty().addListener(observable -> {
-      if(newpasswd.getText().length()>3 && name.getText()!=null && oldpasswd.getText()!=null){
+      if (newpasswd.getText().length() > 3 && name.getText() != null
+          && oldpasswd.getText() != null) {
         buttok.setDisable(false);
       }
     });
 
-
-
     Platform.runLater(name::requestFocus);
     dialog.setResultConverter(dialogButton -> {
-      if (dialogButton == loginButtonType ) {
-        if (execute_query(name.getText(), oldpasswd.getText(), newpasswd.getText())) {
-          Main.showalert("Password change failed", "Username and Old Password doesn't Match\n Password not changed!!", pane, Color.RED);
+      if (dialogButton == loginButtonType) {
+        if (forgotquery(name.getText(), oldpasswd.getText(), newpasswd.getText())) {
+          Main.showalert("Password change failed",
+              "Username and Old Password doesn't Match\n Password not changed!!", pane, Color.RED);
         }
       }
       return null;
@@ -181,13 +180,13 @@ public class WelcomeScreen implements Initializable {
 
   }
 
-  private boolean execute_query(String usrname, String oldpasswd, String newpasswd) {
+  private boolean forgotquery(String usrname, String oldpasswd, String newpasswd) {
     ResultSet rs;
     String query = String.format(
         "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" AND "
             + "substring(ar.Password,2,CHAR_LENGTH(ar.Password)-2) = \"%s\"", usrname, oldpasswd);
-    Random r = new Random();
-    newpasswd = (char) (r.nextInt(26) + 'a') + newpasswd + (char) (r.nextInt(26) + 'a');
+    String s = Main.encoderstring();
+    newpasswd = s + newpasswd + s;
     try {
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
@@ -203,4 +202,5 @@ public class WelcomeScreen implements Initializable {
     return true;
 
   }
+
 }

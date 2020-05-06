@@ -8,6 +8,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -30,23 +32,36 @@ public class Main extends Application {
   public static Connection con;
 
   //ToDo: Don't forget to update the below strings according to your local MySQL Host
-  private static String dbusername = "root";
-  private static String dbpassword = "1234";
+  private static String dbusername = "fms";
+  private static String dbpassword = "Fmsdb123";
 
   @Override
   public void start(Stage primaryStage) throws Exception {
+    initconnection();
     stage = primaryStage;
     root = FXMLLoader.load(getClass().getResource("WelcomeScreen.fxml"));
     Image icon = new Image("sample/icons/icon.png");
     primaryStage.getIcons().add(icon);
     primaryStage.setTitle("Facility  Management System");
     primaryStage.setScene(new Scene(root));
-    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",
-        dbusername, dbpassword);  //localhost
-//    con = DriverManager.getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms", username, password); //googlecloud
-//    con = DriverManager.getConnection("jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC","fmsdbms@fmsdbms", "Fms@1234"); // Azure credentials
-//    con = DriverManager.getConnection("jdbc:mysql://fms.cd3si0vwuilu.us-east-1.rds.amazonaws.com:3306/dbms","admin", "Fmsdb123"); // AWS credentials
     primaryStage.show();
+  }
+
+  private void initconnection() throws SQLException {
+//    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",
+//        dbusername, dbpassword);  //localhost
+//
+//    con = DriverManager
+//        .getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms", dbusername,
+//            dbpassword); //googlecloud
+//
+//    con = DriverManager
+//        .getConnection("jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
+//            dbusername, dbpassword); // Azure credentials
+    con = DriverManager
+        .getConnection("jdbc:mysql://dbms.czdw77kneec2.us-east-1.rds.amazonaws.com:3306/dbms",
+            dbusername, dbpassword); // AWS credentials
+
   }
 
   // custom made function which helps in changing the scene
@@ -119,7 +134,7 @@ public class Main extends Application {
     try {
       ResultSet rs;
       String query = String.format(
-          "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,2,CHAR_LENGTH(ar.Password)-2) = \"%s\" and ar.Type = \"%s\"",
+          "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" and substring(ar.Password,11,CHAR_LENGTH(ar.Password)-20) = \"%s\" and ar.Type = \"%s\"",
           username, password, type);
       rs = Main.con.createStatement().executeQuery(query);
       if (rs.next()) {
@@ -148,6 +163,15 @@ public class Main extends Application {
     }
     return true;
   }
+  public static String encoderstring(){
+    StringBuilder s= new StringBuilder();
+    Random r = new Random();
+    for (int i=0;i<10;i++){
+      s.append((char) (r.nextInt(26) + 'a'));
+    }
+    return s.toString();
+  }
+
 
   public static void main(String[] args) {
     launch(args);
