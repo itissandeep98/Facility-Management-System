@@ -184,7 +184,7 @@ public class WelcomeScreen implements Initializable {
     ResultSet rs;
     String query = String.format(
         "SELECT ar.ID,ar.Name FROM allusers ar WHERE ar.Username = \"%s\" AND "
-            + "substring(ar.Password,2,CHAR_LENGTH(ar.Password)-2) = \"%s\"", usrname, oldpasswd);
+            + "substring(ar.Password,11,CHAR_LENGTH(ar.Password)-20) = \"%s\"", usrname, oldpasswd);
     String s = Main.encoderstring();
     newpasswd = s + newpasswd + s;
     try {
