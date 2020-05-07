@@ -5,8 +5,8 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,112 +17,98 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-<StackPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #6b03fc;"
-  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-  fx:controller="sample.WelcomeScreen">
+
+<StackPane fx:id="pane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eb9234;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.WelcomeScreen">
   <children>
-    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="678.0" prefWidth="1219.0"
-      style="-fx-background-color: #ffffff; -fx-background-radius: 100;">
+    <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="1219.0" style="-fx-background-color: #ffffff; -fx-background-radius: 100;">
       <children>
-        <Label alignment="CENTER" layoutX="182.0" layoutY="48.0" prefHeight="69.0" prefWidth="825.0"
-          text="Welcome To Facility Mangement Services" textAlignment="CENTER"
-          textOverrun="LEADING_ELLIPSIS" wrapText="true">
+        <Label alignment="CENTER" layoutX="182.0" layoutY="48.0" prefHeight="69.0" prefWidth="825.0" text="Welcome To Facility Mangement Services" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
           <font>
-            <Font name="Oswald Regular" size="32.0"/>
+            <Font name="Oswald Regular" size="32.0" />
           </font>
         </Label>
-        <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="526.0" layoutY="110.0"
-          pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="84.0" fitWidth="92.0" layoutX="526.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
           <image>
-            <Image url="@icons/fms.png"/>
+            <Image url="@icons/fms.png" />
           </image>
         </ImageView>
-        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="194.0"
-          prefHeight="69.0" prefWidth="825.0" text="Please Login" textAlignment="CENTER"
-          textOverrun="LEADING_ELLIPSIS" wrapText="true">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="166.0" layoutY="194.0" prefHeight="69.0" prefWidth="825.0" text="Please Login" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS" wrapText="true">
           <font>
-            <Font name="Oswald Regular" size="32.0"/>
+            <Font name="Oswald Regular" size="32.0" />
           </font>
         </Label>
         <GridPane layoutX="507.0" layoutY="288.0" prefHeight="80.0" prefWidth="174.0">
           <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0"
-              prefWidth="170.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="170.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES"/>
-            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+            <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
           </rowConstraints>
           <children>
-            <JFXTextField fx:id="username" focusColor="#0ee82b" labelFloat="true" prefHeight="74.0"
-              prefWidth="170.0" promptText="Enter Username">
+            <JFXTextField fx:id="username" focusColor="#0ee82b" labelFloat="true" prefHeight="74.0" prefWidth="170.0" promptText="Enter Username">
               <padding>
-                <Insets bottom="10.0"/>
+                <Insets bottom="10.0" />
               </padding>
             </JFXTextField>
-            <JFXPasswordField fx:id="password" focusColor="#16e10b" labelFloat="true"
-              prefHeight="10.0" prefWidth="170.0" promptText="Enter Password" GridPane.rowIndex="1">
+            <JFXPasswordField fx:id="password" focusColor="#16e10b" labelFloat="true" prefHeight="10.0" prefWidth="170.0" promptText="Enter Password" GridPane.rowIndex="1">
               <padding>
-                <Insets bottom="10.0" top="10.0"/>
+                <Insets bottom="10.0" top="10.0" />
               </padding>
               <GridPane.margin>
-                <Insets top="15.0"/>
+                <Insets top="15.0" />
               </GridPane.margin>
             </JFXPasswordField>
           </children>
         </GridPane>
         <GridPane layoutX="460.0" layoutY="396.0" prefHeight="36.0" prefWidth="277.0">
           <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0"
-              prefWidth="105.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="71.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="59.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="105.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="71.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="59.0" />
           </columnConstraints>
           <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           </rowConstraints>
           <children>
-            <JFXRadioButton fx:id="employee" text="Employee"/>
-            <JFXRadioButton fx:id="user" text="User" GridPane.columnIndex="1"/>
-            <JFXRadioButton fx:id="fms" text="FMS" GridPane.columnIndex="2"/>
+            <JFXRadioButton fx:id="employee" text="Employee" />
+            <JFXRadioButton fx:id="user" text="User" GridPane.columnIndex="1" />
+            <JFXRadioButton fx:id="fms" text="FMS" GridPane.columnIndex="2" />
           </children>
         </GridPane>
-        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT"
-          defaultButton="true" layoutX="547.0" layoutY="493.0" onAction="#execute_login"
-          prefHeight="38.0" prefWidth="111.0"
-          style="-fx-background-color: #06deff; -fx-background-radius: 50;" text="Login">
+        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="RIGHT" defaultButton="true" layoutX="618.0" layoutY="492.0" onAction="#execute_login" prefHeight="38.0" prefWidth="111.0" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Login">
           <font>
-            <Font name="Oswald Regular" size="17.0"/>
+            <Font name="Oswald Regular" size="17.0" />
           </font>
           <ripplerFill>
             <LinearGradient endX="1.0" endY="1.0">
               <stops>
-                <Stop color="#1a2026"/>
-                <Stop color="WHITE" offset="1.0"/>
+                <Stop color="#1a2026" />
+                <Stop color="WHITE" offset="1.0" />
               </stops>
             </LinearGradient>
           </ripplerFill>
           <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
           </cursor>
           <graphic>
             <ImageView fitHeight="27.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
               <image>
-                <Image url="@icons/login.png"/>
+                <Image url="@icons/login.png" />
               </image>
               <cursor>
-                <Cursor fx:constant="HAND"/>
+                <Cursor fx:constant="HAND" />
               </cursor>
             </ImageView>
           </graphic>
         </JFXButton>
-        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="350.0" layoutY="493.0"
-          onAction="#forgotpasswd" prefHeight="38.0" prefWidth="149.0" ripplerFill="#de3e3e"
-          style="-fx-background-color: #eba434; -fx-background-radius: 50;" text="Reset Password?">
+        <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="449.0" layoutY="493.0" onAction="#forgotpasswd" prefHeight="38.0" prefWidth="149.0" ripplerFill="#de3e3e" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Reset Password?">
           <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
           </cursor>
+               <font>
+                  <Font name="Oswald Regular" size="17.0" />
+               </font>
         </JFXButton>
       </children>
     </Pane>

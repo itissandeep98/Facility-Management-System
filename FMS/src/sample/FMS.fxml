@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,11 +16,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="pane" prefHeight="732.0" prefWidth="1312.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FMS">
+<StackPane fx:id="pane" prefHeight="732.0" prefWidth="1312.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FMS">
   <children>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="1282.0" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
       <children>
-        <MenuButton fx:id="recordmenu" layoutX="52.0" layoutY="149.0" mnemonicParsing="false" style="-fx-background-radius: 10;" text="Filter Record">
+        <MenuButton fx:id="recordmenu" layoutX="52.0" layoutY="145.0" mnemonicParsing="false" style="-fx-background-radius: 10;" text="Filter Record">
           <items>
             <MenuItem mnemonicParsing="false" text="Open Record" />
             <MenuItem mnemonicParsing="false" text="Closed Record" />
@@ -75,7 +67,7 @@
             <Font name="Oswald Regular" size="45.0" />
           </font>
         </Label>
-        <JFXButton layoutX="35.0" layoutY="204.0" onAction="#addemployee" ripplerFill="#46de02" style="-fx-background-color: #f79a05; -fx-background-radius: 50;" text="Employee Details">
+        <JFXButton layoutX="35.0" layoutY="204.0" onAction="#addemployee" ripplerFill="#46de02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Employee Details">
           <font>
             <Font name="Oswald Regular" size="12.0" />
           </font>
@@ -90,7 +82,7 @@
             </ImageView>
           </graphic>
         </JFXButton>
-        <JFXButton layoutX="99.0" layoutY="48.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #f7059a; -fx-background-radius: 50;" text="Logout">
+        <JFXButton layoutX="61.0" layoutY="58.0" onAction="#login" ripplerFill="#e04d02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Logout">
           <font>
             <Font name="Oswald Regular" size="12.0" />
           </font>
@@ -106,10 +98,13 @@
           </graphic>
         </JFXButton>
         <Label fx:id="count" layoutX="223.0" layoutY="109.0" text="Count:" />
-        <JFXButton layoutX="68.0" layoutY="285.0" onAction="#export" ripplerFill="#e04d02" style="-fx-background-color: #34eb5e; -fx-background-radius: 50;" text="Export to Excel">
+        <JFXButton layoutX="1149.0" layoutY="63.0" onAction="#export" ripplerFill="#e04d02" style="-fx-background-color: #eb9234; -fx-background-radius: 50;" text="Export to Excel">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
+               </cursor>
+               <font>
+                  <Font name="Oswald Regular" size="12.0" />
+               </font></JFXButton>
       </children>
     </AnchorPane>
   </children>
