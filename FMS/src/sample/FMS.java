@@ -165,7 +165,7 @@ public class FMS implements Initializable {
             event.getNewValue(), event.getRowValue().getId());
       } else if (event.getOldValue().equals("Unassigned") && event.getNewValue().equals("Open")) {
         query = String.format(
-            "Update allrecord SET status=\"%s\", Where id=%d", event.getNewValue(),
+            "Update allrecord SET status=\"%s\" Where id=%d", event.getNewValue(),
             event.getRowValue().getId());
       }
 
