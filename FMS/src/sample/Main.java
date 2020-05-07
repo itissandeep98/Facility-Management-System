@@ -48,8 +48,8 @@ public class Main extends Application {
   }
 
   private void initconnection() throws SQLException {
-//    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",
-//        dbusername, dbpassword);  //localhost
+    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbms",
+        dbusername, dbpassword);  //localhost
 //
 //    con = DriverManager
 //        .getConnection("jdbc:mysql://alert-shape-272706:us-central1:dbms:3306/dbms", dbusername,
@@ -58,9 +58,10 @@ public class Main extends Application {
 //    con = DriverManager
 //        .getConnection("jdbc:mysql://fmsdbms.mysql.database.azure.com:3306/dbms?serverTimezone=UTC",
 //            dbusername, dbpassword); // Azure credentials
-    con = DriverManager
-        .getConnection("jdbc:mysql://dbms.czdw77kneec2.us-east-1.rds.amazonaws.com:3306/dbms",
-            dbusername, dbpassword); // AWS credentials
+//
+//    con = DriverManager
+//        .getConnection("jdbc:mysql://dbms.czdw77kneec2.us-east-1.rds.amazonaws.com:3306/dbms",
+//            dbusername, dbpassword); // AWS credentials
 
   }
 
@@ -163,10 +164,11 @@ public class Main extends Application {
     }
     return true;
   }
-  public static String encoderstring(){
-    StringBuilder s= new StringBuilder();
+
+  public static String encoderstring() {
+    StringBuilder s = new StringBuilder();
     Random r = new Random();
-    for (int i=0;i<10;i++){
+    for (int i = 0; i < 10; i++) {
       s.append((char) (r.nextInt(26) + 'a'));
     }
     return s.toString();
