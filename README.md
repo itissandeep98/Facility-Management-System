@@ -12,7 +12,7 @@ This is a group project extensively based on DBMS, its an attempt in creating an
 ## How To Setup Project
 1.Clone the repo on your local machine (`git clone github.com/itissandeep98/Facility-Management-System`) \
 2.Set the default java Version to be java 11 and javaFX (preferably 14)\
-3.Add javafx library and all the jar files present [here](FMS/external%20libraries) to the library\
+3.Import the [dependicies](FMS/external%20libraries) using gradle to the library\
 4.Change the VM options in configurations (for eg in Ubuntu : `"--module-path /usr/lib/jvm/javafx-sdk-14/lib --add-modules=javafx.controls,javafx.fxml"`)\
 5.[Import](https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html) the [DBMS DATA.sql](/Project%20Files/DBMS%20DATA.sql) file to the local database \
 6. Change these [parameters in Main.java](https://github.com/itissandeep98/Facility-Management-System/blob/610b0340fb665b589dddc2f4ca866069c8d42b60/FMS/src/sample/Main.java#L33-L34) according to your database.
