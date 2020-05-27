@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+  prefHeight="486.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8"
+  xmlns:fx="http://javafx.com/fxml/1" fx:controller="EmployeeHistory">
+  <top>
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="185.0"
+      text="History" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <BorderPane.margin>
+        <Insets top="20.0"/>
+      </BorderPane.margin>
+      <font>
+        <Font name="FreeSerif" size="48.0"/>
+      </font>
+    </Label>
+  </top>
+  <center>
+    <TableView fx:id="historytable" editable="true" prefHeight="200.0" prefWidth="200.0"
+      style="-fx-background-radius: 25;" tableMenuButtonVisible="true">
+      <columnResizePolicy>
+        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+      </columnResizePolicy>
+      <columns>
+        <TableColumn fx:id="id" prefWidth="75.0" text="ID"/>
+        <TableColumn fx:id="hostel" prefWidth="75.0" text="Hostel"/>
+        <TableColumn fx:id="room" prefWidth="140.0" text="Room No."/>
+        <TableColumn fx:id="time" prefWidth="119.0" text="Time"/>
+        <TableColumn fx:id="request" prefWidth="157.0" text="Request Type"/>
+      </columns>
+      <cursor>
+        <Cursor fx:constant="DEFAULT"/>
+      </cursor>
+      <BorderPane.margin>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+      </BorderPane.margin>
+    </TableView>
+  </center>
+</BorderPane>
