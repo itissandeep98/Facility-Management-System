@@ -15,10 +15,10 @@
 
  By- [Sandeep](https://github.com/itissandeep98), [Sarthak](https://github.com/sarthak144)
 
-This is a group project extensively based on DBMS, its an attempt in creating an interface for the various Facilities provided by workers inside our college. For more Details read the [Write UP]( /Project%20Files/Work%20in%20Progress_Final%20Report.pdf )
+This is a group project extensively based on implementing a DBMS, its an attempt in creating an interface for the various Facilities provided by workers inside our college. For more Details read the [Write UP]( /Project%20Files/Work%20in%20Progress_Final%20Report.pdf )
 
-1.External Library used for material Design: [JFoenix](https://github.com/jfoenixadmin/JFoenix)\
-2.External Library for exporting excel sheets: [Apache POI](https://poi.apache.org/download.html)\
+1.External Library used for material Design : [JFoenix](https://github.com/jfoenixadmin/JFoenix)\
+2.External Library for exporting excel sheets : [Apache POI](https://poi.apache.org/download.html)\
 3.JDBC(mysql-connector jar file)(Platform Independent)  [MySQL](https://dev.mysql.com/downloads/connector/j/)
 
 ## How To Setup Project
@@ -30,7 +30,7 @@ This is a group project extensively based on DBMS, its an attempt in creating an
 5.[Import](https://dev.mysql.com/doc/workbench/en/wb-admin-export-import-management.html) the [DBMS DATA.sql](/Project%20Files/DBMS%20DATA.sql) file to the local database \
 6. Change these [parameters in Main.java](https://github.com/itissandeep98/Facility-Management-System/blob/610b0340fb665b589dddc2f4ca866069c8d42b60/FMS/src/sample/Main.java#L33-L34) according to your database.
 
-## IF ALL GOES WELL THEN YOU WILL SEE THE FOLLOWING SCREENS
+## IF ALL GOES WELL,THEN YOU WILL SEE THE FOLLOWING SCREENS
 
 ### Login Screen
 
